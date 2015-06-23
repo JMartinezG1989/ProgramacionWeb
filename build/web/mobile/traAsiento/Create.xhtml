@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraAsientoCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraAsientoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraAsientoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraAsientoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traAsientoController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_asiId}" for="asiId" />
+                            <p:inputText id="asiId" value="#{traAsientoController.selected.asiId}" title="#{myBundle.CreateTraAsientoTitle_asiId}" required="true" requiredMessage="#{myBundle.CreateTraAsientoRequiredMessage_asiId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_asiConceptoAsiento}" for="asiConceptoAsiento" />
+                            <p:inputTextarea rows="4" cols="30" id="asiConceptoAsiento" value="#{traAsientoController.selected.asiConceptoAsiento}" title="#{myBundle.CreateTraAsientoTitle_asiConceptoAsiento}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_asiEstadoAsiento}" for="asiEstadoAsiento" />
+                            <p:inputText id="asiEstadoAsiento" value="#{traAsientoController.selected.asiEstadoAsiento}" title="#{myBundle.CreateTraAsientoTitle_asiEstadoAsiento}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_asiFechaAsiento}" for="asiFechaAsiento" />
+                            <p:calendar id="asiFechaAsiento" pattern="MM/dd/yyyy" value="#{traAsientoController.selected.asiFechaAsiento}" title="#{myBundle.CreateTraAsientoTitle_asiFechaAsiento}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_asiNumeroAsiento}" for="asiNumeroAsiento" />
+                            <p:inputText id="asiNumeroAsiento" value="#{traAsientoController.selected.asiNumeroAsiento}" title="#{myBundle.CreateTraAsientoTitle_asiNumeroAsiento}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traAsientoController.selected.audEliminado}" title="#{myBundle.CreateTraAsientoTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientoController.selected.audFechaInsercion}" title="#{myBundle.CreateTraAsientoTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientoController.selected.audFechaModificacion}" title="#{myBundle.CreateTraAsientoTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traAsientoController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraAsientoTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientoLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traAsientoController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraAsientoTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traAsientoController.saveNew}" value="#{myBundle.Save}" update="display,:TraAsientoListPage:TraAsientoListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraAsientoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

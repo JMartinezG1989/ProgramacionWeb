@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraBancosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraBancosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraBancosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraBancosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traBancosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraBancosLabel_banId}" for="banId" />
+                            <h:outputText id="banId" value="#{traBancosController.selected.banId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraBancosLabel_banNombre}" for="banNombre" />
+                            <p:inputText id="banNombre" value="#{traBancosController.selected.banNombre}" title="#{myBundle.EditTraBancosTitle_banNombre}" size="100" maxlength="100"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traBancosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraBancosListPage:TraBancosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraBancosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

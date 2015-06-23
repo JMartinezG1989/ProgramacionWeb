@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraTipoCuentasListForm">
+
+        <p:panel header="#{myBundle.ListTraTipoCuentasTitle}">
+            <p:contextMenu id="TraTipoCuentasDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraTipoCuentasListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraTipoCuentasListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraTipoCuentasListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraTipoCuentasListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traTipoCuentasController.items}"
+                         var="item"
+                         rowKey="#{item.ticuId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traTipoCuentasController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraTipoCuentasDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraTipoCuentasDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraTipoCuentasListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.ticuId}" filterBy="#{item.ticuId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoCuentasTitle_ticuId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ticuId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.ticuDescripcion}" filterBy="#{item.ticuDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoCuentasTitle_ticuDescripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ticuDescripcion}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traTipoCuentasController.prepareCreate}" update=":TraTipoCuentasCreateForm" oncomplete="PF('TraTipoCuentasCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraTipoCuentasViewForm" oncomplete="PF('TraTipoCuentasViewDialog').show()" disabled="#{empty traTipoCuentasController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraTipoCuentasEditForm" oncomplete="PF('TraTipoCuentasEditDialog').show()" disabled="#{empty traTipoCuentasController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traTipoCuentasController.delete}" update=":growl,datalist" disabled="#{empty traTipoCuentasController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

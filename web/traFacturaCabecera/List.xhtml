@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraFacturaCabeceraListForm">
+
+        <p:panel header="#{myBundle.ListTraFacturaCabeceraTitle}">
+            <p:contextMenu id="TraFacturaCabeceraDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraFacturaCabeceraListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraFacturaCabeceraListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraFacturaCabeceraListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraFacturaCabeceraListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraFacturaCabeceraMenuItem_traFacturaEstadoList}" icon="ui-icon-search"  action="#{traFacturaCabeceraController.navigateTraFacturaEstadoList}" disabled="#{empty traFacturaCabeceraController.selected.traFacturaEstadoList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TraFacturaCabeceraMenuItem_tpcoIdPk}" icon="ui-icon-search"  actionListener="#{traFacturaCabeceraController.prepareTpcoIdPk}" update=":TraFacturaTipoPagoCobroViewForm" oncomplete="PF('TraFacturaTipoPagoCobroViewDialog').show()" disabled="#{empty traFacturaCabeceraController.selected.tpcoIdPk}"/>  
+                <p:menuitem value="#{myBundle.TraFacturaCabeceraMenuItem_fivIdPk}" icon="ui-icon-search"  actionListener="#{traFacturaCabeceraController.prepareFivIdPk}" update=":TraFacturaIvasViewForm" oncomplete="PF('TraFacturaIvasViewDialog').show()" disabled="#{empty traFacturaCabeceraController.selected.fivIdPk}"/>  
+                <p:menuitem value="#{myBundle.TraFacturaCabeceraMenuItem_traFacturaDetalleList}" icon="ui-icon-search"  action="#{traFacturaCabeceraController.navigateTraFacturaDetalleList}" disabled="#{empty traFacturaCabeceraController.selected.traFacturaDetalleList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traFacturaCabeceraController.items}"
+                         var="item"
+                         rowKey="#{item.fcaIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traFacturaCabeceraController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraFacturaCabeceraDataTableContextMenu" listener="#{traFacturaCabeceraController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraFacturaCabeceraDataTableContextMenu" listener="#{traFacturaCabeceraController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traFacturaCabeceraController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraFacturaCabeceraListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.fcaIdPk}" filterBy="#{item.fcaIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fcaIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.fcaTotalConIva}" filterBy="#{item.fcaTotalConIva}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaTotalConIva}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaTotalConIva}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaConcepto}" filterBy="#{item.fcaConcepto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaConcepto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaConcepto}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaCondicion}" filterBy="#{item.fcaCondicion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaCondicion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaCondicion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaDestinatario}" filterBy="#{item.fcaDestinatario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaDestinatario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaDestinatario}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaDireccion}" filterBy="#{item.fcaDireccion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaDireccion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaDireccion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaEstado}" filterBy="#{item.fcaEstado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaEstado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaEstado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaFecha}" filterBy="#{item.fcaFecha}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaFecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaFecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaFechaFac}" filterBy="#{item.fcaFechaFac}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaFechaFac}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaFechaFac}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaNguiaRemitente}" filterBy="#{item.fcaNguiaRemitente}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaNguiaRemitente}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaNguiaRemitente}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaNumero}" filterBy="#{item.fcaNumero}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaNumero}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaNumero}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaRemitente}" filterBy="#{item.fcaRemitente}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaRemitente}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaRemitente}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaRuc}" filterBy="#{item.fcaRuc}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaRuc}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaRuc}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaSubtotal}" filterBy="#{item.fcaSubtotal}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaSubtotal}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaSubtotal}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaTelefono}" filterBy="#{item.fcaTelefono}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaTelefono}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaTelefono}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fcaUsuario}" filterBy="#{item.fcaUsuario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fcaUsuario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fcaUsuario}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.tpcoIdPk.tpcoDescripcion}" filterBy="#{item.tpcoIdPk.tpcoDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_tpcoIdPk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tpcoIdPk.tpcoDescripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fivIdPk.fivIdPk}" filterBy="#{item.fivIdPk.fivIdPk}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle_fivIdPk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fivIdPk.fivIdPk}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traFacturaCabeceraController.prepareCreate}" update=":TraFacturaCabeceraCreateForm" oncomplete="PF('TraFacturaCabeceraCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraFacturaCabeceraViewForm" oncomplete="PF('TraFacturaCabeceraViewDialog').show()" disabled="#{empty traFacturaCabeceraController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraFacturaCabeceraEditForm" oncomplete="PF('TraFacturaCabeceraEditDialog').show()" disabled="#{empty traFacturaCabeceraController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traFacturaCabeceraController.delete}" update=":growl,datalist" disabled="#{empty traFacturaCabeceraController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

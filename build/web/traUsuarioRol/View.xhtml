@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraUsuarioRolViewDlg" widgetVar="TraUsuarioRolViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraUsuarioRolTitle}" closeOnEscape="true">
+
+            <h:form id="TraUsuarioRolViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traUsuarioRolController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraUsuarioRolLabel_usrId}"/>
+                        <h:outputText value="#{traUsuarioRolController.selected.usrId}" title="#{myBundle.ViewTraUsuarioRolTitle_usrId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraUsuarioRolLabel_usuId}"/>
+                        <h:outputText value="#{traUsuarioRolController.selected.usuId.usuId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraUsuarioRolLabel_rolId}"/>
+                        <h:outputText value="#{traUsuarioRolController.selected.rolId.rolDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraUsuarioRolViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

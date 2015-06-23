@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraFacturaTipoPagoCobroViewDlg" widgetVar="TraFacturaTipoPagoCobroViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraFacturaTipoPagoCobroTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaTipoPagoCobroViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traFacturaTipoPagoCobroController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_tpcoIdPk}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.tpcoIdPk}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_tpcoIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audEliminado}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_tpcoDescripcion}"/>
+                        <h:outputText value="#{traFacturaTipoPagoCobroController.selected.tpcoDescripcion}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_tpcoDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraFacturaTipoPagoCobroViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

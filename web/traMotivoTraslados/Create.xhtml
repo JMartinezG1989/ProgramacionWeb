@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraMotivoTrasladosCreateDlg" widgetVar="TraMotivoTrasladosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraMotivoTrasladosTitle}" closeOnEscape="true">
+
+            <h:form id="TraMotivoTrasladosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traMotivoTrasladosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_mtrIdPk}" for="mtrIdPk" />
+                        <p:inputText id="mtrIdPk" value="#{traMotivoTrasladosController.selected.mtrIdPk}" title="#{myBundle.CreateTraMotivoTrasladosTitle_mtrIdPk}" required="true" requiredMessage="#{myBundle.CreateTraMotivoTrasladosRequiredMessage_mtrIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traMotivoTrasladosController.selected.audEliminado}" title="#{myBundle.CreateTraMotivoTrasladosTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traMotivoTrasladosController.selected.audFechaInsercion}" title="#{myBundle.CreateTraMotivoTrasladosTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traMotivoTrasladosController.selected.audFechaModificacion}" title="#{myBundle.CreateTraMotivoTrasladosTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traMotivoTrasladosController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraMotivoTrasladosTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traMotivoTrasladosController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraMotivoTrasladosTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraMotivoTrasladosLabel_mtrDescripcion}" for="mtrDescripcion" />
+                        <p:inputText id="mtrDescripcion" value="#{traMotivoTrasladosController.selected.mtrDescripcion}" title="#{myBundle.CreateTraMotivoTrasladosTitle_mtrDescripcion}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traMotivoTrasladosController.saveNew}" value="#{myBundle.Save}" update="display,:TraMotivoTrasladosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraMotivoTrasladosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraMotivoTrasladosCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

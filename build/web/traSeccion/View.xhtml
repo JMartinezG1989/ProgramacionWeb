@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraSeccionViewDlg" widgetVar="TraSeccionViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraSeccionTitle}" closeOnEscape="true">
+
+            <h:form id="TraSeccionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traSeccionController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secId}"/>
+                        <h:outputText value="#{traSeccionController.selected.secId}" title="#{myBundle.ViewTraSeccionTitle_secId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secDescripcion}"/>
+                        <h:outputText value="#{traSeccionController.selected.secDescripcion}" title="#{myBundle.ViewTraSeccionTitle_secDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secEtiqueta}"/>
+                        <h:outputText value="#{traSeccionController.selected.secEtiqueta}" title="#{myBundle.ViewTraSeccionTitle_secEtiqueta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secNombreClave}"/>
+                        <h:outputText value="#{traSeccionController.selected.secNombreClave}" title="#{myBundle.ViewTraSeccionTitle_secNombreClave}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secOrden}"/>
+                        <h:outputText value="#{traSeccionController.selected.secOrden}" title="#{myBundle.ViewTraSeccionTitle_secOrden}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secPagina}"/>
+                        <h:outputText value="#{traSeccionController.selected.secPagina}" title="#{myBundle.ViewTraSeccionTitle_secPagina}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_secRuta}"/>
+                        <h:outputText value="#{traSeccionController.selected.secRuta}" title="#{myBundle.ViewTraSeccionTitle_secRuta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraSeccionLabel_tisId}"/>
+                        <h:outputText value="#{traSeccionController.selected.tisId.tisDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraSeccionViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

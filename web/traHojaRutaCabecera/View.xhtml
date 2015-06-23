@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraHojaRutaCabeceraViewDlg" widgetVar="TraHojaRutaCabeceraViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraHojaRutaCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraHojaRutaCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traHojaRutaCabeceraController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcIdPk}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcIdPk}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_audEliminado}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.audEliminado}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.audFechaInsercion}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.audFechaModificacion}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcCobroCuenca}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcCobroCuenca}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcCobroCuenca}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcCobroRuta}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcCobroRuta}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcCobroRuta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcFecha}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcFecha}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcFecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcFletePagado}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcFletePagado}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcFletePagado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcNumero}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcNumero}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcNumero}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcPorcentaje}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcPorcentaje}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcPorcentaje}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcPropietario}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcPropietario}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcPropietario}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcRuta}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcRuta}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcRuta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_hrcTotalPagar}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.hrcTotalPagar}" title="#{myBundle.ViewTraHojaRutaCabeceraTitle_hrcTotalPagar}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraHojaRutaCabeceraLabel_perHrcFk}"/>
+                        <h:outputText value="#{traHojaRutaCabeceraController.selected.perHrcFk.perIdPk}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraHojaRutaCabeceraViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

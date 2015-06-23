@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraComprobanteEgresoCabeceraViewDlg" widgetVar="TraComprobanteEgresoCabeceraViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraComprobanteEgresoCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traComprobanteEgresoCabeceraController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecId}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecId}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecEstado}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecEstado}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecEstado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecFecha}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecFecha}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecFecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecFechas}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecFechas}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecFechas}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecNumeroCheque}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecNumeroCheque}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecNumeroCheque}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecNumero}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecNumero}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecNumero}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecObservaciones}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecObservaciones}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecObservaciones}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecSon}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecSon}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecSon}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecUsuario}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecUsuario}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecUsuario}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoCabeceraLabel_cecValor}"/>
+                        <h:outputText value="#{traComprobanteEgresoCabeceraController.selected.cecValor}" title="#{myBundle.ViewTraComprobanteEgresoCabeceraTitle_cecValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraComprobanteEgresoCabeceraViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

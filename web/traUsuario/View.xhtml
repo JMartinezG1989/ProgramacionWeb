@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraUsuarioViewDlg" widgetVar="TraUsuarioViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraUsuarioTitle}" closeOnEscape="true">
+
+            <h:form id="TraUsuarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traUsuarioController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraUsuarioLabel_usuId}"/>
+                        <h:outputText value="#{traUsuarioController.selected.usuId}" title="#{myBundle.ViewTraUsuarioTitle_usuId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraUsuarioLabel_usuClave}"/>
+                        <h:outputText value="#{traUsuarioController.selected.usuClave}" title="#{myBundle.ViewTraUsuarioTitle_usuClave}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraUsuarioLabel_usuUsuario}"/>
+                        <h:outputText value="#{traUsuarioController.selected.usuUsuario}" title="#{myBundle.ViewTraUsuarioTitle_usuUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraUsuarioViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

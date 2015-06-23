@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipodocsEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraTipodocsTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipodocsListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipodocsEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traTipodocsController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraTipodocsLabel_tipId}" for="tipId" />
+                            <h:outputText id="tipId" value="#{traTipodocsController.selected.tipId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipodocsLabel_tipDescripcion}" for="tipDescripcion" />
+                            <p:inputText id="tipDescripcion" value="#{traTipodocsController.selected.tipDescripcion}" title="#{myBundle.EditTraTipodocsTitle_tipDescripcion}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipodocsLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traTipodocsController.selected.audEliminado}" title="#{myBundle.EditTraTipodocsTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipodocsLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipodocsController.selected.audFechaInsercion}" title="#{myBundle.EditTraTipodocsTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipodocsLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipodocsController.selected.audFechaModificacion}" title="#{myBundle.EditTraTipodocsTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipodocsLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traTipodocsController.selected.audUsuarioInserto}" title="#{myBundle.EditTraTipodocsTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipodocsLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traTipodocsController.selected.audUsuarioModifico}" title="#{myBundle.EditTraTipodocsTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traTipodocsController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraTipodocsListPage:TraTipodocsListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraTipodocsListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

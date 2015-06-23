@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraTipoLugaresCreateDlg" widgetVar="TraTipoLugaresCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraTipoLugaresTitle}" closeOnEscape="true">
+
+            <h:form id="TraTipoLugaresCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoLugaresController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_tluIdPk}" for="tluIdPk" />
+                        <p:inputText id="tluIdPk" value="#{traTipoLugaresController.selected.tluIdPk}" title="#{myBundle.CreateTraTipoLugaresTitle_tluIdPk}" required="true" requiredMessage="#{myBundle.CreateTraTipoLugaresRequiredMessage_tluIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traTipoLugaresController.selected.audEliminado}" title="#{myBundle.CreateTraTipoLugaresTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipoLugaresController.selected.audFechaInsercion}" title="#{myBundle.CreateTraTipoLugaresTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipoLugaresController.selected.audFechaModificacion}" title="#{myBundle.CreateTraTipoLugaresTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traTipoLugaresController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraTipoLugaresTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traTipoLugaresController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraTipoLugaresTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_tluDescripcion}" for="tluDescripcion" />
+                        <p:inputText id="tluDescripcion" value="#{traTipoLugaresController.selected.tluDescripcion}" title="#{myBundle.CreateTraTipoLugaresTitle_tluDescripcion}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traTipoLugaresController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoLugaresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraTipoLugaresCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraTipoLugaresCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

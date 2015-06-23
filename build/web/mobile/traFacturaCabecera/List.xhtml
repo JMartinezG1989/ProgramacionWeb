@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaCabeceraListPage">
+        <pm:header title="#{myBundle.ListTraFacturaCabeceraTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":TraFacturaCabeceraCreatePage:TraFacturaCabeceraCreateForm" actionListener="#{traFacturaCabeceraController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:TraFacturaCabeceraCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaCabeceraListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{traFacturaCabeceraController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":TraFacturaCabeceraEditPage:TraFacturaCabeceraEditForm" action="pm:TraFacturaCabeceraEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.fcaIdPk}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audEliminado}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audUsuarioInserto}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audUsuarioModifico}"/>
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaTotalConIva}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaConcepto}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaCondicion}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaDestinatario}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaDireccion}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaEstado}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaFecha}">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                    </h:outputText>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaFechaFac}">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                    </h:outputText>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaNguiaRemitente}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaNumero}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaRemitente}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaRuc}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaSubtotal}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaTelefono}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaUsuario}"/>
+                            -->
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.tpcoIdPk.tpcoDescripcion}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fivIdPk.fivIdPk}"/>
+                            -->
+
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{traFacturaCabeceraController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListTraFacturaCabeceraTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

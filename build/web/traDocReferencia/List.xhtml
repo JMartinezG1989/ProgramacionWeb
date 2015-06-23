@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraDocReferenciaListForm">
+
+        <p:panel header="#{myBundle.ListTraDocReferenciaTitle}">
+            <p:contextMenu id="TraDocReferenciaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraDocReferenciaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraDocReferenciaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraDocReferenciaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraDocReferenciaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traDocReferenciaController.items}"
+                         var="item"
+                         rowKey="#{item.dorId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traDocReferenciaController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraDocReferenciaDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraDocReferenciaDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraDocReferenciaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.dorId}" filterBy="#{item.dorId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_dorId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dorId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dorDescripcionDocreferencia}" filterBy="#{item.dorDescripcionDocreferencia}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_dorDescripcionDocreferencia}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dorDescripcionDocreferencia}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dorNumDocreferencia}" filterBy="#{item.dorNumDocreferencia}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_dorNumDocreferencia}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dorNumDocreferencia}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_audUsuarioInserto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.audUsuarioInserto}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraDocReferenciaTitle_audUsuarioModifico}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.audUsuarioModifico}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traDocReferenciaController.prepareCreate}" update=":TraDocReferenciaCreateForm" oncomplete="PF('TraDocReferenciaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraDocReferenciaViewForm" oncomplete="PF('TraDocReferenciaViewDialog').show()" disabled="#{empty traDocReferenciaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraDocReferenciaEditForm" oncomplete="PF('TraDocReferenciaEditDialog').show()" disabled="#{empty traDocReferenciaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traDocReferenciaController.delete}" update=":growl,datalist" disabled="#{empty traDocReferenciaController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

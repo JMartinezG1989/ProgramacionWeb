@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraTipoLugaresViewDlg" widgetVar="TraTipoLugaresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraTipoLugaresTitle}" closeOnEscape="true">
+
+            <h:form id="TraTipoLugaresViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traTipoLugaresController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_tluIdPk}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.tluIdPk}" title="#{myBundle.ViewTraTipoLugaresTitle_tluIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_audEliminado}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.audEliminado}" title="#{myBundle.ViewTraTipoLugaresTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.audFechaInsercion}" title="#{myBundle.ViewTraTipoLugaresTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.audFechaModificacion}" title="#{myBundle.ViewTraTipoLugaresTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraTipoLugaresTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraTipoLugaresTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraTipoLugaresLabel_tluDescripcion}"/>
+                        <h:outputText value="#{traTipoLugaresController.selected.tluDescripcion}" title="#{myBundle.ViewTraTipoLugaresTitle_tluDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraTipoLugaresViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

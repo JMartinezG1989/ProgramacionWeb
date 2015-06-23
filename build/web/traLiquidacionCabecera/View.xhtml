@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraLiquidacionCabeceraViewDlg" widgetVar="TraLiquidacionCabeceraViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraLiquidacionCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraLiquidacionCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traLiquidacionCabeceraController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaIdPk}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaIdPk}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audEliminado}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.audEliminado}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaDireccion}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaDireccion}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaDireccion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaEstaddo}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaEstaddo}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaEstaddo}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaFecha}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaFecha}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaFecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaFechaEmision}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaFechaEmision}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaFechaEmision}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaSenores}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaSenores}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaSenores}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaUsuario}"/>
+                        <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaUsuario}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraLiquidacionCabeceraViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

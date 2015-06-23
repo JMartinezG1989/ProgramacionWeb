@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraLugaresCreateDlg" widgetVar="TraLugaresCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraLugaresTitle}" closeOnEscape="true">
+
+            <h:form id="TraLugaresCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traLugaresController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_lugIdPk}" for="lugIdPk" />
+                        <p:inputText id="lugIdPk" value="#{traLugaresController.selected.lugIdPk}" title="#{myBundle.CreateTraLugaresTitle_lugIdPk}" required="true" requiredMessage="#{myBundle.CreateTraLugaresRequiredMessage_lugIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traLugaresController.selected.audEliminado}" title="#{myBundle.CreateTraLugaresTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLugaresController.selected.audFechaInsercion}" title="#{myBundle.CreateTraLugaresTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLugaresController.selected.audFechaModificacion}" title="#{myBundle.CreateTraLugaresTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traLugaresController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraLugaresTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traLugaresController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraLugaresTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_lugDescripcion}" for="lugDescripcion" />
+                        <p:inputText id="lugDescripcion" value="#{traLugaresController.selected.lugDescripcion}" title="#{myBundle.CreateTraLugaresTitle_lugDescripcion}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_hrcHrdFk}" for="hrcHrdFk" />
+                        <p:selectOneMenu id="hrcHrdFk" value="#{traLugaresController.selected.hrcHrdFk}"  converter="traTipoLugaresConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traTipoLugaresController.items}"
+                                           var="hrcHrdFkItem"
+                                           itemValue="#{hrcHrdFkItem}"
+                                           itemLabel="#{hrcHrdFkItem.tluDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLugaresLabel_lugPadreId}" for="lugPadreId" />
+                        <p:selectOneMenu id="lugPadreId" value="#{traLugaresController.selected.lugPadreId}"  converter="traLugaresConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traLugaresController.items}"
+                                           var="lugPadreIdItem"
+                                           itemValue="#{lugPadreIdItem}"
+                                           itemLabel="#{lugPadreIdItem.lugDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traLugaresController.saveNew}" value="#{myBundle.Save}" update="display,:TraLugaresListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraLugaresCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraLugaresCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

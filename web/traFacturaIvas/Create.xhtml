@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraFacturaIvasCreateDlg" widgetVar="TraFacturaIvasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraFacturaIvasTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaIvasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traFacturaIvasController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_fivIdPk}" for="fivIdPk" />
+                        <p:inputText id="fivIdPk" value="#{traFacturaIvasController.selected.fivIdPk}" title="#{myBundle.CreateTraFacturaIvasTitle_fivIdPk}" required="true" requiredMessage="#{myBundle.CreateTraFacturaIvasRequiredMessage_fivIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traFacturaIvasController.selected.audEliminado}" title="#{myBundle.CreateTraFacturaIvasTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaIvasController.selected.audFechaInsercion}" title="#{myBundle.CreateTraFacturaIvasTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaIvasController.selected.audFechaModificacion}" title="#{myBundle.CreateTraFacturaIvasTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traFacturaIvasController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraFacturaIvasTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traFacturaIvasController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraFacturaIvasTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaIvasLabel_fivValor}" for="fivValor" />
+                        <p:inputText id="fivValor" value="#{traFacturaIvasController.selected.fivValor}" title="#{myBundle.CreateTraFacturaIvasTitle_fivValor}" required="true" requiredMessage="#{myBundle.CreateTraFacturaIvasRequiredMessage_fivValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traFacturaIvasController.saveNew}" value="#{myBundle.Save}" update="display,:TraFacturaIvasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraFacturaIvasCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraFacturaIvasCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

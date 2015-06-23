@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraPersonaViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraPersonaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraPersonaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraPersonaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traPersonaController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perIdPk}"/>
+                            <h:outputText value="#{traPersonaController.selected.perIdPk}" title="#{myBundle.ViewTraPersonaTitle_perIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_audEliminado}"/>
+                            <h:outputText value="#{traPersonaController.selected.audEliminado}" title="#{myBundle.ViewTraPersonaTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traPersonaController.selected.audFechaInsercion}" title="#{myBundle.ViewTraPersonaTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traPersonaController.selected.audFechaModificacion}" title="#{myBundle.ViewTraPersonaTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traPersonaController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraPersonaTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traPersonaController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraPersonaTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perApellido}"/>
+                            <h:outputText value="#{traPersonaController.selected.perApellido}" title="#{myBundle.ViewTraPersonaTitle_perApellido}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perCedula}"/>
+                            <h:outputText value="#{traPersonaController.selected.perCedula}" title="#{myBundle.ViewTraPersonaTitle_perCedula}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perCelular}"/>
+                            <h:outputText value="#{traPersonaController.selected.perCelular}" title="#{myBundle.ViewTraPersonaTitle_perCelular}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perDireccion}"/>
+                            <h:outputText value="#{traPersonaController.selected.perDireccion}" title="#{myBundle.ViewTraPersonaTitle_perDireccion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perFechaNacimiento}"/>
+                            <h:outputText value="#{traPersonaController.selected.perFechaNacimiento}" title="#{myBundle.ViewTraPersonaTitle_perFechaNacimiento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perNombre}"/>
+                            <h:outputText value="#{traPersonaController.selected.perNombre}" title="#{myBundle.ViewTraPersonaTitle_perNombre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPersonaLabel_perTelefono}"/>
+                            <h:outputText value="#{traPersonaController.selected.perTelefono}" title="#{myBundle.ViewTraPersonaTitle_perTelefono}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

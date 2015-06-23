@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraAsientosCuentasEditDlg" widgetVar="TraAsientosCuentasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraAsientosCuentasTitle}" closeOnEscape="true">
+
+            <h:form id="TraAsientosCuentasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traAsientosCuentasController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascId}" for="ascId" />
+                        <h:outputText id="ascId" value="#{traAsientosCuentasController.selected.ascId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascCtaElegidaAsientocuenta}" for="ascCtaElegidaAsientocuenta" />
+                        <p:inputText id="ascCtaElegidaAsientocuenta" value="#{traAsientosCuentasController.selected.ascCtaElegidaAsientocuenta}" title="#{myBundle.EditTraAsientosCuentasTitle_ascCtaElegidaAsientocuenta}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascDebeAsientocuenta}" for="ascDebeAsientocuenta" />
+                        <p:inputText id="ascDebeAsientocuenta" value="#{traAsientosCuentasController.selected.ascDebeAsientocuenta}" title="#{myBundle.EditTraAsientosCuentasTitle_ascDebeAsientocuenta}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascHaberAsientocuenta}" for="ascHaberAsientocuenta" />
+                        <p:inputText id="ascHaberAsientocuenta" value="#{traAsientosCuentasController.selected.ascHaberAsientocuenta}" title="#{myBundle.EditTraAsientosCuentasTitle_ascHaberAsientocuenta}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascFechaSientocuenta}" for="ascFechaSientocuenta" />
+                        <p:calendar id="ascFechaSientocuenta" pattern="MM/dd/yyyy" value="#{traAsientosCuentasController.selected.ascFechaSientocuenta}" title="#{myBundle.EditTraAsientosCuentasTitle_ascFechaSientocuenta}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascIdCuentaAuxAsientocuenta}" for="ascIdCuentaAuxAsientocuenta" />
+                        <p:inputText id="ascIdCuentaAuxAsientocuenta" value="#{traAsientosCuentasController.selected.ascIdCuentaAuxAsientocuenta}" title="#{myBundle.EditTraAsientosCuentasTitle_ascIdCuentaAuxAsientocuenta}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_ascNotasAsientocuenta}" for="ascNotasAsientocuenta" />
+                        <p:inputText id="ascNotasAsientocuenta" value="#{traAsientosCuentasController.selected.ascNotasAsientocuenta}" title="#{myBundle.EditTraAsientosCuentasTitle_ascNotasAsientocuenta}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traAsientosCuentasController.selected.audEliminado}" title="#{myBundle.EditTraAsientosCuentasTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientosCuentasController.selected.audFechaInsercion}" title="#{myBundle.EditTraAsientosCuentasTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientosCuentasController.selected.audFechaModificacion}" title="#{myBundle.EditTraAsientosCuentasTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traAsientosCuentasController.selected.audUsuarioInserto}" title="#{myBundle.EditTraAsientosCuentasTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientosCuentasLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traAsientosCuentasController.selected.audUsuarioModifico}" title="#{myBundle.EditTraAsientosCuentasTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traAsientosCuentasController.save}" value="#{myBundle.Save}" update="display,:TraAsientosCuentasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraAsientosCuentasEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraAsientosCuentasEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

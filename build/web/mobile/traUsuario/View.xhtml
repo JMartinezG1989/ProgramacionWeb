@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraUsuarioViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraUsuarioTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraUsuarioListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraUsuarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traUsuarioController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraUsuarioLabel_usuId}"/>
+                            <h:outputText value="#{traUsuarioController.selected.usuId}" title="#{myBundle.ViewTraUsuarioTitle_usuId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraUsuarioLabel_usuClave}"/>
+                            <h:outputText value="#{traUsuarioController.selected.usuClave}" title="#{myBundle.ViewTraUsuarioTitle_usuClave}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraUsuarioLabel_usuUsuario}"/>
+                            <h:outputText value="#{traUsuarioController.selected.usuUsuario}" title="#{myBundle.ViewTraUsuarioTitle_usuUsuario}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

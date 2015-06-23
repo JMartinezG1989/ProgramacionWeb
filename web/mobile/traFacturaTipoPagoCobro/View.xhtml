@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaTipoPagoCobroViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraFacturaTipoPagoCobroListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaTipoPagoCobroViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traFacturaTipoPagoCobroController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_tpcoIdPk}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.tpcoIdPk}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_tpcoIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audEliminado}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaTipoPagoCobroLabel_tpcoDescripcion}"/>
+                            <h:outputText value="#{traFacturaTipoPagoCobroController.selected.tpcoDescripcion}" title="#{myBundle.ViewTraFacturaTipoPagoCobroTitle_tpcoDescripcion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

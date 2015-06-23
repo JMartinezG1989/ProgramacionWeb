@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroIngresosCreateDlg" widgetVar="TraNumeroIngresosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraNumeroIngresosTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroIngresosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroIngresosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traIdPk}" for="traIdPk" />
+                        <p:inputText id="traIdPk" value="#{traNumeroIngresosController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroIngresosTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroIngresosRequiredMessage_traIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traDes}" for="traDes" />
+                        <p:inputText id="traDes" value="#{traNumeroIngresosController.selected.traDes}" title="#{myBundle.CreateTraNumeroIngresosTitle_traDes}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traHas}" for="traHas" />
+                        <p:inputText id="traHas" value="#{traNumeroIngresosController.selected.traHas}" title="#{myBundle.CreateTraNumeroIngresosTitle_traHas}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traSuma}" for="traSuma" />
+                        <p:inputText id="traSuma" value="#{traNumeroIngresosController.selected.traSuma}" title="#{myBundle.CreateTraNumeroIngresosTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traNumeroIngresosController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroIngresosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraNumeroIngresosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraNumeroIngresosCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

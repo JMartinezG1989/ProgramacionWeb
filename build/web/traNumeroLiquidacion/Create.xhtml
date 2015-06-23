@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroLiquidacionCreateDlg" widgetVar="TraNumeroLiquidacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraNumeroLiquidacionTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroLiquidacionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroLiquidacionController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traIdPk}" for="traIdPk" />
+                        <p:inputText id="traIdPk" value="#{traNumeroLiquidacionController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroLiquidacionRequiredMessage_traIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traDes}" for="traDes" />
+                        <p:inputText id="traDes" value="#{traNumeroLiquidacionController.selected.traDes}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traDes}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traHas}" for="traHas" />
+                        <p:inputText id="traHas" value="#{traNumeroLiquidacionController.selected.traHas}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traHas}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traSuma}" for="traSuma" />
+                        <p:inputText id="traSuma" value="#{traNumeroLiquidacionController.selected.traSuma}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traNumeroLiquidacionController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroLiquidacionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraNumeroLiquidacionCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraNumeroLiquidacionCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

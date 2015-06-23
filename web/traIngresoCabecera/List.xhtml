@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraIngresoCabeceraListForm">
+
+        <p:panel header="#{myBundle.ListTraIngresoCabeceraTitle}">
+            <p:contextMenu id="TraIngresoCabeceraDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraIngresoCabeceraListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraIngresoCabeceraListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraIngresoCabeceraListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraIngresoCabeceraListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traIngresoCabeceraController.items}"
+                         var="item"
+                         rowKey="#{item.icaId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traIngresoCabeceraController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraIngresoCabeceraDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraIngresoCabeceraDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraIngresoCabeceraListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.icaId}" filterBy="#{item.icaId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaAgente}" filterBy="#{item.icaAgente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaAgente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaAgente}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaCaja}" filterBy="#{item.icaCaja}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaCaja}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaCaja}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaCodage}" filterBy="#{item.icaCodage}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaCodage}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaCodage}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaCodigo}" filterBy="#{item.icaCodigo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaCodigo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaCodigo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaEstado}" filterBy="#{item.icaEstado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaEstado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaEstado}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.icaFecha}" filterBy="#{item.icaFecha}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaFecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaFecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaFechaIngreso}" filterBy="#{item.icaFechaIngreso}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaFechaIngreso}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaFechaIngreso}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaNumeroDeposito}" filterBy="#{item.icaNumeroDeposito}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaNumeroDeposito}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaNumeroDeposito}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaNumero}" filterBy="#{item.icaNumero}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaNumero}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaNumero}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaRetencionFuente}" filterBy="#{item.icaRetencionFuente}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaRetencionFuente}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaRetencionFuente}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaRetencionIva}" filterBy="#{item.icaRetencionIva}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaRetencionIva}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaRetencionIva}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaTotal}" filterBy="#{item.icaTotal}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaTotal}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaTotal}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaTotalRecaudado}" filterBy="#{item.icaTotalRecaudado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaTotalRecaudado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaTotalRecaudado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaUsuario}" filterBy="#{item.icaUsuario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoCabeceraTitle_icaUsuario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaUsuario}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traIngresoCabeceraController.prepareCreate}" update=":TraIngresoCabeceraCreateForm" oncomplete="PF('TraIngresoCabeceraCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraIngresoCabeceraViewForm" oncomplete="PF('TraIngresoCabeceraViewDialog').show()" disabled="#{empty traIngresoCabeceraController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraIngresoCabeceraEditForm" oncomplete="PF('TraIngresoCabeceraEditDialog').show()" disabled="#{empty traIngresoCabeceraController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traIngresoCabeceraController.delete}" update=":growl,datalist" disabled="#{empty traIngresoCabeceraController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

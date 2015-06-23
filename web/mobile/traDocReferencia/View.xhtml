@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraDocReferenciaViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraDocReferenciaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraDocReferenciaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraDocReferenciaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traDocReferenciaController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_dorId}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.dorId}" title="#{myBundle.ViewTraDocReferenciaTitle_dorId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_dorDescripcionDocreferencia}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.dorDescripcionDocreferencia}" title="#{myBundle.ViewTraDocReferenciaTitle_dorDescripcionDocreferencia}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_dorNumDocreferencia}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.dorNumDocreferencia}" title="#{myBundle.ViewTraDocReferenciaTitle_dorNumDocreferencia}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_audEliminado}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.audEliminado}" title="#{myBundle.ViewTraDocReferenciaTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.audFechaInsercion}" title="#{myBundle.ViewTraDocReferenciaTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.audFechaModificacion}" title="#{myBundle.ViewTraDocReferenciaTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraDocReferenciaTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraDocReferenciaLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traDocReferenciaController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraDocReferenciaTitle_audUsuarioModifico}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

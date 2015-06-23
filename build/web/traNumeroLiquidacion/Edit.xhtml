@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraNumeroLiquidacionEditDlg" widgetVar="TraNumeroLiquidacionEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraNumeroLiquidacionTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroLiquidacionEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traNumeroLiquidacionController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraNumeroLiquidacionLabel_traIdPk}" for="traIdPk" />
+                        <h:outputText id="traIdPk" value="#{traNumeroLiquidacionController.selected.traIdPk}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraNumeroLiquidacionLabel_traDes}" for="traDes" />
+                        <p:inputText id="traDes" value="#{traNumeroLiquidacionController.selected.traDes}" title="#{myBundle.EditTraNumeroLiquidacionTitle_traDes}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraNumeroLiquidacionLabel_traHas}" for="traHas" />
+                        <p:inputText id="traHas" value="#{traNumeroLiquidacionController.selected.traHas}" title="#{myBundle.EditTraNumeroLiquidacionTitle_traHas}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraNumeroLiquidacionLabel_traSuma}" for="traSuma" />
+                        <p:inputText id="traSuma" value="#{traNumeroLiquidacionController.selected.traSuma}" title="#{myBundle.EditTraNumeroLiquidacionTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traNumeroLiquidacionController.save}" value="#{myBundle.Save}" update="display,:TraNumeroLiquidacionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraNumeroLiquidacionEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraNumeroLiquidacionEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

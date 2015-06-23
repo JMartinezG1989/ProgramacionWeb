@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraComprobanteEgresoCabeceraCreateDlg" widgetVar="TraComprobanteEgresoCabeceraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraComprobanteEgresoCabeceraCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traComprobanteEgresoCabeceraController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecId}" for="cecId" />
+                        <p:inputText id="cecId" value="#{traComprobanteEgresoCabeceraController.selected.cecId}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecId}" required="true" requiredMessage="#{myBundle.CreateTraComprobanteEgresoCabeceraRequiredMessage_cecId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecEstado}" for="cecEstado" />
+                        <p:inputText id="cecEstado" value="#{traComprobanteEgresoCabeceraController.selected.cecEstado}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecEstado}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecFecha}" for="cecFecha" />
+                        <p:calendar id="cecFecha" pattern="MM/dd/yyyy" value="#{traComprobanteEgresoCabeceraController.selected.cecFecha}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecFecha}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecFechas}" for="cecFechas" />
+                        <p:calendar id="cecFechas" pattern="MM/dd/yyyy" value="#{traComprobanteEgresoCabeceraController.selected.cecFechas}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecFechas}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecNumeroCheque}" for="cecNumeroCheque" />
+                        <p:inputText id="cecNumeroCheque" value="#{traComprobanteEgresoCabeceraController.selected.cecNumeroCheque}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecNumeroCheque}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecNumero}" for="cecNumero" />
+                        <p:inputText id="cecNumero" value="#{traComprobanteEgresoCabeceraController.selected.cecNumero}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecNumero}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecObservaciones}" for="cecObservaciones" />
+                        <p:inputText id="cecObservaciones" value="#{traComprobanteEgresoCabeceraController.selected.cecObservaciones}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecObservaciones}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecSon}" for="cecSon" />
+                        <p:inputText id="cecSon" value="#{traComprobanteEgresoCabeceraController.selected.cecSon}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecSon}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecUsuario}" for="cecUsuario" />
+                        <p:inputText id="cecUsuario" value="#{traComprobanteEgresoCabeceraController.selected.cecUsuario}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecUsuario}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoCabeceraLabel_cecValor}" for="cecValor" />
+                        <p:inputText id="cecValor" value="#{traComprobanteEgresoCabeceraController.selected.cecValor}" title="#{myBundle.CreateTraComprobanteEgresoCabeceraTitle_cecValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traComprobanteEgresoCabeceraController.saveNew}" value="#{myBundle.Save}" update="display,:TraComprobanteEgresoCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraComprobanteEgresoCabeceraCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraComprobanteEgresoCabeceraCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

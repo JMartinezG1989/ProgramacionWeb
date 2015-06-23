@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipoSeccionCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraTipoSeccionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipoSeccionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipoSeccionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoSeccionController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoSeccionLabel_tisId}" for="tisId" />
+                            <p:inputText id="tisId" value="#{traTipoSeccionController.selected.tisId}" title="#{myBundle.CreateTraTipoSeccionTitle_tisId}" required="true" requiredMessage="#{myBundle.CreateTraTipoSeccionRequiredMessage_tisId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoSeccionLabel_tisDescripcion}" for="tisDescripcion" />
+                            <p:inputText id="tisDescripcion" value="#{traTipoSeccionController.selected.tisDescripcion}" title="#{myBundle.CreateTraTipoSeccionTitle_tisDescripcion}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoSeccionLabel_tisNivel}" for="tisNivel" />
+                            <p:inputText id="tisNivel" value="#{traTipoSeccionController.selected.tisNivel}" title="#{myBundle.CreateTraTipoSeccionTitle_tisNivel}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traTipoSeccionController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoSeccionListPage:TraTipoSeccionListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraTipoSeccionListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

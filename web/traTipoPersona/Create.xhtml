@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraTipoPersonaCreateDlg" widgetVar="TraTipoPersonaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraTipoPersonaTitle}" closeOnEscape="true">
+
+            <h:form id="TraTipoPersonaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoPersonaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoPersonaLabel_tpeIdPk}" for="tpeIdPk" />
+                        <p:inputText id="tpeIdPk" value="#{traTipoPersonaController.selected.tpeIdPk}" title="#{myBundle.CreateTraTipoPersonaTitle_tpeIdPk}" required="true" requiredMessage="#{myBundle.CreateTraTipoPersonaRequiredMessage_tpeIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoPersonaLabel_tpeDescripcion}" for="tpeDescripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="tpeDescripcion" value="#{traTipoPersonaController.selected.tpeDescripcion}" title="#{myBundle.CreateTraTipoPersonaTitle_tpeDescripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traTipoPersonaController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoPersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraTipoPersonaCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraTipoPersonaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <p:submenu label="#{myBundle.Maintenance}">
+                    <p:menuitem value="#{myBundle.TraAsientoHeading}..." outcome="/traAsiento/index" />
+                    <p:menuitem value="#{myBundle.TraAsientosCuentasHeading}..." outcome="/traAsientosCuentas/index" />
+                    <p:menuitem value="#{myBundle.TraBancosHeading}..." outcome="/traBancos/index" />
+                    <p:menuitem value="#{myBundle.TraChequeCabeceraHeading}..." outcome="/traChequeCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraChequeDetaleHeading}..." outcome="/traChequeDetale/index" />
+                    <p:menuitem value="#{myBundle.TraComprobanteEgresoCabeceraHeading}..." outcome="/traComprobanteEgresoCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraComprobanteEgresoDetalleHeading}..." outcome="/traComprobanteEgresoDetalle/index" />
+                    <p:menuitem value="#{myBundle.TraContaCuentaHeading}..." outcome="/traContaCuenta/index" />
+                    <p:menuitem value="#{myBundle.TraContaMayorDetallesHeading}..." outcome="/traContaMayorDetalles/index" />
+                    <p:menuitem value="#{myBundle.TraContaNivelesHeading}..." outcome="/traContaNiveles/index" />
+                    <p:menuitem value="#{myBundle.TraContabilidadRetencionesHeading}..." outcome="/traContabilidadRetenciones/index" />
+                    <p:menuitem value="#{myBundle.TraDetallesGuiaHeading}..." outcome="/traDetallesGuia/index" />
+                    <p:menuitem value="#{myBundle.TraDocReferenciaHeading}..." outcome="/traDocReferencia/index" />
+                    <p:menuitem value="#{myBundle.TraFacturaCabeceraHeading}..." outcome="/traFacturaCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraFacturaDetalleHeading}..." outcome="/traFacturaDetalle/index" />
+                    <p:menuitem value="#{myBundle.TraFacturaEstadoHeading}..." outcome="/traFacturaEstado/index" />
+                    <p:menuitem value="#{myBundle.TraFacturaIvasHeading}..." outcome="/traFacturaIvas/index" />
+                    <p:menuitem value="#{myBundle.TraFacturaTipoPagoCobroHeading}..." outcome="/traFacturaTipoPagoCobro/index" />
+                    <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraHeading}..." outcome="/traGuiaRemisionCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraHojaRutaCabeceraHeading}..." outcome="/traHojaRutaCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraHojaRutaDetalleHeading}..." outcome="/traHojaRutaDetalle/index" />
+                    <p:menuitem value="#{myBundle.TraIngresoCabeceraHeading}..." outcome="/traIngresoCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraIngresoDetalleHeading}..." outcome="/traIngresoDetalle/index" />
+                    <p:menuitem value="#{myBundle.TraLiquidacionCabeceraHeading}..." outcome="/traLiquidacionCabecera/index" />
+                    <p:menuitem value="#{myBundle.TraLiquidacionDetalleHeading}..." outcome="/traLiquidacionDetalle/index" />
+                    <p:menuitem value="#{myBundle.TraLiquidacionFechaDetalleHeading}..." outcome="/traLiquidacionFechaDetalle/index" />
+                    <p:menuitem value="#{myBundle.TraLugaresHeading}..." outcome="/traLugares/index" />
+                    <p:menuitem value="#{myBundle.TraMotivoTrasladosHeading}..." outcome="/traMotivoTraslados/index" />
+                    <p:menuitem value="#{myBundle.TraNumeroEgresosHeading}..." outcome="/traNumeroEgresos/index" />
+                    <p:menuitem value="#{myBundle.TraNumeroFacturasHeading}..." outcome="/traNumeroFacturas/index" />
+                    <p:menuitem value="#{myBundle.TraNumeroGuiasHeading}..." outcome="/traNumeroGuias/index" />
+                    <p:menuitem value="#{myBundle.TraNumeroIngresosHeading}..." outcome="/traNumeroIngresos/index" />
+                    <p:menuitem value="#{myBundle.TraNumeroLiquidacionHeading}..." outcome="/traNumeroLiquidacion/index" />
+                    <p:menuitem value="#{myBundle.TraOperacionHeading}..." outcome="/traOperacion/index" />
+                    <p:menuitem value="#{myBundle.TraPermisoHeading}..." outcome="/traPermiso/index" />
+                    <p:menuitem value="#{myBundle.TraPersonaHeading}..." outcome="/traPersona/index" />
+                    <p:menuitem value="#{myBundle.TraRolHeading}..." outcome="/traRol/index" />
+                    <p:menuitem value="#{myBundle.TraRutasHeading}..." outcome="/traRutas/index" />
+                    <p:menuitem value="#{myBundle.TraSeccionHeading}..." outcome="/traSeccion/index" />
+                    <p:menuitem value="#{myBundle.TraTipoAsientosHeading}..." outcome="/traTipoAsientos/index" />
+                    <p:menuitem value="#{myBundle.TraTipoCuentasHeading}..." outcome="/traTipoCuentas/index" />
+                    <p:menuitem value="#{myBundle.TraTipoLugaresHeading}..." outcome="/traTipoLugares/index" />
+                    <p:menuitem value="#{myBundle.TraTipoPersonaHeading}..." outcome="/traTipoPersona/index" />
+                    <p:menuitem value="#{myBundle.TraTipoSeccionHeading}..." outcome="/traTipoSeccion/index" />
+                    <p:menuitem value="#{myBundle.TraTipodocsHeading}..." outcome="/traTipodocs/index" />
+                    <p:menuitem value="#{myBundle.TraUsuarioHeading}..." outcome="/traUsuario/index" />
+                    <p:menuitem value="#{myBundle.TraUsuarioRolHeading}..." outcome="/traUsuarioRol/index" />
+                </p:submenu>
+                <p:menuitem value="#{myBundle.Mobile}" outcome="/mobile/index" icon="ui-icon-signal"/>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraNumeroLiquidacionCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraNumeroLiquidacionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraNumeroLiquidacionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraNumeroLiquidacionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroLiquidacionController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traIdPk}" for="traIdPk" />
+                            <p:inputText id="traIdPk" value="#{traNumeroLiquidacionController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroLiquidacionRequiredMessage_traIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traDes}" for="traDes" />
+                            <p:inputText id="traDes" value="#{traNumeroLiquidacionController.selected.traDes}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traDes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traHas}" for="traHas" />
+                            <p:inputText id="traHas" value="#{traNumeroLiquidacionController.selected.traHas}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traHas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroLiquidacionLabel_traSuma}" for="traSuma" />
+                            <p:inputText id="traSuma" value="#{traNumeroLiquidacionController.selected.traSuma}" title="#{myBundle.CreateTraNumeroLiquidacionTitle_traSuma}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traNumeroLiquidacionController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroLiquidacionListPage:TraNumeroLiquidacionListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraNumeroLiquidacionListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraNumeroLiquidacionListForm">
+
+        <p:panel header="#{myBundle.ListTraNumeroLiquidacionTitle}">
+            <p:contextMenu id="TraNumeroLiquidacionDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraNumeroLiquidacionListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraNumeroLiquidacionListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraNumeroLiquidacionListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraNumeroLiquidacionListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traNumeroLiquidacionController.items}"
+                         var="item"
+                         rowKey="#{item.traIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traNumeroLiquidacionController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraNumeroLiquidacionDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraNumeroLiquidacionDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraNumeroLiquidacionListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.traIdPk}" filterBy="#{item.traIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraNumeroLiquidacionTitle_traIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.traIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.traDes}" filterBy="#{item.traDes}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraNumeroLiquidacionTitle_traDes}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.traDes}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.traHas}" filterBy="#{item.traHas}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraNumeroLiquidacionTitle_traHas}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.traHas}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.traSuma}" filterBy="#{item.traSuma}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraNumeroLiquidacionTitle_traSuma}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.traSuma}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traNumeroLiquidacionController.prepareCreate}" update=":TraNumeroLiquidacionCreateForm" oncomplete="PF('TraNumeroLiquidacionCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraNumeroLiquidacionViewForm" oncomplete="PF('TraNumeroLiquidacionViewDialog').show()" disabled="#{empty traNumeroLiquidacionController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraNumeroLiquidacionEditForm" oncomplete="PF('TraNumeroLiquidacionEditDialog').show()" disabled="#{empty traNumeroLiquidacionController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traNumeroLiquidacionController.delete}" update=":growl,datalist" disabled="#{empty traNumeroLiquidacionController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

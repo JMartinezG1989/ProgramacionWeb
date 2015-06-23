@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraAsientosCuentasCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraAsientosCuentasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraAsientosCuentasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraAsientosCuentasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traAsientosCuentasController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascId}" for="ascId" />
+                            <p:inputText id="ascId" value="#{traAsientosCuentasController.selected.ascId}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascId}" required="true" requiredMessage="#{myBundle.CreateTraAsientosCuentasRequiredMessage_ascId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascCtaElegidaAsientocuenta}" for="ascCtaElegidaAsientocuenta" />
+                            <p:inputText id="ascCtaElegidaAsientocuenta" value="#{traAsientosCuentasController.selected.ascCtaElegidaAsientocuenta}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascCtaElegidaAsientocuenta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascDebeAsientocuenta}" for="ascDebeAsientocuenta" />
+                            <p:inputText id="ascDebeAsientocuenta" value="#{traAsientosCuentasController.selected.ascDebeAsientocuenta}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascDebeAsientocuenta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascHaberAsientocuenta}" for="ascHaberAsientocuenta" />
+                            <p:inputText id="ascHaberAsientocuenta" value="#{traAsientosCuentasController.selected.ascHaberAsientocuenta}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascHaberAsientocuenta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascFechaSientocuenta}" for="ascFechaSientocuenta" />
+                            <p:calendar id="ascFechaSientocuenta" pattern="MM/dd/yyyy" value="#{traAsientosCuentasController.selected.ascFechaSientocuenta}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascFechaSientocuenta}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascIdCuentaAuxAsientocuenta}" for="ascIdCuentaAuxAsientocuenta" />
+                            <p:inputText id="ascIdCuentaAuxAsientocuenta" value="#{traAsientosCuentasController.selected.ascIdCuentaAuxAsientocuenta}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascIdCuentaAuxAsientocuenta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_ascNotasAsientocuenta}" for="ascNotasAsientocuenta" />
+                            <p:inputText id="ascNotasAsientocuenta" value="#{traAsientosCuentasController.selected.ascNotasAsientocuenta}" title="#{myBundle.CreateTraAsientosCuentasTitle_ascNotasAsientocuenta}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traAsientosCuentasController.selected.audEliminado}" title="#{myBundle.CreateTraAsientosCuentasTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientosCuentasController.selected.audFechaInsercion}" title="#{myBundle.CreateTraAsientosCuentasTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientosCuentasController.selected.audFechaModificacion}" title="#{myBundle.CreateTraAsientosCuentasTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traAsientosCuentasController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraAsientosCuentasTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraAsientosCuentasLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traAsientosCuentasController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraAsientosCuentasTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traAsientosCuentasController.saveNew}" value="#{myBundle.Save}" update="display,:TraAsientosCuentasListPage:TraAsientosCuentasListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraAsientosCuentasListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

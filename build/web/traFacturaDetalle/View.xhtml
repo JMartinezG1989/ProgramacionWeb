@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraFacturaDetalleViewDlg" widgetVar="TraFacturaDetalleViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraFacturaDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traFacturaDetalleController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeId}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.fdeId}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audEliminado}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaDetalleTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaDetalleTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaDetalleTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaDetalleTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaDetalleTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeCantidad}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.fdeCantidad}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeCantidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeDescripcion}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.fdeDescripcion}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeValTotal}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.fdeValTotal}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeValTotal}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeValUnitario}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.fdeValUnitario}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeValUnitario}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fcaIdPk}"/>
+                        <h:outputText value="#{traFacturaDetalleController.selected.fcaIdPk.fcaIdPk}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraFacturaDetalleViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraPermisoViewDlg" widgetVar="TraPermisoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraPermisoTitle}" closeOnEscape="true">
+
+            <h:form id="TraPermisoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traPermisoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraPermisoLabel_perId}"/>
+                        <h:outputText value="#{traPermisoController.selected.perId}" title="#{myBundle.ViewTraPermisoTitle_perId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraPermisoLabel_perDescripcion}"/>
+                        <h:outputText value="#{traPermisoController.selected.perDescripcion}" title="#{myBundle.ViewTraPermisoTitle_perDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraPermisoLabel_secId}"/>
+                        <h:outputText value="#{traPermisoController.selected.secId.secDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraPermisoLabel_rolId}"/>
+                        <h:outputText value="#{traPermisoController.selected.rolId.rolDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraPermisoLabel_opeId}"/>
+                        <h:outputText value="#{traPermisoController.selected.opeId.opeDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraPermisoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

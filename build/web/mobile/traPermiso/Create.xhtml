@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraPermisoCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraPermisoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraPermisoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraPermisoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traPermisoController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_perId}" for="perId" />
+                            <p:inputText id="perId" value="#{traPermisoController.selected.perId}" title="#{myBundle.CreateTraPermisoTitle_perId}" required="true" requiredMessage="#{myBundle.CreateTraPermisoRequiredMessage_perId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_perDescripcion}" for="perDescripcion" />
+                            <p:inputText id="perDescripcion" value="#{traPermisoController.selected.perDescripcion}" title="#{myBundle.CreateTraPermisoTitle_perDescripcion}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_secId}" for="secId" />
+                            <p:selectOneMenu id="secId" value="#{traPermisoController.selected.secId}"  converter="traSeccionConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traSeccionController.items}"
+                                               var="secIdItem"
+                                               itemValue="#{secIdItem}"
+                                               itemLabel="#{secIdItem.secDescripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_rolId}" for="rolId" />
+                            <p:selectOneMenu id="rolId" value="#{traPermisoController.selected.rolId}"  converter="traRolConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traRolController.items}"
+                                               var="rolIdItem"
+                                               itemValue="#{rolIdItem}"
+                                               itemLabel="#{rolIdItem.rolDescripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_opeId}" for="opeId" />
+                            <p:selectOneMenu id="opeId" value="#{traPermisoController.selected.opeId}"  converter="traOperacionConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traOperacionController.items}"
+                                               var="opeIdItem"
+                                               itemValue="#{opeIdItem}"
+                                               itemLabel="#{opeIdItem.opeDescripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traPermisoController.saveNew}" value="#{myBundle.Save}" update="display,:TraPermisoListPage:TraPermisoListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraPermisoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

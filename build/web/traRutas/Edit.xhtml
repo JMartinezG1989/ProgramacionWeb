@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraRutasEditDlg" widgetVar="TraRutasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraRutasTitle}" closeOnEscape="true">
+
+            <h:form id="TraRutasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traRutasController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraRutasLabel_traIdPk}" for="traIdPk" />
+                        <h:outputText id="traIdPk" value="#{traRutasController.selected.traIdPk}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraRutasLabel_traTiempo}" for="traTiempo" />
+                        <p:inputText id="traTiempo" value="#{traRutasController.selected.traTiempo}" title="#{myBundle.EditTraRutasTitle_traTiempo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraRutasLabel_traDescripcion}" for="traDescripcion" />
+                        <p:inputText id="traDescripcion" value="#{traRutasController.selected.traDescripcion}" title="#{myBundle.EditTraRutasTitle_traDescripcion}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traRutasController.save}" value="#{myBundle.Save}" update="display,:TraRutasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraRutasEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraRutasEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

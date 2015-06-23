@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraIngresoDetalleCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraIngresoDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraIngresoDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraIngresoDetalleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traIngresoDetalleController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_ideId}" for="ideId" />
+                            <p:inputText id="ideId" value="#{traIngresoDetalleController.selected.ideId}" title="#{myBundle.CreateTraIngresoDetalleTitle_ideId}" required="true" requiredMessage="#{myBundle.CreateTraIngresoDetalleRequiredMessage_ideId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaAbo}" for="icaAbo" />
+                            <p:inputText id="icaAbo" value="#{traIngresoDetalleController.selected.icaAbo}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaAbo}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaAnt}" for="icaAnt" />
+                            <p:inputText id="icaAnt" value="#{traIngresoDetalleController.selected.icaAnt}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaAnt}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaCan}" for="icaCan" />
+                            <p:inputText id="icaCan" value="#{traIngresoDetalleController.selected.icaCan}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaCan}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaFecha}" for="icaFecha" />
+                            <p:calendar id="icaFecha" pattern="MM/dd/yyyy" value="#{traIngresoDetalleController.selected.icaFecha}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaFecha}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaNumero}" for="icaNumero" />
+                            <p:inputText id="icaNumero" value="#{traIngresoDetalleController.selected.icaNumero}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaNumero}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaRecaudado}" for="icaRecaudado" />
+                            <p:inputText id="icaRecaudado" value="#{traIngresoDetalleController.selected.icaRecaudado}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaRecaudado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraIngresoDetalleLabel_icaValor}" for="icaValor" />
+                            <p:inputText id="icaValor" value="#{traIngresoDetalleController.selected.icaValor}" title="#{myBundle.CreateTraIngresoDetalleTitle_icaValor}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traIngresoDetalleController.saveNew}" value="#{myBundle.Save}" update="display,:TraIngresoDetalleListPage:TraIngresoDetalleListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraIngresoDetalleListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

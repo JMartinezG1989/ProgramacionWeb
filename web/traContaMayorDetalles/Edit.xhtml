@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraContaMayorDetallesEditDlg" widgetVar="TraContaMayorDetallesEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraContaMayorDetallesTitle}" closeOnEscape="true">
+
+            <h:form id="TraContaMayorDetallesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traContaMayorDetallesController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeId}" for="comadeId" />
+                        <h:outputText id="comadeId" value="#{traContaMayorDetallesController.selected.comadeId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeAsientoCierre}" for="comadeAsientoCierre" />
+                        <p:inputText id="comadeAsientoCierre" value="#{traContaMayorDetallesController.selected.comadeAsientoCierre}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeAsientoCierre}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeDebe}" for="comadeDebe" />
+                        <p:inputText id="comadeDebe" value="#{traContaMayorDetallesController.selected.comadeDebe}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeDebe}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeHaber}" for="comadeHaber" />
+                        <p:inputText id="comadeHaber" value="#{traContaMayorDetallesController.selected.comadeHaber}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeHaber}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeSaldo}" for="comadeSaldo" />
+                        <p:inputText id="comadeSaldo" value="#{traContaMayorDetallesController.selected.comadeSaldo}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeSaldo}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeSaldoCierre}" for="comadeSaldoCierre" />
+                        <p:inputText id="comadeSaldoCierre" value="#{traContaMayorDetallesController.selected.comadeSaldoCierre}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeSaldoCierre}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeSaldoDebeBalComp}" for="comadeSaldoDebeBalComp" />
+                        <p:inputText id="comadeSaldoDebeBalComp" value="#{traContaMayorDetallesController.selected.comadeSaldoDebeBalComp}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeSaldoDebeBalComp}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeSaldoHaberBalComp}" for="comadeSaldoHaberBalComp" />
+                        <p:inputText id="comadeSaldoHaberBalComp" value="#{traContaMayorDetallesController.selected.comadeSaldoHaberBalComp}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeSaldoHaberBalComp}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeTotalDebeBalComp}" for="comadeTotalDebeBalComp" />
+                        <p:inputText id="comadeTotalDebeBalComp" value="#{traContaMayorDetallesController.selected.comadeTotalDebeBalComp}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeTotalDebeBalComp}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeTotalHaberBalComp}" for="comadeTotalHaberBalComp" />
+                        <p:inputText id="comadeTotalHaberBalComp" value="#{traContaMayorDetallesController.selected.comadeTotalHaberBalComp}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeTotalHaberBalComp}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaMayorDetallesLabel_comadeFecha}" for="comadeFecha" />
+                        <p:calendar id="comadeFecha" pattern="MM/dd/yyyy" value="#{traContaMayorDetallesController.selected.comadeFecha}" title="#{myBundle.EditTraContaMayorDetallesTitle_comadeFecha}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traContaMayorDetallesController.save}" value="#{myBundle.Save}" update="display,:TraContaMayorDetallesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraContaMayorDetallesEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraContaMayorDetallesEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

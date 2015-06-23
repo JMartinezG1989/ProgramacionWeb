@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroGuiasCreateDlg" widgetVar="TraNumeroGuiasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraNumeroGuiasTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroGuiasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroGuiasController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traIdPk}" for="traIdPk" />
+                        <p:inputText id="traIdPk" value="#{traNumeroGuiasController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroGuiasTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroGuiasRequiredMessage_traIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traDes}" for="traDes" />
+                        <p:inputText id="traDes" value="#{traNumeroGuiasController.selected.traDes}" title="#{myBundle.CreateTraNumeroGuiasTitle_traDes}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traHas}" for="traHas" />
+                        <p:inputText id="traHas" value="#{traNumeroGuiasController.selected.traHas}" title="#{myBundle.CreateTraNumeroGuiasTitle_traHas}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traSuma}" for="traSuma" />
+                        <p:inputText id="traSuma" value="#{traNumeroGuiasController.selected.traSuma}" title="#{myBundle.CreateTraNumeroGuiasTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traNumeroGuiasController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroGuiasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraNumeroGuiasCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraNumeroGuiasCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

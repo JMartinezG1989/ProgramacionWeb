@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraPersonaEditDlg" widgetVar="TraPersonaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraPersonaTitle}" closeOnEscape="true">
+
+            <h:form id="TraPersonaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traPersonaController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraPersonaLabel_perIdPk}" for="perIdPk" />
+                        <h:outputText id="perIdPk" value="#{traPersonaController.selected.perIdPk}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traPersonaController.selected.audEliminado}" title="#{myBundle.EditTraPersonaTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traPersonaController.selected.audFechaInsercion}" title="#{myBundle.EditTraPersonaTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traPersonaController.selected.audFechaModificacion}" title="#{myBundle.EditTraPersonaTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traPersonaController.selected.audUsuarioInserto}" title="#{myBundle.EditTraPersonaTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traPersonaController.selected.audUsuarioModifico}" title="#{myBundle.EditTraPersonaTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perApellido}" for="perApellido" />
+                        <p:inputText id="perApellido" value="#{traPersonaController.selected.perApellido}" title="#{myBundle.EditTraPersonaTitle_perApellido}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perCedula}" for="perCedula" />
+                        <p:inputText id="perCedula" value="#{traPersonaController.selected.perCedula}" title="#{myBundle.EditTraPersonaTitle_perCedula}" required="true" requiredMessage="#{myBundle.EditTraPersonaRequiredMessage_perCedula}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perCelular}" for="perCelular" />
+                        <p:inputText id="perCelular" value="#{traPersonaController.selected.perCelular}" title="#{myBundle.EditTraPersonaTitle_perCelular}" required="true" requiredMessage="#{myBundle.EditTraPersonaRequiredMessage_perCelular}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perDireccion}" for="perDireccion" />
+                        <p:inputTextarea rows="4" cols="30" id="perDireccion" value="#{traPersonaController.selected.perDireccion}" title="#{myBundle.EditTraPersonaTitle_perDireccion}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perFechaNacimiento}" for="perFechaNacimiento" />
+                        <p:calendar id="perFechaNacimiento" pattern="MM/dd/yyyy" value="#{traPersonaController.selected.perFechaNacimiento}" title="#{myBundle.EditTraPersonaTitle_perFechaNacimiento}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perNombre}" for="perNombre" />
+                        <p:inputText id="perNombre" value="#{traPersonaController.selected.perNombre}" title="#{myBundle.EditTraPersonaTitle_perNombre}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPersonaLabel_perTelefono}" for="perTelefono" />
+                        <p:inputText id="perTelefono" value="#{traPersonaController.selected.perTelefono}" title="#{myBundle.EditTraPersonaTitle_perTelefono}" size="10" maxlength="10"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traPersonaController.save}" value="#{myBundle.Save}" update="display,:TraPersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraPersonaEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraPersonaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

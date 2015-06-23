@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraContaMayorDetallesViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraContaMayorDetallesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraContaMayorDetallesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraContaMayorDetallesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traContaMayorDetallesController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeId}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeId}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeAsientoCierre}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeAsientoCierre}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeAsientoCierre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeDebe}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeDebe}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeDebe}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeHaber}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeHaber}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeHaber}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeSaldo}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeSaldo}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeSaldo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeSaldoCierre}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeSaldoCierre}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeSaldoCierre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeSaldoDebeBalComp}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeSaldoDebeBalComp}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeSaldoDebeBalComp}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeSaldoHaberBalComp}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeSaldoHaberBalComp}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeSaldoHaberBalComp}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeTotalDebeBalComp}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeTotalDebeBalComp}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeTotalDebeBalComp}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeTotalHaberBalComp}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeTotalHaberBalComp}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeTotalHaberBalComp}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraContaMayorDetallesLabel_comadeFecha}"/>
+                            <h:outputText value="#{traContaMayorDetallesController.selected.comadeFecha}" title="#{myBundle.ViewTraContaMayorDetallesTitle_comadeFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

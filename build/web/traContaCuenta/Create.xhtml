@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraContaCuentaCreateDlg" widgetVar="TraContaCuentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraContaCuentaTitle}" closeOnEscape="true">
+
+            <h:form id="TraContaCuentaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traContaCuentaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraContaCuentaLabel_cocuIdPk}" for="cocuIdPk" />
+                        <p:inputText id="cocuIdPk" value="#{traContaCuentaController.selected.cocuIdPk}" title="#{myBundle.CreateTraContaCuentaTitle_cocuIdPk}" required="true" requiredMessage="#{myBundle.CreateTraContaCuentaRequiredMessage_cocuIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraContaCuentaLabel_cocuCodigo}" for="cocuCodigo" />
+                        <p:inputText id="cocuCodigo" value="#{traContaCuentaController.selected.cocuCodigo}" title="#{myBundle.CreateTraContaCuentaTitle_cocuCodigo}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraContaCuentaLabel_cocuNombre}" for="cocuNombre" />
+                        <p:inputText id="cocuNombre" value="#{traContaCuentaController.selected.cocuNombre}" title="#{myBundle.CreateTraContaCuentaTitle_cocuNombre}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traContaCuentaController.saveNew}" value="#{myBundle.Save}" update="display,:TraContaCuentaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraContaCuentaCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraContaCuentaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

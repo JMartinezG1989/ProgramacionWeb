@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroEgresosCreateDlg" widgetVar="TraNumeroEgresosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraNumeroEgresosTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroEgresosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroEgresosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroEgresosLabel_traIdPk}" for="traIdPk" />
+                        <p:inputText id="traIdPk" value="#{traNumeroEgresosController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroEgresosTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroEgresosRequiredMessage_traIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroEgresosLabel_traDes}" for="traDes" />
+                        <p:inputText id="traDes" value="#{traNumeroEgresosController.selected.traDes}" title="#{myBundle.CreateTraNumeroEgresosTitle_traDes}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroEgresosLabel_traHas}" for="traHas" />
+                        <p:inputText id="traHas" value="#{traNumeroEgresosController.selected.traHas}" title="#{myBundle.CreateTraNumeroEgresosTitle_traHas}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraNumeroEgresosLabel_traSuma}" for="traSuma" />
+                        <p:inputText id="traSuma" value="#{traNumeroEgresosController.selected.traSuma}" title="#{myBundle.CreateTraNumeroEgresosTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traNumeroEgresosController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroEgresosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraNumeroEgresosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraNumeroEgresosCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

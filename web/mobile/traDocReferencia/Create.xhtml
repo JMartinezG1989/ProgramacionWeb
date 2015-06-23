@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraDocReferenciaCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraDocReferenciaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraDocReferenciaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraDocReferenciaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traDocReferenciaController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_dorId}" for="dorId" />
+                            <p:inputText id="dorId" value="#{traDocReferenciaController.selected.dorId}" title="#{myBundle.CreateTraDocReferenciaTitle_dorId}" required="true" requiredMessage="#{myBundle.CreateTraDocReferenciaRequiredMessage_dorId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_dorDescripcionDocreferencia}" for="dorDescripcionDocreferencia" />
+                            <p:inputText id="dorDescripcionDocreferencia" value="#{traDocReferenciaController.selected.dorDescripcionDocreferencia}" title="#{myBundle.CreateTraDocReferenciaTitle_dorDescripcionDocreferencia}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_dorNumDocreferencia}" for="dorNumDocreferencia" />
+                            <p:inputText id="dorNumDocreferencia" value="#{traDocReferenciaController.selected.dorNumDocreferencia}" title="#{myBundle.CreateTraDocReferenciaTitle_dorNumDocreferencia}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traDocReferenciaController.selected.audEliminado}" title="#{myBundle.CreateTraDocReferenciaTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDocReferenciaController.selected.audFechaInsercion}" title="#{myBundle.CreateTraDocReferenciaTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDocReferenciaController.selected.audFechaModificacion}" title="#{myBundle.CreateTraDocReferenciaTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traDocReferenciaController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraDocReferenciaTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDocReferenciaLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traDocReferenciaController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraDocReferenciaTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traDocReferenciaController.saveNew}" value="#{myBundle.Save}" update="display,:TraDocReferenciaListPage:TraDocReferenciaListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraDocReferenciaListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

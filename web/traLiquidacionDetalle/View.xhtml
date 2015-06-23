@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraLiquidacionDetalleViewDlg" widgetVar="TraLiquidacionDetalleViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraLiquidacionDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraLiquidacionDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traLiquidacionDetalleController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_ldeIdPk}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.ldeIdPk}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_ldeIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audEliminado}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.audEliminado}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_ldeSubtotal}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.ldeSubtotal}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_ldeSubtotal}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_ldeTotal}"/>
+                        <h:outputText value="#{traLiquidacionDetalleController.selected.ldeTotal}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_ldeTotal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraLiquidacionDetalleViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

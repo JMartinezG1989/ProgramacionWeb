@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraSeccionListForm">
+
+        <p:panel header="#{myBundle.ListTraSeccionTitle}">
+            <p:contextMenu id="TraSeccionDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraSeccionListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraSeccionListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraSeccionListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraSeccionListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraSeccionMenuItem_traPermisoList}" icon="ui-icon-search"  action="#{traSeccionController.navigateTraPermisoList}" disabled="#{empty traSeccionController.selected.traPermisoList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TraSeccionMenuItem_tisId}" icon="ui-icon-search"  actionListener="#{traSeccionController.prepareTisId}" update=":TraTipoSeccionViewForm" oncomplete="PF('TraTipoSeccionViewDialog').show()" disabled="#{empty traSeccionController.selected.tisId}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traSeccionController.items}"
+                         var="item"
+                         rowKey="#{item.secId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traSeccionController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraSeccionDataTableContextMenu" listener="#{traSeccionController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraSeccionDataTableContextMenu" listener="#{traSeccionController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traSeccionController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraSeccionListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.secId}" filterBy="#{item.secId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraSeccionTitle_secId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.secDescripcion}" filterBy="#{item.secDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraSeccionTitle_secDescripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secDescripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.secEtiqueta}" filterBy="#{item.secEtiqueta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraSeccionTitle_secEtiqueta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secEtiqueta}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.secNombreClave}" filterBy="#{item.secNombreClave}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraSeccionTitle_secNombreClave}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secNombreClave}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.secOrden}" filterBy="#{item.secOrden}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraSeccionTitle_secOrden}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secOrden}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.secPagina}" filterBy="#{item.secPagina}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraSeccionTitle_secPagina}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secPagina}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.secRuta}" filterBy="#{item.secRuta}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraSeccionTitle_secRuta}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.secRuta}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.tisId.tisDescripcion}" filterBy="#{item.tisId.tisDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraSeccionTitle_tisId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tisId.tisDescripcion}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traSeccionController.prepareCreate}" update=":TraSeccionCreateForm" oncomplete="PF('TraSeccionCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraSeccionViewForm" oncomplete="PF('TraSeccionViewDialog').show()" disabled="#{empty traSeccionController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraSeccionEditForm" oncomplete="PF('TraSeccionEditDialog').show()" disabled="#{empty traSeccionController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traSeccionController.delete}" update=":growl,datalist" disabled="#{empty traSeccionController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

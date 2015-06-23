@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraAsientoEditDlg" widgetVar="TraAsientoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraAsientoTitle}" closeOnEscape="true">
+
+            <h:form id="TraAsientoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traAsientoController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraAsientoLabel_asiId}" for="asiId" />
+                        <h:outputText id="asiId" value="#{traAsientoController.selected.asiId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_asiConceptoAsiento}" for="asiConceptoAsiento" />
+                        <p:inputTextarea rows="4" cols="30" id="asiConceptoAsiento" value="#{traAsientoController.selected.asiConceptoAsiento}" title="#{myBundle.EditTraAsientoTitle_asiConceptoAsiento}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_asiEstadoAsiento}" for="asiEstadoAsiento" />
+                        <p:inputText id="asiEstadoAsiento" value="#{traAsientoController.selected.asiEstadoAsiento}" title="#{myBundle.EditTraAsientoTitle_asiEstadoAsiento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_asiFechaAsiento}" for="asiFechaAsiento" />
+                        <p:calendar id="asiFechaAsiento" pattern="MM/dd/yyyy" value="#{traAsientoController.selected.asiFechaAsiento}" title="#{myBundle.EditTraAsientoTitle_asiFechaAsiento}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_asiNumeroAsiento}" for="asiNumeroAsiento" />
+                        <p:inputText id="asiNumeroAsiento" value="#{traAsientoController.selected.asiNumeroAsiento}" title="#{myBundle.EditTraAsientoTitle_asiNumeroAsiento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traAsientoController.selected.audEliminado}" title="#{myBundle.EditTraAsientoTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientoController.selected.audFechaInsercion}" title="#{myBundle.EditTraAsientoTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traAsientoController.selected.audFechaModificacion}" title="#{myBundle.EditTraAsientoTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traAsientoController.selected.audUsuarioInserto}" title="#{myBundle.EditTraAsientoTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraAsientoLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traAsientoController.selected.audUsuarioModifico}" title="#{myBundle.EditTraAsientoTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traAsientoController.save}" value="#{myBundle.Save}" update="display,:TraAsientoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraAsientoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraAsientoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

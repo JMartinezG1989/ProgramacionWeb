@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraTipoLugaresListForm">
+
+        <p:panel header="#{myBundle.ListTraTipoLugaresTitle}">
+            <p:contextMenu id="TraTipoLugaresDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraTipoLugaresListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraTipoLugaresListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraTipoLugaresListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraTipoLugaresListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraTipoLugaresMenuItem_traLugaresList}" icon="ui-icon-search"  action="#{traTipoLugaresController.navigateTraLugaresList}" disabled="#{empty traTipoLugaresController.selected.traLugaresList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traTipoLugaresController.items}"
+                         var="item"
+                         rowKey="#{item.tluIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traTipoLugaresController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraTipoLugaresDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraTipoLugaresDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraTipoLugaresListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.tluIdPk}" filterBy="#{item.tluIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_tluIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tluIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.tluDescripcion}" filterBy="#{item.tluDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraTipoLugaresTitle_tluDescripcion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tluDescripcion}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traTipoLugaresController.prepareCreate}" update=":TraTipoLugaresCreateForm" oncomplete="PF('TraTipoLugaresCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraTipoLugaresViewForm" oncomplete="PF('TraTipoLugaresViewDialog').show()" disabled="#{empty traTipoLugaresController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraTipoLugaresEditForm" oncomplete="PF('TraTipoLugaresEditDialog').show()" disabled="#{empty traTipoLugaresController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traTipoLugaresController.delete}" update=":growl,datalist" disabled="#{empty traTipoLugaresController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

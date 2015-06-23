@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraIngresoCabeceraEditDlg" widgetVar="TraIngresoCabeceraEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraIngresoCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraIngresoCabeceraEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traIngresoCabeceraController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaId}" for="icaId" />
+                        <h:outputText id="icaId" value="#{traIngresoCabeceraController.selected.icaId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaAgente}" for="icaAgente" />
+                        <p:inputText id="icaAgente" value="#{traIngresoCabeceraController.selected.icaAgente}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaAgente}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaCaja}" for="icaCaja" />
+                        <p:inputText id="icaCaja" value="#{traIngresoCabeceraController.selected.icaCaja}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaCaja}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaCodage}" for="icaCodage" />
+                        <p:inputText id="icaCodage" value="#{traIngresoCabeceraController.selected.icaCodage}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaCodage}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaCodigo}" for="icaCodigo" />
+                        <p:inputText id="icaCodigo" value="#{traIngresoCabeceraController.selected.icaCodigo}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaCodigo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaEstado}" for="icaEstado" />
+                        <p:inputText id="icaEstado" value="#{traIngresoCabeceraController.selected.icaEstado}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaEstado}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaFecha}" for="icaFecha" />
+                        <p:calendar id="icaFecha" pattern="MM/dd/yyyy" value="#{traIngresoCabeceraController.selected.icaFecha}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaFecha}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaFechaIngreso}" for="icaFechaIngreso" />
+                        <p:calendar id="icaFechaIngreso" pattern="MM/dd/yyyy" value="#{traIngresoCabeceraController.selected.icaFechaIngreso}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaFechaIngreso}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaNumeroDeposito}" for="icaNumeroDeposito" />
+                        <p:inputText id="icaNumeroDeposito" value="#{traIngresoCabeceraController.selected.icaNumeroDeposito}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaNumeroDeposito}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaNumero}" for="icaNumero" />
+                        <p:inputText id="icaNumero" value="#{traIngresoCabeceraController.selected.icaNumero}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaNumero}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaRetencionFuente}" for="icaRetencionFuente" />
+                        <p:inputText id="icaRetencionFuente" value="#{traIngresoCabeceraController.selected.icaRetencionFuente}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaRetencionFuente}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaRetencionIva}" for="icaRetencionIva" />
+                        <p:inputText id="icaRetencionIva" value="#{traIngresoCabeceraController.selected.icaRetencionIva}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaRetencionIva}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaTotal}" for="icaTotal" />
+                        <p:inputText id="icaTotal" value="#{traIngresoCabeceraController.selected.icaTotal}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaTotalRecaudado}" for="icaTotalRecaudado" />
+                        <p:inputText id="icaTotalRecaudado" value="#{traIngresoCabeceraController.selected.icaTotalRecaudado}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaTotalRecaudado}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoCabeceraLabel_icaUsuario}" for="icaUsuario" />
+                        <p:inputText id="icaUsuario" value="#{traIngresoCabeceraController.selected.icaUsuario}" title="#{myBundle.EditTraIngresoCabeceraTitle_icaUsuario}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traIngresoCabeceraController.save}" value="#{myBundle.Save}" update="display,:TraIngresoCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraIngresoCabeceraEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraIngresoCabeceraEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

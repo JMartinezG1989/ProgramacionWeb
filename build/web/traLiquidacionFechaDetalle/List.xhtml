@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraLiquidacionFechaDetalleListForm">
+
+        <p:panel header="#{myBundle.ListTraLiquidacionFechaDetalleTitle}">
+            <p:contextMenu id="TraLiquidacionFechaDetalleDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraLiquidacionFechaDetalleListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraLiquidacionFechaDetalleListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraLiquidacionFechaDetalleListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraLiquidacionFechaDetalleListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traLiquidacionFechaDetalleController.items}"
+                         var="item"
+                         rowKey="#{item.lfcdIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traLiquidacionFechaDetalleController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraLiquidacionFechaDetalleDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraLiquidacionFechaDetalleDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraLiquidacionFechaDetalleListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.lfcdIdPk}" filterBy="#{item.lfcdIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfcdIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lfcdIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.lfdCobroRuta}" filterBy="#{item.lfdCobroRuta}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdCobroRuta}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdCobroRuta}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdDescuento1}" filterBy="#{item.lfdDescuento1}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdDescuento1}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdDescuento1}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdDescuento2}" filterBy="#{item.lfdDescuento2}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdDescuento2}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdDescuento2}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdFecha}" filterBy="#{item.lfdFecha}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdFecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdFecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdLiquidacion1}" filterBy="#{item.lfdLiquidacion1}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdLiquidacion1}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdLiquidacion1}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdLiquidacion2}" filterBy="#{item.lfdLiquidacion2}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdLiquidacion2}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdLiquidacion2}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdCobroCuenca}" filterBy="#{item.lfdCobroCuenca}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdCobroCuenca}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdCobroCuenca}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdNumGuia}" filterBy="#{item.lfdNumGuia}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdNumGuia}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdNumGuia}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdPago}" filterBy="#{item.lfdPago}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdPago}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdPago}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdPorcentaje15o12}" filterBy="#{item.lfdPorcentaje15o12}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdPorcentaje15o12}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdPorcentaje15o12}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdRetencionPorcentaje}" filterBy="#{item.lfdRetencionPorcentaje}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdRetencionPorcentaje}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdRetencionPorcentaje}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdTotalFlete}" filterBy="#{item.lfdTotalFlete}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdTotalFlete}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdTotalFlete}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lfdTotalLiquidacion}" filterBy="#{item.lfdTotalLiquidacion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionFechaDetalleTitle_lfdTotalLiquidacion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lfdTotalLiquidacion}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traLiquidacionFechaDetalleController.prepareCreate}" update=":TraLiquidacionFechaDetalleCreateForm" oncomplete="PF('TraLiquidacionFechaDetalleCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraLiquidacionFechaDetalleViewForm" oncomplete="PF('TraLiquidacionFechaDetalleViewDialog').show()" disabled="#{empty traLiquidacionFechaDetalleController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraLiquidacionFechaDetalleEditForm" oncomplete="PF('TraLiquidacionFechaDetalleEditDialog').show()" disabled="#{empty traLiquidacionFechaDetalleController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traLiquidacionFechaDetalleController.delete}" update=":growl,datalist" disabled="#{empty traLiquidacionFechaDetalleController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

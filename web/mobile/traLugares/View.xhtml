@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraLugaresViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraLugaresTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraLugaresListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraLugaresViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traLugaresController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_lugIdPk}"/>
+                            <h:outputText value="#{traLugaresController.selected.lugIdPk}" title="#{myBundle.ViewTraLugaresTitle_lugIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_audEliminado}"/>
+                            <h:outputText value="#{traLugaresController.selected.audEliminado}" title="#{myBundle.ViewTraLugaresTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traLugaresController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLugaresTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traLugaresController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLugaresTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traLugaresController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLugaresTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traLugaresController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLugaresTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_lugDescripcion}"/>
+                            <h:outputText value="#{traLugaresController.selected.lugDescripcion}" title="#{myBundle.ViewTraLugaresTitle_lugDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_hrcHrdFk}"/>
+                            <h:outputText value="#{traLugaresController.selected.hrcHrdFk.tluDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLugaresLabel_lugPadreId}"/>
+                            <h:outputText value="#{traLugaresController.selected.lugPadreId.lugDescripcion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

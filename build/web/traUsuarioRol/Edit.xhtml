@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraUsuarioRolEditDlg" widgetVar="TraUsuarioRolEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraUsuarioRolTitle}" closeOnEscape="true">
+
+            <h:form id="TraUsuarioRolEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traUsuarioRolController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraUsuarioRolLabel_usrId}" for="usrId" />
+                        <h:outputText id="usrId" value="#{traUsuarioRolController.selected.usrId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraUsuarioRolLabel_usuId}" for="usuId" />
+                        <p:selectOneMenu id="usuId" value="#{traUsuarioRolController.selected.usuId}"  converter="traUsuarioConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traUsuarioController.items}"
+                                           var="usuIdItem"
+                                           itemValue="#{usuIdItem}"
+                                           itemLabel="#{usuIdItem.usuId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditTraUsuarioRolLabel_rolId}" for="rolId" />
+                        <p:selectOneMenu id="rolId" value="#{traUsuarioRolController.selected.rolId}"  converter="traRolConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traRolController.items}"
+                                           var="rolIdItem"
+                                           itemValue="#{rolIdItem}"
+                                           itemLabel="#{rolIdItem.rolDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traUsuarioRolController.save}" value="#{myBundle.Save}" update="display,:TraUsuarioRolListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraUsuarioRolEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraUsuarioRolEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

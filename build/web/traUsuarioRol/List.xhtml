@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraUsuarioRolListForm">
+
+        <p:panel header="#{myBundle.ListTraUsuarioRolTitle}">
+            <p:contextMenu id="TraUsuarioRolDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraUsuarioRolListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraUsuarioRolListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraUsuarioRolListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraUsuarioRolListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraUsuarioRolMenuItem_usuId}" icon="ui-icon-search"  actionListener="#{traUsuarioRolController.prepareUsuId}" update=":TraUsuarioViewForm" oncomplete="PF('TraUsuarioViewDialog').show()" disabled="#{empty traUsuarioRolController.selected.usuId}"/>  
+                <p:menuitem value="#{myBundle.TraUsuarioRolMenuItem_rolId}" icon="ui-icon-search"  actionListener="#{traUsuarioRolController.prepareRolId}" update=":TraRolViewForm" oncomplete="PF('TraRolViewDialog').show()" disabled="#{empty traUsuarioRolController.selected.rolId}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traUsuarioRolController.items}"
+                         var="item"
+                         rowKey="#{item.usrId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traUsuarioRolController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraUsuarioRolDataTableContextMenu" listener="#{traUsuarioRolController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraUsuarioRolDataTableContextMenu" listener="#{traUsuarioRolController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traUsuarioRolController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraUsuarioRolListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.usrId}" filterBy="#{item.usrId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraUsuarioRolTitle_usrId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usrId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.usuId.usuId}" filterBy="#{item.usuId.usuId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraUsuarioRolTitle_usuId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usuId.usuId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.rolId.rolDescripcion}" filterBy="#{item.rolId.rolDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraUsuarioRolTitle_rolId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rolId.rolDescripcion}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traUsuarioRolController.prepareCreate}" update=":TraUsuarioRolCreateForm" oncomplete="PF('TraUsuarioRolCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraUsuarioRolViewForm" oncomplete="PF('TraUsuarioRolViewDialog').show()" disabled="#{empty traUsuarioRolController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraUsuarioRolEditForm" oncomplete="PF('TraUsuarioRolEditDialog').show()" disabled="#{empty traUsuarioRolController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traUsuarioRolController.delete}" update=":growl,datalist" disabled="#{empty traUsuarioRolController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

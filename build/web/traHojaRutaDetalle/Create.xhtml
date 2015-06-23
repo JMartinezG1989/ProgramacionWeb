@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraHojaRutaDetalleCreateDlg" widgetVar="TraHojaRutaDetalleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraHojaRutaDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraHojaRutaDetalleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traHojaRutaDetalleController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdIdPk}" for="hrdIdPk" />
+                        <p:inputText id="hrdIdPk" value="#{traHojaRutaDetalleController.selected.hrdIdPk}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdIdPk}" required="true" requiredMessage="#{myBundle.CreateTraHojaRutaDetalleRequiredMessage_hrdIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traHojaRutaDetalleController.selected.audEliminado}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traHojaRutaDetalleController.selected.audFechaInsercion}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traHojaRutaDetalleController.selected.audFechaModificacion}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traHojaRutaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traHojaRutaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdCobroCuenca}" for="hrdCobroCuenca" />
+                        <p:inputText id="hrdCobroCuenca" value="#{traHojaRutaDetalleController.selected.hrdCobroCuenca}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdCobroCuenca}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdCobroRuta}" for="hrdCobroRuta" />
+                        <p:inputText id="hrdCobroRuta" value="#{traHojaRutaDetalleController.selected.hrdCobroRuta}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdCobroRuta}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdContenido}" for="hrdContenido" />
+                        <p:inputText id="hrdContenido" value="#{traHojaRutaDetalleController.selected.hrdContenido}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdContenido}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdDestinatario}" for="hrdDestinatario" />
+                        <p:inputText id="hrdDestinatario" value="#{traHojaRutaDetalleController.selected.hrdDestinatario}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdDestinatario}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdDestino}" for="hrdDestino" />
+                        <p:inputText id="hrdDestino" value="#{traHojaRutaDetalleController.selected.hrdDestino}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdDestino}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdFleteCancelado}" for="hrdFleteCancelado" />
+                        <p:inputText id="hrdFleteCancelado" value="#{traHojaRutaDetalleController.selected.hrdFleteCancelado}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdFleteCancelado}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdNumeroFactura}" for="hrdNumeroFactura" />
+                        <p:inputText id="hrdNumeroFactura" value="#{traHojaRutaDetalleController.selected.hrdNumeroFactura}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdNumeroFactura}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrdRemitente}" for="hrdRemitente" />
+                        <p:inputText id="hrdRemitente" value="#{traHojaRutaDetalleController.selected.hrdRemitente}" title="#{myBundle.CreateTraHojaRutaDetalleTitle_hrdRemitente}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraHojaRutaDetalleLabel_hrcHrdFk}" for="hrcHrdFk" />
+                        <p:selectOneMenu id="hrcHrdFk" value="#{traHojaRutaDetalleController.selected.hrcHrdFk}"  converter="traHojaRutaCabeceraConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traHojaRutaCabeceraController.items}"
+                                           var="hrcHrdFkItem"
+                                           itemValue="#{hrcHrdFkItem}"
+                                           itemLabel="#{hrcHrdFkItem.hrcIdPk.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traHojaRutaDetalleController.saveNew}" value="#{myBundle.Save}" update="display,:TraHojaRutaDetalleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraHojaRutaDetalleCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraHojaRutaDetalleCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

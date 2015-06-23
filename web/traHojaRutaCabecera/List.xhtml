@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraHojaRutaCabeceraListForm">
+
+        <p:panel header="#{myBundle.ListTraHojaRutaCabeceraTitle}">
+            <p:contextMenu id="TraHojaRutaCabeceraDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraHojaRutaCabeceraListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraHojaRutaCabeceraListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraHojaRutaCabeceraListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraHojaRutaCabeceraListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraHojaRutaCabeceraMenuItem_traHojaRutaDetalleList}" icon="ui-icon-search"  action="#{traHojaRutaCabeceraController.navigateTraHojaRutaDetalleList}" disabled="#{empty traHojaRutaCabeceraController.selected.traHojaRutaDetalleList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TraHojaRutaCabeceraMenuItem_perHrcFk}" icon="ui-icon-search"  actionListener="#{traHojaRutaCabeceraController.preparePerHrcFk}" update=":TraPersonaViewForm" oncomplete="PF('TraPersonaViewDialog').show()" disabled="#{empty traHojaRutaCabeceraController.selected.perHrcFk}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traHojaRutaCabeceraController.items}"
+                         var="item"
+                         rowKey="#{item.hrcIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traHojaRutaCabeceraController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraHojaRutaCabeceraDataTableContextMenu" listener="#{traHojaRutaCabeceraController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraHojaRutaCabeceraDataTableContextMenu" listener="#{traHojaRutaCabeceraController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traHojaRutaCabeceraController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraHojaRutaCabeceraListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.hrcIdPk}" filterBy="#{item.hrcIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.hrcIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.hrcCobroCuenca}" filterBy="#{item.hrcCobroCuenca}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcCobroCuenca}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcCobroCuenca}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcCobroRuta}" filterBy="#{item.hrcCobroRuta}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcCobroRuta}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcCobroRuta}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcFecha}" filterBy="#{item.hrcFecha}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcFecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcFecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcFletePagado}" filterBy="#{item.hrcFletePagado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcFletePagado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcFletePagado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcNumero}" filterBy="#{item.hrcNumero}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcNumero}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcNumero}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcPorcentaje}" filterBy="#{item.hrcPorcentaje}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcPorcentaje}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcPorcentaje}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcPropietario}" filterBy="#{item.hrcPropietario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcPropietario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcPropietario}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcRuta}" filterBy="#{item.hrcRuta}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcRuta}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcRuta}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcTotalPagar}" filterBy="#{item.hrcTotalPagar}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_hrcTotalPagar}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcTotalPagar}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perHrcFk.perIdPk}" filterBy="#{item.perHrcFk.perIdPk}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraHojaRutaCabeceraTitle_perHrcFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perHrcFk.perIdPk}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traHojaRutaCabeceraController.prepareCreate}" update=":TraHojaRutaCabeceraCreateForm" oncomplete="PF('TraHojaRutaCabeceraCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraHojaRutaCabeceraViewForm" oncomplete="PF('TraHojaRutaCabeceraViewDialog').show()" disabled="#{empty traHojaRutaCabeceraController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraHojaRutaCabeceraEditForm" oncomplete="PF('TraHojaRutaCabeceraEditDialog').show()" disabled="#{empty traHojaRutaCabeceraController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traHojaRutaCabeceraController.delete}" update=":growl,datalist" disabled="#{empty traHojaRutaCabeceraController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

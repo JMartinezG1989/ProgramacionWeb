@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroEgresosViewDlg" widgetVar="TraNumeroEgresosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraNumeroEgresosTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroEgresosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traNumeroEgresosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traIdPk}"/>
+                        <h:outputText value="#{traNumeroEgresosController.selected.traIdPk}" title="#{myBundle.ViewTraNumeroEgresosTitle_traIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traDes}"/>
+                        <h:outputText value="#{traNumeroEgresosController.selected.traDes}" title="#{myBundle.ViewTraNumeroEgresosTitle_traDes}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traHas}"/>
+                        <h:outputText value="#{traNumeroEgresosController.selected.traHas}" title="#{myBundle.ViewTraNumeroEgresosTitle_traHas}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traSuma}"/>
+                        <h:outputText value="#{traNumeroEgresosController.selected.traSuma}" title="#{myBundle.ViewTraNumeroEgresosTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraNumeroEgresosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

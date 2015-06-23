@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraTipoSeccionCreateDlg" widgetVar="TraTipoSeccionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraTipoSeccionTitle}" closeOnEscape="true">
+
+            <h:form id="TraTipoSeccionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoSeccionController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoSeccionLabel_tisId}" for="tisId" />
+                        <p:inputText id="tisId" value="#{traTipoSeccionController.selected.tisId}" title="#{myBundle.CreateTraTipoSeccionTitle_tisId}" required="true" requiredMessage="#{myBundle.CreateTraTipoSeccionRequiredMessage_tisId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoSeccionLabel_tisDescripcion}" for="tisDescripcion" />
+                        <p:inputText id="tisDescripcion" value="#{traTipoSeccionController.selected.tisDescripcion}" title="#{myBundle.CreateTraTipoSeccionTitle_tisDescripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipoSeccionLabel_tisNivel}" for="tisNivel" />
+                        <p:inputText id="tisNivel" value="#{traTipoSeccionController.selected.tisNivel}" title="#{myBundle.CreateTraTipoSeccionTitle_tisNivel}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traTipoSeccionController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoSeccionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraTipoSeccionCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraTipoSeccionCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

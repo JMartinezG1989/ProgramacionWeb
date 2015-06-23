@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraContaMayorDetallesListPage">
+        <pm:header title="#{myBundle.ListTraContaMayorDetallesTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":TraContaMayorDetallesCreatePage:TraContaMayorDetallesCreateForm" actionListener="#{traContaMayorDetallesController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:TraContaMayorDetallesCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraContaMayorDetallesListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{traContaMayorDetallesController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraContaMayorDetallesTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":TraContaMayorDetallesEditPage:TraContaMayorDetallesEditForm" action="pm:TraContaMayorDetallesEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.comadeId}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.comadeAsientoCierre}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.comadeDebe}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.comadeHaber}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.comadeSaldo}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.comadeSaldoCierre}"/>
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.comadeSaldoDebeBalComp}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.comadeSaldoHaberBalComp}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.comadeTotalDebeBalComp}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.comadeTotalHaberBalComp}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.comadeFecha}">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                    </h:outputText>
+                            -->
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{traContaMayorDetallesController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListTraContaMayorDetallesTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

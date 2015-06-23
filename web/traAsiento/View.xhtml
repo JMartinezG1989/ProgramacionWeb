@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraAsientoViewDlg" widgetVar="TraAsientoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraAsientoTitle}" closeOnEscape="true">
+
+            <h:form id="TraAsientoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traAsientoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_asiId}"/>
+                        <h:outputText value="#{traAsientoController.selected.asiId}" title="#{myBundle.ViewTraAsientoTitle_asiId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_asiConceptoAsiento}"/>
+                        <h:outputText value="#{traAsientoController.selected.asiConceptoAsiento}" title="#{myBundle.ViewTraAsientoTitle_asiConceptoAsiento}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_asiEstadoAsiento}"/>
+                        <h:outputText value="#{traAsientoController.selected.asiEstadoAsiento}" title="#{myBundle.ViewTraAsientoTitle_asiEstadoAsiento}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_asiFechaAsiento}"/>
+                        <h:outputText value="#{traAsientoController.selected.asiFechaAsiento}" title="#{myBundle.ViewTraAsientoTitle_asiFechaAsiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_asiNumeroAsiento}"/>
+                        <h:outputText value="#{traAsientoController.selected.asiNumeroAsiento}" title="#{myBundle.ViewTraAsientoTitle_asiNumeroAsiento}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_audEliminado}"/>
+                        <h:outputText value="#{traAsientoController.selected.audEliminado}" title="#{myBundle.ViewTraAsientoTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traAsientoController.selected.audFechaInsercion}" title="#{myBundle.ViewTraAsientoTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traAsientoController.selected.audFechaModificacion}" title="#{myBundle.ViewTraAsientoTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traAsientoController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraAsientoTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientoLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traAsientoController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraAsientoTitle_audUsuarioModifico}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraAsientoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

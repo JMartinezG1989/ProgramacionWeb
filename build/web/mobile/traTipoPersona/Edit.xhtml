@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipoPersonaEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraTipoPersonaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipoPersonaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipoPersonaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traTipoPersonaController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraTipoPersonaLabel_tpeIdPk}" for="tpeIdPk" />
+                            <h:outputText id="tpeIdPk" value="#{traTipoPersonaController.selected.tpeIdPk}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraTipoPersonaLabel_tpeDescripcion}" for="tpeDescripcion" />
+                            <p:inputTextarea rows="4" cols="30" id="tpeDescripcion" value="#{traTipoPersonaController.selected.tpeDescripcion}" title="#{myBundle.EditTraTipoPersonaTitle_tpeDescripcion}" />
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traTipoPersonaController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraTipoPersonaListPage:TraTipoPersonaListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraTipoPersonaListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraNumeroEgresosViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraNumeroEgresosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraNumeroEgresosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraNumeroEgresosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traNumeroEgresosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traIdPk}"/>
+                            <h:outputText value="#{traNumeroEgresosController.selected.traIdPk}" title="#{myBundle.ViewTraNumeroEgresosTitle_traIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traDes}"/>
+                            <h:outputText value="#{traNumeroEgresosController.selected.traDes}" title="#{myBundle.ViewTraNumeroEgresosTitle_traDes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traHas}"/>
+                            <h:outputText value="#{traNumeroEgresosController.selected.traHas}" title="#{myBundle.ViewTraNumeroEgresosTitle_traHas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraNumeroEgresosLabel_traSuma}"/>
+                            <h:outputText value="#{traNumeroEgresosController.selected.traSuma}" title="#{myBundle.ViewTraNumeroEgresosTitle_traSuma}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

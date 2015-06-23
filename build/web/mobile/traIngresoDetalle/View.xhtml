@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraIngresoDetalleViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraIngresoDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraIngresoDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraIngresoDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traIngresoDetalleController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_ideId}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.ideId}" title="#{myBundle.ViewTraIngresoDetalleTitle_ideId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaAbo}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaAbo}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaAbo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaAnt}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaAnt}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaAnt}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaCan}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaCan}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaCan}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaFecha}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaFecha}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaNumero}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaNumero}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaNumero}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaRecaudado}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaRecaudado}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaRecaudado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoDetalleLabel_icaValor}"/>
+                            <h:outputText value="#{traIngresoDetalleController.selected.icaValor}" title="#{myBundle.ViewTraIngresoDetalleTitle_icaValor}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraChequeDetaleViewDlg" widgetVar="TraChequeDetaleViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraChequeDetaleTitle}" closeOnEscape="true">
+
+            <h:form id="TraChequeDetaleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traChequeDetaleController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraChequeDetaleLabel_cdeId}"/>
+                        <h:outputText value="#{traChequeDetaleController.selected.cdeId}" title="#{myBundle.ViewTraChequeDetaleTitle_cdeId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraChequeDetaleLabel_cdeNumeroCheque}"/>
+                        <h:outputText value="#{traChequeDetaleController.selected.cdeNumeroCheque}" title="#{myBundle.ViewTraChequeDetaleTitle_cdeNumeroCheque}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraChequeDetaleLabel_cdeValor}"/>
+                        <h:outputText value="#{traChequeDetaleController.selected.cdeValor}" title="#{myBundle.ViewTraChequeDetaleTitle_cdeValor}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraChequeDetaleLabel_cdeVencimiento}"/>
+                        <h:outputText value="#{traChequeDetaleController.selected.cdeVencimiento}" title="#{myBundle.ViewTraChequeDetaleTitle_cdeVencimiento}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraChequeDetaleViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

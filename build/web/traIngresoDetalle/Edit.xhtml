@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraIngresoDetalleEditDlg" widgetVar="TraIngresoDetalleEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraIngresoDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraIngresoDetalleEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traIngresoDetalleController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_ideId}" for="ideId" />
+                        <h:outputText id="ideId" value="#{traIngresoDetalleController.selected.ideId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaAbo}" for="icaAbo" />
+                        <p:inputText id="icaAbo" value="#{traIngresoDetalleController.selected.icaAbo}" title="#{myBundle.EditTraIngresoDetalleTitle_icaAbo}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaAnt}" for="icaAnt" />
+                        <p:inputText id="icaAnt" value="#{traIngresoDetalleController.selected.icaAnt}" title="#{myBundle.EditTraIngresoDetalleTitle_icaAnt}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaCan}" for="icaCan" />
+                        <p:inputText id="icaCan" value="#{traIngresoDetalleController.selected.icaCan}" title="#{myBundle.EditTraIngresoDetalleTitle_icaCan}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaFecha}" for="icaFecha" />
+                        <p:calendar id="icaFecha" pattern="MM/dd/yyyy" value="#{traIngresoDetalleController.selected.icaFecha}" title="#{myBundle.EditTraIngresoDetalleTitle_icaFecha}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaNumero}" for="icaNumero" />
+                        <p:inputText id="icaNumero" value="#{traIngresoDetalleController.selected.icaNumero}" title="#{myBundle.EditTraIngresoDetalleTitle_icaNumero}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaRecaudado}" for="icaRecaudado" />
+                        <p:inputText id="icaRecaudado" value="#{traIngresoDetalleController.selected.icaRecaudado}" title="#{myBundle.EditTraIngresoDetalleTitle_icaRecaudado}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraIngresoDetalleLabel_icaValor}" for="icaValor" />
+                        <p:inputText id="icaValor" value="#{traIngresoDetalleController.selected.icaValor}" title="#{myBundle.EditTraIngresoDetalleTitle_icaValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traIngresoDetalleController.save}" value="#{myBundle.Save}" update="display,:TraIngresoDetalleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraIngresoDetalleEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraIngresoDetalleEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

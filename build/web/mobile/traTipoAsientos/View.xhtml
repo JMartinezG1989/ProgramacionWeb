@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipoAsientosViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraTipoAsientosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipoAsientosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipoAsientosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traTipoAsientosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_tiaId}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.tiaId}" title="#{myBundle.ViewTraTipoAsientosTitle_tiaId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_tiaDescripcion}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.tiaDescripcion}" title="#{myBundle.ViewTraTipoAsientosTitle_tiaDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_audEliminado}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.audEliminado}" title="#{myBundle.ViewTraTipoAsientosTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.audFechaInsercion}" title="#{myBundle.ViewTraTipoAsientosTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.audFechaModificacion}" title="#{myBundle.ViewTraTipoAsientosTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraTipoAsientosTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipoAsientosLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traTipoAsientosController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraTipoAsientosTitle_audUsuarioModifico}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

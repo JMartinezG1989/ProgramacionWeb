@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraFacturaEstadoViewDlg" widgetVar="TraFacturaEstadoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraFacturaEstadoTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaEstadoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traFacturaEstadoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_fesIdPk}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.fesIdPk}" title="#{myBundle.ViewTraFacturaEstadoTitle_fesIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_audEliminado}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaEstadoTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaEstadoTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaEstadoTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaEstadoTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaEstadoTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_fesDescripcion}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.fesDescripcion}" title="#{myBundle.ViewTraFacturaEstadoTitle_fesDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraFacturaEstadoLabel_fcaIdPk}"/>
+                        <h:outputText value="#{traFacturaEstadoController.selected.fcaIdPk.fcaIdPk}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraFacturaEstadoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

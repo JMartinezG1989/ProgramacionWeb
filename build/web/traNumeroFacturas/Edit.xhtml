@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraNumeroFacturasEditDlg" widgetVar="TraNumeroFacturasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraNumeroFacturasTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroFacturasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traNumeroFacturasController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraNumeroFacturasLabel_traIdPk}" for="traIdPk" />
+                        <h:outputText id="traIdPk" value="#{traNumeroFacturasController.selected.traIdPk}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraNumeroFacturasLabel_traDes}" for="traDes" />
+                        <p:inputText id="traDes" value="#{traNumeroFacturasController.selected.traDes}" title="#{myBundle.EditTraNumeroFacturasTitle_traDes}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraNumeroFacturasLabel_traHas}" for="traHas" />
+                        <p:inputText id="traHas" value="#{traNumeroFacturasController.selected.traHas}" title="#{myBundle.EditTraNumeroFacturasTitle_traHas}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraNumeroFacturasLabel_traSuma}" for="traSuma" />
+                        <p:inputText id="traSuma" value="#{traNumeroFacturasController.selected.traSuma}" title="#{myBundle.EditTraNumeroFacturasTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traNumeroFacturasController.save}" value="#{myBundle.Save}" update="display,:TraNumeroFacturasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraNumeroFacturasEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraNumeroFacturasEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

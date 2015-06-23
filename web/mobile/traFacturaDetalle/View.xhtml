@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaDetalleViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraFacturaDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraFacturaDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traFacturaDetalleController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeId}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.fdeId}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audEliminado}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaDetalleTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaDetalleTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaDetalleTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaDetalleTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaDetalleTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeCantidad}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.fdeCantidad}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeCantidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeDescripcion}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.fdeDescripcion}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeValTotal}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.fdeValTotal}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeValTotal}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fdeValUnitario}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.fdeValUnitario}" title="#{myBundle.ViewTraFacturaDetalleTitle_fdeValUnitario}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaDetalleLabel_fcaIdPk}"/>
+                            <h:outputText value="#{traFacturaDetalleController.selected.fcaIdPk.fcaIdPk}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipoAsientosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraTipoAsientosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipoAsientosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipoAsientosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoAsientosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_tiaId}" for="tiaId" />
+                            <p:inputText id="tiaId" value="#{traTipoAsientosController.selected.tiaId}" title="#{myBundle.CreateTraTipoAsientosTitle_tiaId}" required="true" requiredMessage="#{myBundle.CreateTraTipoAsientosRequiredMessage_tiaId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_tiaDescripcion}" for="tiaDescripcion" />
+                            <p:inputText id="tiaDescripcion" value="#{traTipoAsientosController.selected.tiaDescripcion}" title="#{myBundle.CreateTraTipoAsientosTitle_tiaDescripcion}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traTipoAsientosController.selected.audEliminado}" title="#{myBundle.CreateTraTipoAsientosTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipoAsientosController.selected.audFechaInsercion}" title="#{myBundle.CreateTraTipoAsientosTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipoAsientosController.selected.audFechaModificacion}" title="#{myBundle.CreateTraTipoAsientosTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traTipoAsientosController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraTipoAsientosTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoAsientosLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traTipoAsientosController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraTipoAsientosTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traTipoAsientosController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoAsientosListPage:TraTipoAsientosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraTipoAsientosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

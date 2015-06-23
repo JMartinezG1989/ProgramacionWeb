@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraGuiaRemisionCabeceraViewDlg" widgetVar="TraGuiaRemisionCabeceraViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraGuiaRemisionCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraGuiaRemisionCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="TraGuiaRemisionCabeceraTabView">
+
+                        <p:tab id="TraGuiaRemisionCabeceraTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid columns="2" columnClasses="column" rendered="#{traGuiaRemisionCabeceraController.selected != null}">
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcIdPk}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcIdPk}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcIdPk}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_audEliminado}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.audEliminado}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_audEliminado}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_audFechaInsercion}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.audFechaInsercion}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_audFechaInsercion}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_audFechaModificacion}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.audFechaModificacion}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_audFechaModificacion}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_audUsuarioInserto}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_audUsuarioInserto}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_audUsuarioModifico}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_audUsuarioModifico}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcComponenteVenta}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcComponenteVenta}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcComponenteVenta}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcEstado}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcEstado}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcEstado}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcFecha}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcFecha}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcFecha}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcFechaEmision}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcFechaEmision}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcFechaEmision}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcFechaFinTraslado}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcFechaFinTraslado}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcFechaFinTraslado}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcFechaInicioTraslado}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcFechaInicioTraslado}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcFechaInicioTraslado}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcNumero}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcNumero}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcNumero}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcSubtotal}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcSubtotal}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcSubtotal}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcTotalConIva}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcTotalConIva}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcTotalConIva}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_grcUsuario}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.grcUsuario}" title="#{myBundle.ViewTraGuiaRemisionCabeceraTitle_grcUsuario}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_tpeGrcFk}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.tpeGrcFk.perIdPk}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_mtrGrcFk}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.mtrGrcFk.mtrDescripcion}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_lugGrcOrigenFk}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.lugGrcOrigenFk.lugDescripcion}"/>
+
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_lugGrcDestinoFk}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.lugGrcDestinoFk.lugDescripcion}"/>
+
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab id="TraGuiaRemisionCabeceraTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                            <p:panelGrid columns="2" columnClasses="column" rendered="#{traGuiaRemisionCabeceraController.selected != null}">
+                                <h:outputText value="#{myBundle.ViewTraGuiaRemisionCabeceraLabel_tfiGrcFk}"/>
+                                <h:outputText value="#{traGuiaRemisionCabeceraController.selected.tfiGrcFk.fivIdPk}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraGuiaRemisionCabeceraViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

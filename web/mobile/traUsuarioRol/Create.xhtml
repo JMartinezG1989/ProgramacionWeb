@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraUsuarioRolCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraUsuarioRolTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraUsuarioRolListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraUsuarioRolCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traUsuarioRolController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraUsuarioRolLabel_usrId}" for="usrId" />
+                            <p:inputText id="usrId" value="#{traUsuarioRolController.selected.usrId}" title="#{myBundle.CreateTraUsuarioRolTitle_usrId}" required="true" requiredMessage="#{myBundle.CreateTraUsuarioRolRequiredMessage_usrId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraUsuarioRolLabel_usuId}" for="usuId" />
+                            <p:selectOneMenu id="usuId" value="#{traUsuarioRolController.selected.usuId}"  converter="traUsuarioConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traUsuarioController.items}"
+                                               var="usuIdItem"
+                                               itemValue="#{usuIdItem}"
+                                               itemLabel="#{usuIdItem.usuId.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraUsuarioRolLabel_rolId}" for="rolId" />
+                            <p:selectOneMenu id="rolId" value="#{traUsuarioRolController.selected.rolId}"  converter="traRolConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traRolController.items}"
+                                               var="rolIdItem"
+                                               itemValue="#{rolIdItem}"
+                                               itemLabel="#{rolIdItem.rolDescripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traUsuarioRolController.saveNew}" value="#{myBundle.Save}" update="display,:TraUsuarioRolListPage:TraUsuarioRolListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraUsuarioRolListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

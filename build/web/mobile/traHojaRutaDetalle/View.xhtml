@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraHojaRutaDetalleViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraHojaRutaDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraHojaRutaDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraHojaRutaDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traHojaRutaDetalleController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdIdPk}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdIdPk}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_audEliminado}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.audEliminado}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.audFechaInsercion}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.audFechaModificacion}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdCobroCuenca}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdCobroCuenca}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdCobroCuenca}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdCobroRuta}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdCobroRuta}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdCobroRuta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdContenido}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdContenido}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdContenido}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdDestinatario}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdDestinatario}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdDestinatario}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdDestino}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdDestino}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdDestino}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdFleteCancelado}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdFleteCancelado}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdFleteCancelado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdNumeroFactura}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdNumeroFactura}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdNumeroFactura}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrdRemitente}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrdRemitente}" title="#{myBundle.ViewTraHojaRutaDetalleTitle_hrdRemitente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraHojaRutaDetalleLabel_hrcHrdFk}"/>
+                            <h:outputText value="#{traHojaRutaDetalleController.selected.hrcHrdFk.hrcIdPk}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

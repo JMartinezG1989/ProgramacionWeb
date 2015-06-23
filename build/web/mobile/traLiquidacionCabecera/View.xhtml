@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraLiquidacionCabeceraViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraLiquidacionCabeceraTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraLiquidacionCabeceraListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraLiquidacionCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traLiquidacionCabeceraController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaIdPk}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaIdPk}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audEliminado}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.audEliminado}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaDireccion}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaDireccion}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaDireccion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaEstaddo}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaEstaddo}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaEstaddo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaFecha}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaFecha}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaFechaEmision}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaFechaEmision}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaFechaEmision}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaSenores}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaSenores}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaSenores}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionCabeceraLabel_lcaUsuario}"/>
+                            <h:outputText value="#{traLiquidacionCabeceraController.selected.lcaUsuario}" title="#{myBundle.ViewTraLiquidacionCabeceraTitle_lcaUsuario}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

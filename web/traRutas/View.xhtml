@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraRutasViewDlg" widgetVar="TraRutasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraRutasTitle}" closeOnEscape="true">
+
+            <h:form id="TraRutasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traRutasController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraRutasLabel_traIdPk}"/>
+                        <h:outputText value="#{traRutasController.selected.traIdPk}" title="#{myBundle.ViewTraRutasTitle_traIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraRutasLabel_traTiempo}"/>
+                        <h:outputText value="#{traRutasController.selected.traTiempo}" title="#{myBundle.ViewTraRutasTitle_traTiempo}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraRutasLabel_traDescripcion}"/>
+                        <h:outputText value="#{traRutasController.selected.traDescripcion}" title="#{myBundle.ViewTraRutasTitle_traDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraRutasViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

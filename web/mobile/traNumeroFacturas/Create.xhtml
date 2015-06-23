@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraNumeroFacturasCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraNumeroFacturasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraNumeroFacturasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraNumeroFacturasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroFacturasController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroFacturasLabel_traIdPk}" for="traIdPk" />
+                            <p:inputText id="traIdPk" value="#{traNumeroFacturasController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroFacturasTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroFacturasRequiredMessage_traIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroFacturasLabel_traDes}" for="traDes" />
+                            <p:inputText id="traDes" value="#{traNumeroFacturasController.selected.traDes}" title="#{myBundle.CreateTraNumeroFacturasTitle_traDes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroFacturasLabel_traHas}" for="traHas" />
+                            <p:inputText id="traHas" value="#{traNumeroFacturasController.selected.traHas}" title="#{myBundle.CreateTraNumeroFacturasTitle_traHas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroFacturasLabel_traSuma}" for="traSuma" />
+                            <p:inputText id="traSuma" value="#{traNumeroFacturasController.selected.traSuma}" title="#{myBundle.CreateTraNumeroFacturasTitle_traSuma}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traNumeroFacturasController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroFacturasListPage:TraNumeroFacturasListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraNumeroFacturasListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

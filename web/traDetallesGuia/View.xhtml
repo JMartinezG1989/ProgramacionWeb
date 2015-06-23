@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraDetallesGuiaViewDlg" widgetVar="TraDetallesGuiaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraDetallesGuiaTitle}" closeOnEscape="true">
+
+            <h:form id="TraDetallesGuiaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traDetallesGuiaController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_dguIdPk}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.dguIdPk}" title="#{myBundle.ViewTraDetallesGuiaTitle_dguIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_audEliminado}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.audEliminado}" title="#{myBundle.ViewTraDetallesGuiaTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.audFechaInsercion}" title="#{myBundle.ViewTraDetallesGuiaTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.audFechaModificacion}" title="#{myBundle.ViewTraDetallesGuiaTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraDetallesGuiaTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraDetallesGuiaTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_dguCantidad}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.dguCantidad}" title="#{myBundle.ViewTraDetallesGuiaTitle_dguCantidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_dguDescripcion}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.dguDescripcion}" title="#{myBundle.ViewTraDetallesGuiaTitle_dguDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_dguUnidad}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.dguUnidad}" title="#{myBundle.ViewTraDetallesGuiaTitle_dguUnidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_dguValorTotal}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.dguValorTotal}" title="#{myBundle.ViewTraDetallesGuiaTitle_dguValorTotal}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_dguValorUnitario}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.dguValorUnitario}" title="#{myBundle.ViewTraDetallesGuiaTitle_dguValorUnitario}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraDetallesGuiaLabel_grcDguFk}"/>
+                        <h:outputText value="#{traDetallesGuiaController.selected.grcDguFk.grcIdPk}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraDetallesGuiaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipoCuentasCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraTipoCuentasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipoCuentasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipoCuentasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoCuentasController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoCuentasLabel_ticuId}" for="ticuId" />
+                            <p:inputText id="ticuId" value="#{traTipoCuentasController.selected.ticuId}" title="#{myBundle.CreateTraTipoCuentasTitle_ticuId}" required="true" requiredMessage="#{myBundle.CreateTraTipoCuentasRequiredMessage_ticuId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoCuentasLabel_ticuDescripcion}" for="ticuDescripcion" />
+                            <p:inputText id="ticuDescripcion" value="#{traTipoCuentasController.selected.ticuDescripcion}" title="#{myBundle.CreateTraTipoCuentasTitle_ticuDescripcion}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traTipoCuentasController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoCuentasListPage:TraTipoCuentasListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraTipoCuentasListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

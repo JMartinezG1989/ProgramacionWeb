@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraLiquidacionFechaDetalleViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraLiquidacionFechaDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraLiquidacionFechaDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traLiquidacionFechaDetalleController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfcdIdPk}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfcdIdPk}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfcdIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_audEliminado}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.audEliminado}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdCobroRuta}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdCobroRuta}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdCobroRuta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdDescuento1}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdDescuento1}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdDescuento1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdDescuento2}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdDescuento2}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdDescuento2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdFecha}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdFecha}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdLiquidacion1}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdLiquidacion1}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdLiquidacion1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdLiquidacion2}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdLiquidacion2}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdLiquidacion2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdCobroCuenca}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdCobroCuenca}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdCobroCuenca}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdNumGuia}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdNumGuia}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdNumGuia}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdPago}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdPago}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdPago}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdPorcentaje15o12}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdPorcentaje15o12}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdPorcentaje15o12}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdRetencionPorcentaje}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdRetencionPorcentaje}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdRetencionPorcentaje}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdTotalFlete}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdTotalFlete}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdTotalFlete}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionFechaDetalleLabel_lfdTotalLiquidacion}"/>
+                            <h:outputText value="#{traLiquidacionFechaDetalleController.selected.lfdTotalLiquidacion}" title="#{myBundle.ViewTraLiquidacionFechaDetalleTitle_lfdTotalLiquidacion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

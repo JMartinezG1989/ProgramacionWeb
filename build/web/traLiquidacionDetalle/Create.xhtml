@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraLiquidacionDetalleCreateDlg" widgetVar="TraLiquidacionDetalleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraLiquidacionDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraLiquidacionDetalleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traLiquidacionDetalleController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_ldeIdPk}" for="ldeIdPk" />
+                        <p:inputText id="ldeIdPk" value="#{traLiquidacionDetalleController.selected.ldeIdPk}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_ldeIdPk}" required="true" requiredMessage="#{myBundle.CreateTraLiquidacionDetalleRequiredMessage_ldeIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traLiquidacionDetalleController.selected.audEliminado}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLiquidacionDetalleController.selected.audFechaInsercion}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLiquidacionDetalleController.selected.audFechaModificacion}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traLiquidacionDetalleController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traLiquidacionDetalleController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_ldeSubtotal}" for="ldeSubtotal" />
+                        <p:inputText id="ldeSubtotal" value="#{traLiquidacionDetalleController.selected.ldeSubtotal}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_ldeSubtotal}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionDetalleLabel_ldeTotal}" for="ldeTotal" />
+                        <p:inputText id="ldeTotal" value="#{traLiquidacionDetalleController.selected.ldeTotal}" title="#{myBundle.CreateTraLiquidacionDetalleTitle_ldeTotal}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traLiquidacionDetalleController.saveNew}" value="#{myBundle.Save}" update="display,:TraLiquidacionDetalleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraLiquidacionDetalleCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraLiquidacionDetalleCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

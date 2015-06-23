@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraPermisoCreateDlg" widgetVar="TraPermisoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraPermisoTitle}" closeOnEscape="true">
+
+            <h:form id="TraPermisoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traPermisoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_perId}" for="perId" />
+                        <p:inputText id="perId" value="#{traPermisoController.selected.perId}" title="#{myBundle.CreateTraPermisoTitle_perId}" required="true" requiredMessage="#{myBundle.CreateTraPermisoRequiredMessage_perId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_perDescripcion}" for="perDescripcion" />
+                        <p:inputText id="perDescripcion" value="#{traPermisoController.selected.perDescripcion}" title="#{myBundle.CreateTraPermisoTitle_perDescripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_secId}" for="secId" />
+                        <p:selectOneMenu id="secId" value="#{traPermisoController.selected.secId}"  converter="traSeccionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traSeccionController.items}"
+                                           var="secIdItem"
+                                           itemValue="#{secIdItem}"
+                                           itemLabel="#{secIdItem.secDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_rolId}" for="rolId" />
+                        <p:selectOneMenu id="rolId" value="#{traPermisoController.selected.rolId}"  converter="traRolConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traRolController.items}"
+                                           var="rolIdItem"
+                                           itemValue="#{rolIdItem}"
+                                           itemLabel="#{rolIdItem.rolDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPermisoLabel_opeId}" for="opeId" />
+                        <p:selectOneMenu id="opeId" value="#{traPermisoController.selected.opeId}"  converter="traOperacionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traOperacionController.items}"
+                                           var="opeIdItem"
+                                           itemValue="#{opeIdItem}"
+                                           itemLabel="#{opeIdItem.opeDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traPermisoController.saveNew}" value="#{myBundle.Save}" update="display,:TraPermisoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraPermisoCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraPermisoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

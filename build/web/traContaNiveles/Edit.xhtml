@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraContaNivelesEditDlg" widgetVar="TraContaNivelesEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraContaNivelesTitle}" closeOnEscape="true">
+
+            <h:form id="TraContaNivelesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traContaNivelesController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraContaNivelesLabel_coniId}" for="coniId" />
+                        <h:outputText id="coniId" value="#{traContaNivelesController.selected.coniId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraContaNivelesLabel_coniDescripcion}" for="coniDescripcion" />
+                        <p:inputText id="coniDescripcion" value="#{traContaNivelesController.selected.coniDescripcion}" title="#{myBundle.EditTraContaNivelesTitle_coniDescripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraContaNivelesLabel_coniValor}" for="coniValor" />
+                        <p:inputText id="coniValor" value="#{traContaNivelesController.selected.coniValor}" title="#{myBundle.EditTraContaNivelesTitle_coniValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traContaNivelesController.save}" value="#{myBundle.Save}" update="display,:TraContaNivelesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraContaNivelesEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraContaNivelesEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

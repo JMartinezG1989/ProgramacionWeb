@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraGuiaRemisionCabeceraListForm">
+
+        <p:panel header="#{myBundle.ListTraGuiaRemisionCabeceraTitle}">
+            <p:contextMenu id="TraGuiaRemisionCabeceraDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraGuiaRemisionCabeceraListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraGuiaRemisionCabeceraListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraGuiaRemisionCabeceraListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraGuiaRemisionCabeceraListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraMenuItem_tpeGrcFk}" icon="ui-icon-search"  actionListener="#{traGuiaRemisionCabeceraController.prepareTpeGrcFk}" update=":TraPersonaViewForm" oncomplete="PF('TraPersonaViewDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected.tpeGrcFk}"/>  
+                <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraMenuItem_mtrGrcFk}" icon="ui-icon-search"  actionListener="#{traGuiaRemisionCabeceraController.prepareMtrGrcFk}" update=":TraMotivoTrasladosViewForm" oncomplete="PF('TraMotivoTrasladosViewDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected.mtrGrcFk}"/>  
+                <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraMenuItem_lugGrcOrigenFk}" icon="ui-icon-search"  actionListener="#{traGuiaRemisionCabeceraController.prepareLugGrcOrigenFk}" update=":TraLugaresViewForm" oncomplete="PF('TraLugaresViewDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected.lugGrcOrigenFk}"/>  
+                <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraMenuItem_lugGrcDestinoFk}" icon="ui-icon-search"  actionListener="#{traGuiaRemisionCabeceraController.prepareLugGrcDestinoFk}" update=":TraLugaresViewForm" oncomplete="PF('TraLugaresViewDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected.lugGrcDestinoFk}"/>  
+                <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraMenuItem_tfiGrcFk}" icon="ui-icon-search"  actionListener="#{traGuiaRemisionCabeceraController.prepareTfiGrcFk}" update=":TraFacturaIvasViewForm" oncomplete="PF('TraFacturaIvasViewDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected.tfiGrcFk}"/>  
+                <p:menuitem value="#{myBundle.TraGuiaRemisionCabeceraMenuItem_traDetallesGuiaList}" icon="ui-icon-search"  action="#{traGuiaRemisionCabeceraController.navigateTraDetallesGuiaList}" disabled="#{empty traGuiaRemisionCabeceraController.selected.traDetallesGuiaList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traGuiaRemisionCabeceraController.items}"
+                         var="item"
+                         rowKey="#{item.grcIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traGuiaRemisionCabeceraController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraGuiaRemisionCabeceraDataTableContextMenu" listener="#{traGuiaRemisionCabeceraController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraGuiaRemisionCabeceraDataTableContextMenu" listener="#{traGuiaRemisionCabeceraController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traGuiaRemisionCabeceraController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraGuiaRemisionCabeceraListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.grcIdPk}" filterBy="#{item.grcIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.grcIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.grcComponenteVenta}" filterBy="#{item.grcComponenteVenta}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcComponenteVenta}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcComponenteVenta}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcEstado}" filterBy="#{item.grcEstado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcEstado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcEstado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcFecha}" filterBy="#{item.grcFecha}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcFecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcFecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcFechaEmision}" filterBy="#{item.grcFechaEmision}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcFechaEmision}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcFechaEmision}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcFechaFinTraslado}" filterBy="#{item.grcFechaFinTraslado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcFechaFinTraslado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcFechaFinTraslado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcFechaInicioTraslado}" filterBy="#{item.grcFechaInicioTraslado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcFechaInicioTraslado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcFechaInicioTraslado}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcNumero}" filterBy="#{item.grcNumero}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcNumero}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcNumero}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcSubtotal}" filterBy="#{item.grcSubtotal}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcSubtotal}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcSubtotal}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcTotalConIva}" filterBy="#{item.grcTotalConIva}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcTotalConIva}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcTotalConIva}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.grcUsuario}" filterBy="#{item.grcUsuario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_grcUsuario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.grcUsuario}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.tpeGrcFk.perIdPk}" filterBy="#{item.tpeGrcFk.perIdPk}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_tpeGrcFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tpeGrcFk.perIdPk}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.mtrGrcFk.mtrDescripcion}" filterBy="#{item.mtrGrcFk.mtrDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_mtrGrcFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.mtrGrcFk.mtrDescripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lugGrcOrigenFk.lugDescripcion}" filterBy="#{item.lugGrcOrigenFk.lugDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_lugGrcOrigenFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lugGrcOrigenFk.lugDescripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lugGrcDestinoFk.lugDescripcion}" filterBy="#{item.lugGrcDestinoFk.lugDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_lugGrcDestinoFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lugGrcDestinoFk.lugDescripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.tfiGrcFk.fivIdPk}" filterBy="#{item.tfiGrcFk.fivIdPk}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraGuiaRemisionCabeceraTitle_tfiGrcFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tfiGrcFk.fivIdPk}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traGuiaRemisionCabeceraController.prepareCreate}" update=":TraGuiaRemisionCabeceraCreateForm" oncomplete="PF('TraGuiaRemisionCabeceraCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraGuiaRemisionCabeceraViewForm" oncomplete="PF('TraGuiaRemisionCabeceraViewDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraGuiaRemisionCabeceraEditForm" oncomplete="PF('TraGuiaRemisionCabeceraEditDialog').show()" disabled="#{empty traGuiaRemisionCabeceraController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traGuiaRemisionCabeceraController.delete}" update=":growl,datalist" disabled="#{empty traGuiaRemisionCabeceraController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

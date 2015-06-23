@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraChequeDetaleCreateDlg" widgetVar="TraChequeDetaleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraChequeDetaleTitle}" closeOnEscape="true">
+
+            <h:form id="TraChequeDetaleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traChequeDetaleController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeDetaleLabel_cdeId}" for="cdeId" />
+                        <p:inputText id="cdeId" value="#{traChequeDetaleController.selected.cdeId}" title="#{myBundle.CreateTraChequeDetaleTitle_cdeId}" required="true" requiredMessage="#{myBundle.CreateTraChequeDetaleRequiredMessage_cdeId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeDetaleLabel_cdeNumeroCheque}" for="cdeNumeroCheque" />
+                        <p:inputText id="cdeNumeroCheque" value="#{traChequeDetaleController.selected.cdeNumeroCheque}" title="#{myBundle.CreateTraChequeDetaleTitle_cdeNumeroCheque}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeDetaleLabel_cdeValor}" for="cdeValor" />
+                        <p:inputText id="cdeValor" value="#{traChequeDetaleController.selected.cdeValor}" title="#{myBundle.CreateTraChequeDetaleTitle_cdeValor}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeDetaleLabel_cdeVencimiento}" for="cdeVencimiento" />
+                        <p:inputText id="cdeVencimiento" value="#{traChequeDetaleController.selected.cdeVencimiento}" title="#{myBundle.CreateTraChequeDetaleTitle_cdeVencimiento}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traChequeDetaleController.saveNew}" value="#{myBundle.Save}" update="display,:TraChequeDetaleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraChequeDetaleCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraChequeDetaleCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

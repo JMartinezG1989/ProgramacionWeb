@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraComprobanteEgresoDetalleEditDlg" widgetVar="TraComprobanteEgresoDetalleEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraComprobanteEgresoDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraComprobanteEgresoDetalleEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traComprobanteEgresoDetalleController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedId}" for="cedId" />
+                        <h:outputText id="cedId" value="#{traComprobanteEgresoDetalleController.selected.cedId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedAnt}" for="cedAnt" />
+                        <p:inputText id="cedAnt" value="#{traComprobanteEgresoDetalleController.selected.cedAnt}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedAnt}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedCodigoEgreso}" for="cedCodigoEgreso" />
+                        <p:inputText id="cedCodigoEgreso" value="#{traComprobanteEgresoDetalleController.selected.cedCodigoEgreso}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedCodigoEgreso}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedConcepto}" for="cedConcepto" />
+                        <p:inputText id="cedConcepto" value="#{traComprobanteEgresoDetalleController.selected.cedConcepto}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedConcepto}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedDebe}" for="cedDebe" />
+                        <p:inputText id="cedDebe" value="#{traComprobanteEgresoDetalleController.selected.cedDebe}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedDebe}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedDescuento}" for="cedDescuento" />
+                        <p:inputText id="cedDescuento" value="#{traComprobanteEgresoDetalleController.selected.cedDescuento}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedDescuento}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedHaber}" for="cedHaber" />
+                        <p:inputText id="cedHaber" value="#{traComprobanteEgresoDetalleController.selected.cedHaber}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedHaber}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedPorcentaje}" for="cedPorcentaje" />
+                        <p:inputText id="cedPorcentaje" value="#{traComprobanteEgresoDetalleController.selected.cedPorcentaje}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedPorcentaje}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoDetalleLabel_cedRef}" for="cedRef" />
+                        <p:inputText id="cedRef" value="#{traComprobanteEgresoDetalleController.selected.cedRef}" title="#{myBundle.EditTraComprobanteEgresoDetalleTitle_cedRef}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traComprobanteEgresoDetalleController.save}" value="#{myBundle.Save}" update="display,:TraComprobanteEgresoDetalleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraComprobanteEgresoDetalleEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraComprobanteEgresoDetalleEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

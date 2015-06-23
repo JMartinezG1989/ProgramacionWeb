@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraNumeroGuiasCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraNumeroGuiasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraNumeroGuiasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraNumeroGuiasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroGuiasController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traIdPk}" for="traIdPk" />
+                            <p:inputText id="traIdPk" value="#{traNumeroGuiasController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroGuiasTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroGuiasRequiredMessage_traIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traDes}" for="traDes" />
+                            <p:inputText id="traDes" value="#{traNumeroGuiasController.selected.traDes}" title="#{myBundle.CreateTraNumeroGuiasTitle_traDes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traHas}" for="traHas" />
+                            <p:inputText id="traHas" value="#{traNumeroGuiasController.selected.traHas}" title="#{myBundle.CreateTraNumeroGuiasTitle_traHas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroGuiasLabel_traSuma}" for="traSuma" />
+                            <p:inputText id="traSuma" value="#{traNumeroGuiasController.selected.traSuma}" title="#{myBundle.CreateTraNumeroGuiasTitle_traSuma}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traNumeroGuiasController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroGuiasListPage:TraNumeroGuiasListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraNumeroGuiasListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

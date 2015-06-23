@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraPermisoViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraPermisoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraPermisoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraPermisoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traPermisoController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPermisoLabel_perId}"/>
+                            <h:outputText value="#{traPermisoController.selected.perId}" title="#{myBundle.ViewTraPermisoTitle_perId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPermisoLabel_perDescripcion}"/>
+                            <h:outputText value="#{traPermisoController.selected.perDescripcion}" title="#{myBundle.ViewTraPermisoTitle_perDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPermisoLabel_secId}"/>
+                            <h:outputText value="#{traPermisoController.selected.secId.secDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPermisoLabel_rolId}"/>
+                            <h:outputText value="#{traPermisoController.selected.rolId.rolDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraPermisoLabel_opeId}"/>
+                            <h:outputText value="#{traPermisoController.selected.opeId.opeDescripcion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

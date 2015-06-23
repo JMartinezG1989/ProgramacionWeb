@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraContabilidadRetencionesCreateDlg" widgetVar="TraContabilidadRetencionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraContabilidadRetencionesTitle}" closeOnEscape="true">
+
+            <h:form id="TraContabilidadRetencionesCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traContabilidadRetencionesController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraContabilidadRetencionesLabel_traIdPk}" for="traIdPk" />
+                        <p:inputText id="traIdPk" value="#{traContabilidadRetencionesController.selected.traIdPk}" title="#{myBundle.CreateTraContabilidadRetencionesTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraContabilidadRetencionesRequiredMessage_traIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraContabilidadRetencionesLabel_traDescripcion}" for="traDescripcion" />
+                        <p:inputText id="traDescripcion" value="#{traContabilidadRetencionesController.selected.traDescripcion}" title="#{myBundle.CreateTraContabilidadRetencionesTitle_traDescripcion}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraContabilidadRetencionesLabel_traValor}" for="traValor" />
+                        <p:inputText id="traValor" value="#{traContabilidadRetencionesController.selected.traValor}" title="#{myBundle.CreateTraContabilidadRetencionesTitle_traValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traContabilidadRetencionesController.saveNew}" value="#{myBundle.Save}" update="display,:TraContabilidadRetencionesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraContabilidadRetencionesCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraContabilidadRetencionesCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

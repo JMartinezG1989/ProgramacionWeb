@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraChequeDetaleEditDlg" widgetVar="TraChequeDetaleEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraChequeDetaleTitle}" closeOnEscape="true">
+
+            <h:form id="TraChequeDetaleEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traChequeDetaleController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraChequeDetaleLabel_cdeId}" for="cdeId" />
+                        <h:outputText id="cdeId" value="#{traChequeDetaleController.selected.cdeId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraChequeDetaleLabel_cdeNumeroCheque}" for="cdeNumeroCheque" />
+                        <p:inputText id="cdeNumeroCheque" value="#{traChequeDetaleController.selected.cdeNumeroCheque}" title="#{myBundle.EditTraChequeDetaleTitle_cdeNumeroCheque}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraChequeDetaleLabel_cdeValor}" for="cdeValor" />
+                        <p:inputText id="cdeValor" value="#{traChequeDetaleController.selected.cdeValor}" title="#{myBundle.EditTraChequeDetaleTitle_cdeValor}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraChequeDetaleLabel_cdeVencimiento}" for="cdeVencimiento" />
+                        <p:inputText id="cdeVencimiento" value="#{traChequeDetaleController.selected.cdeVencimiento}" title="#{myBundle.EditTraChequeDetaleTitle_cdeVencimiento}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traChequeDetaleController.save}" value="#{myBundle.Save}" update="display,:TraChequeDetaleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraChequeDetaleEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraChequeDetaleEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

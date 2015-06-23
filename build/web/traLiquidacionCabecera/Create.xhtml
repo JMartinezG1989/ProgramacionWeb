@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraLiquidacionCabeceraCreateDlg" widgetVar="TraLiquidacionCabeceraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraLiquidacionCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraLiquidacionCabeceraCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traLiquidacionCabeceraController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaIdPk}" for="lcaIdPk" />
+                        <p:inputText id="lcaIdPk" value="#{traLiquidacionCabeceraController.selected.lcaIdPk}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaIdPk}" required="true" requiredMessage="#{myBundle.CreateTraLiquidacionCabeceraRequiredMessage_lcaIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traLiquidacionCabeceraController.selected.audEliminado}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLiquidacionCabeceraController.selected.audFechaInsercion}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLiquidacionCabeceraController.selected.audFechaModificacion}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traLiquidacionCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traLiquidacionCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaDireccion}" for="lcaDireccion" />
+                        <p:inputTextarea rows="4" cols="30" id="lcaDireccion" value="#{traLiquidacionCabeceraController.selected.lcaDireccion}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaDireccion}" />
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaEstaddo}" for="lcaEstaddo" />
+                        <p:inputText id="lcaEstaddo" value="#{traLiquidacionCabeceraController.selected.lcaEstaddo}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaEstaddo}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaFecha}" for="lcaFecha" />
+                        <p:calendar id="lcaFecha" pattern="MM/dd/yyyy" value="#{traLiquidacionCabeceraController.selected.lcaFecha}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaFecha}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaFechaEmision}" for="lcaFechaEmision" />
+                        <p:calendar id="lcaFechaEmision" pattern="MM/dd/yyyy" value="#{traLiquidacionCabeceraController.selected.lcaFechaEmision}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaFechaEmision}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaSenores}" for="lcaSenores" />
+                        <p:inputText id="lcaSenores" value="#{traLiquidacionCabeceraController.selected.lcaSenores}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaSenores}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraLiquidacionCabeceraLabel_lcaUsuario}" for="lcaUsuario" />
+                        <p:inputText id="lcaUsuario" value="#{traLiquidacionCabeceraController.selected.lcaUsuario}" title="#{myBundle.CreateTraLiquidacionCabeceraTitle_lcaUsuario}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traLiquidacionCabeceraController.saveNew}" value="#{myBundle.Save}" update="display,:TraLiquidacionCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraLiquidacionCabeceraCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraLiquidacionCabeceraCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

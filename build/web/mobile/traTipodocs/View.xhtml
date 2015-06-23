@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipodocsViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraTipodocsTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipodocsListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipodocsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traTipodocsController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_tipId}"/>
+                            <h:outputText value="#{traTipodocsController.selected.tipId}" title="#{myBundle.ViewTraTipodocsTitle_tipId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_tipDescripcion}"/>
+                            <h:outputText value="#{traTipodocsController.selected.tipDescripcion}" title="#{myBundle.ViewTraTipodocsTitle_tipDescripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_audEliminado}"/>
+                            <h:outputText value="#{traTipodocsController.selected.audEliminado}" title="#{myBundle.ViewTraTipodocsTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traTipodocsController.selected.audFechaInsercion}" title="#{myBundle.ViewTraTipodocsTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traTipodocsController.selected.audFechaModificacion}" title="#{myBundle.ViewTraTipodocsTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traTipodocsController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraTipodocsTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraTipodocsLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traTipodocsController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraTipodocsTitle_audUsuarioModifico}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

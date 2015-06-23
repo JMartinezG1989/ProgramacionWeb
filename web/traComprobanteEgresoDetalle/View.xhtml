@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraComprobanteEgresoDetalleViewDlg" widgetVar="TraComprobanteEgresoDetalleViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraComprobanteEgresoDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraComprobanteEgresoDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traComprobanteEgresoDetalleController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedId}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedId}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedAnt}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedAnt}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedAnt}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedCodigoEgreso}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedCodigoEgreso}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedCodigoEgreso}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedConcepto}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedConcepto}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedConcepto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedDebe}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedDebe}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedDebe}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedDescuento}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedDescuento}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedDescuento}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedHaber}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedHaber}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedHaber}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedPorcentaje}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedPorcentaje}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedPorcentaje}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraComprobanteEgresoDetalleLabel_cedRef}"/>
+                        <h:outputText value="#{traComprobanteEgresoDetalleController.selected.cedRef}" title="#{myBundle.ViewTraComprobanteEgresoDetalleTitle_cedRef}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraComprobanteEgresoDetalleViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

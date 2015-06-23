@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraAsientosCuentasViewDlg" widgetVar="TraAsientosCuentasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraAsientosCuentasTitle}" closeOnEscape="true">
+
+            <h:form id="TraAsientosCuentasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traAsientosCuentasController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascId}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascId}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascId}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascCtaElegidaAsientocuenta}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascCtaElegidaAsientocuenta}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascCtaElegidaAsientocuenta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascDebeAsientocuenta}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascDebeAsientocuenta}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascDebeAsientocuenta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascHaberAsientocuenta}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascHaberAsientocuenta}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascHaberAsientocuenta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascFechaSientocuenta}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascFechaSientocuenta}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascFechaSientocuenta}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascIdCuentaAuxAsientocuenta}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascIdCuentaAuxAsientocuenta}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascIdCuentaAuxAsientocuenta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_ascNotasAsientocuenta}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.ascNotasAsientocuenta}" title="#{myBundle.ViewTraAsientosCuentasTitle_ascNotasAsientocuenta}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_audEliminado}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.audEliminado}" title="#{myBundle.ViewTraAsientosCuentasTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.audFechaInsercion}" title="#{myBundle.ViewTraAsientosCuentasTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.audFechaModificacion}" title="#{myBundle.ViewTraAsientosCuentasTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraAsientosCuentasTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraAsientosCuentasLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traAsientosCuentasController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraAsientosCuentasTitle_audUsuarioModifico}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraAsientosCuentasViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

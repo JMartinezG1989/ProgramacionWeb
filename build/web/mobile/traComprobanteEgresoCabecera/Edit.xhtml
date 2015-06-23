@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraComprobanteEgresoCabeceraEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraComprobanteEgresoCabeceraListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraComprobanteEgresoCabeceraEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traComprobanteEgresoCabeceraController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecId}" for="cecId" />
+                            <h:outputText id="cecId" value="#{traComprobanteEgresoCabeceraController.selected.cecId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecEstado}" for="cecEstado" />
+                            <p:inputText id="cecEstado" value="#{traComprobanteEgresoCabeceraController.selected.cecEstado}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecEstado}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecFecha}" for="cecFecha" />
+                            <p:calendar id="cecFecha" pattern="MM/dd/yyyy" value="#{traComprobanteEgresoCabeceraController.selected.cecFecha}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecFecha}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecFechas}" for="cecFechas" />
+                            <p:calendar id="cecFechas" pattern="MM/dd/yyyy" value="#{traComprobanteEgresoCabeceraController.selected.cecFechas}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecFechas}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecNumeroCheque}" for="cecNumeroCheque" />
+                            <p:inputText id="cecNumeroCheque" value="#{traComprobanteEgresoCabeceraController.selected.cecNumeroCheque}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecNumeroCheque}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecNumero}" for="cecNumero" />
+                            <p:inputText id="cecNumero" value="#{traComprobanteEgresoCabeceraController.selected.cecNumero}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecNumero}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecObservaciones}" for="cecObservaciones" />
+                            <p:inputText id="cecObservaciones" value="#{traComprobanteEgresoCabeceraController.selected.cecObservaciones}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecObservaciones}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecSon}" for="cecSon" />
+                            <p:inputText id="cecSon" value="#{traComprobanteEgresoCabeceraController.selected.cecSon}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecSon}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecUsuario}" for="cecUsuario" />
+                            <p:inputText id="cecUsuario" value="#{traComprobanteEgresoCabeceraController.selected.cecUsuario}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecUsuario}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraComprobanteEgresoCabeceraLabel_cecValor}" for="cecValor" />
+                            <p:inputText id="cecValor" value="#{traComprobanteEgresoCabeceraController.selected.cecValor}" title="#{myBundle.EditTraComprobanteEgresoCabeceraTitle_cecValor}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traComprobanteEgresoCabeceraController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraComprobanteEgresoCabeceraListPage:TraComprobanteEgresoCabeceraListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraComprobanteEgresoCabeceraListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaDetalleEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraFacturaDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraFacturaDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaDetalleEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traFacturaDetalleController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_fdeId}" for="fdeId" />
+                            <h:outputText id="fdeId" value="#{traFacturaDetalleController.selected.fdeId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traFacturaDetalleController.selected.audEliminado}" title="#{myBundle.EditTraFacturaDetalleTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaDetalleController.selected.audFechaInsercion}" title="#{myBundle.EditTraFacturaDetalleTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaDetalleController.selected.audFechaModificacion}" title="#{myBundle.EditTraFacturaDetalleTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traFacturaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.EditTraFacturaDetalleTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traFacturaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.EditTraFacturaDetalleTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_fdeCantidad}" for="fdeCantidad" />
+                            <p:inputText id="fdeCantidad" value="#{traFacturaDetalleController.selected.fdeCantidad}" title="#{myBundle.EditTraFacturaDetalleTitle_fdeCantidad}" required="true" requiredMessage="#{myBundle.EditTraFacturaDetalleRequiredMessage_fdeCantidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_fdeDescripcion}" for="fdeDescripcion" />
+                            <p:inputText id="fdeDescripcion" value="#{traFacturaDetalleController.selected.fdeDescripcion}" title="#{myBundle.EditTraFacturaDetalleTitle_fdeDescripcion}" size="200" maxlength="200"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_fdeValTotal}" for="fdeValTotal" />
+                            <p:inputText id="fdeValTotal" value="#{traFacturaDetalleController.selected.fdeValTotal}" title="#{myBundle.EditTraFacturaDetalleTitle_fdeValTotal}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_fdeValUnitario}" for="fdeValUnitario" />
+                            <p:inputText id="fdeValUnitario" value="#{traFacturaDetalleController.selected.fdeValUnitario}" title="#{myBundle.EditTraFacturaDetalleTitle_fdeValUnitario}" required="true" requiredMessage="#{myBundle.EditTraFacturaDetalleRequiredMessage_fdeValUnitario}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraFacturaDetalleLabel_fcaIdPk}" for="fcaIdPk" />
+                            <p:selectOneMenu id="fcaIdPk" value="#{traFacturaDetalleController.selected.fcaIdPk}"  converter="traFacturaCabeceraConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traFacturaCabeceraController.items}"
+                                               var="fcaIdPkItem"
+                                               itemValue="#{fcaIdPkItem}"
+                                               itemLabel="#{fcaIdPkItem.fcaIdPk.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traFacturaDetalleController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraFacturaDetalleListPage:TraFacturaDetalleListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraFacturaDetalleListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

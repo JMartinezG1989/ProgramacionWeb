@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaEstadoListPage">
+        <pm:header title="#{myBundle.ListTraFacturaEstadoTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":TraFacturaEstadoCreatePage:TraFacturaEstadoCreateForm" actionListener="#{traFacturaEstadoController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:TraFacturaEstadoCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaEstadoListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{traFacturaEstadoController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraFacturaEstadoTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":TraFacturaEstadoEditPage:TraFacturaEstadoEditForm" action="pm:TraFacturaEstadoEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.fesIdPk}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audEliminado}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audUsuarioInserto}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audUsuarioModifico}"/>
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fesDescripcion}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.fcaIdPk.fcaIdPk}"/>
+                            -->
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{traFacturaEstadoController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListTraFacturaEstadoTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

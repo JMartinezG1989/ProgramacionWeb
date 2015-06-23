@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroLiquidacionViewDlg" widgetVar="TraNumeroLiquidacionViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraNumeroLiquidacionTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroLiquidacionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traNumeroLiquidacionController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroLiquidacionLabel_traIdPk}"/>
+                        <h:outputText value="#{traNumeroLiquidacionController.selected.traIdPk}" title="#{myBundle.ViewTraNumeroLiquidacionTitle_traIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroLiquidacionLabel_traDes}"/>
+                        <h:outputText value="#{traNumeroLiquidacionController.selected.traDes}" title="#{myBundle.ViewTraNumeroLiquidacionTitle_traDes}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroLiquidacionLabel_traHas}"/>
+                        <h:outputText value="#{traNumeroLiquidacionController.selected.traHas}" title="#{myBundle.ViewTraNumeroLiquidacionTitle_traHas}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroLiquidacionLabel_traSuma}"/>
+                        <h:outputText value="#{traNumeroLiquidacionController.selected.traSuma}" title="#{myBundle.ViewTraNumeroLiquidacionTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraNumeroLiquidacionViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

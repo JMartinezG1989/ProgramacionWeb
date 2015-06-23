@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraTipodocsCreateDlg" widgetVar="TraTipodocsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraTipodocsTitle}" closeOnEscape="true">
+
+            <h:form id="TraTipodocsCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipodocsController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_tipId}" for="tipId" />
+                        <p:inputText id="tipId" value="#{traTipodocsController.selected.tipId}" title="#{myBundle.CreateTraTipodocsTitle_tipId}" required="true" requiredMessage="#{myBundle.CreateTraTipodocsRequiredMessage_tipId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_tipDescripcion}" for="tipDescripcion" />
+                        <p:inputText id="tipDescripcion" value="#{traTipodocsController.selected.tipDescripcion}" title="#{myBundle.CreateTraTipodocsTitle_tipDescripcion}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traTipodocsController.selected.audEliminado}" title="#{myBundle.CreateTraTipodocsTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipodocsController.selected.audFechaInsercion}" title="#{myBundle.CreateTraTipodocsTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipodocsController.selected.audFechaModificacion}" title="#{myBundle.CreateTraTipodocsTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traTipodocsController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraTipodocsTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraTipodocsLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traTipodocsController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraTipodocsTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traTipodocsController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipodocsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraTipodocsCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraTipodocsCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

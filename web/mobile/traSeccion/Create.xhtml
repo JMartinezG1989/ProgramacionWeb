@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraSeccionCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraSeccionTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraSeccionListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraSeccionCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traSeccionController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secId}" for="secId" />
+                            <p:inputText id="secId" value="#{traSeccionController.selected.secId}" title="#{myBundle.CreateTraSeccionTitle_secId}" required="true" requiredMessage="#{myBundle.CreateTraSeccionRequiredMessage_secId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secDescripcion}" for="secDescripcion" />
+                            <p:inputText id="secDescripcion" value="#{traSeccionController.selected.secDescripcion}" title="#{myBundle.CreateTraSeccionTitle_secDescripcion}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secEtiqueta}" for="secEtiqueta" />
+                            <p:inputText id="secEtiqueta" value="#{traSeccionController.selected.secEtiqueta}" title="#{myBundle.CreateTraSeccionTitle_secEtiqueta}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secNombreClave}" for="secNombreClave" />
+                            <p:inputText id="secNombreClave" value="#{traSeccionController.selected.secNombreClave}" title="#{myBundle.CreateTraSeccionTitle_secNombreClave}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secOrden}" for="secOrden" />
+                            <p:inputText id="secOrden" value="#{traSeccionController.selected.secOrden}" title="#{myBundle.CreateTraSeccionTitle_secOrden}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secPagina}" for="secPagina" />
+                            <p:inputText id="secPagina" value="#{traSeccionController.selected.secPagina}" title="#{myBundle.CreateTraSeccionTitle_secPagina}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_secRuta}" for="secRuta" />
+                            <p:inputText id="secRuta" value="#{traSeccionController.selected.secRuta}" title="#{myBundle.CreateTraSeccionTitle_secRuta}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraSeccionLabel_tisId}" for="tisId" />
+                            <p:selectOneMenu id="tisId" value="#{traSeccionController.selected.tisId}"  converter="traTipoSeccionConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traTipoSeccionController.items}"
+                                               var="tisIdItem"
+                                               itemValue="#{tisIdItem}"
+                                               itemLabel="#{tisIdItem.tisDescripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traSeccionController.saveNew}" value="#{myBundle.Save}" update="display,:TraSeccionListPage:TraSeccionListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraSeccionListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

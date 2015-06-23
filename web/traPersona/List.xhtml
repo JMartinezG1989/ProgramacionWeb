@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraPersonaListForm">
+
+        <p:panel header="#{myBundle.ListTraPersonaTitle}">
+            <p:contextMenu id="TraPersonaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraPersonaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraPersonaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraPersonaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraPersonaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraPersonaMenuItem_traGuiaRemisionCabeceraList}" icon="ui-icon-search"  action="#{traPersonaController.navigateTraGuiaRemisionCabeceraList}" disabled="#{empty traPersonaController.selected.traGuiaRemisionCabeceraList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TraPersonaMenuItem_traHojaRutaCabeceraList}" icon="ui-icon-search"  action="#{traPersonaController.navigateTraHojaRutaCabeceraList}" disabled="#{empty traPersonaController.selected.traHojaRutaCabeceraList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traPersonaController.items}"
+                         var="item"
+                         rowKey="#{item.perIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traPersonaController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraPersonaDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraPersonaDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraPersonaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.perIdPk}" filterBy="#{item.perIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPersonaTitle_perIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.perIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPersonaTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPersonaTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPersonaTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPersonaTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPersonaTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.perApellido}" filterBy="#{item.perApellido}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perApellido}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perApellido}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perCedula}" filterBy="#{item.perCedula}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perCedula}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perCedula}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perCelular}" filterBy="#{item.perCelular}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perCelular}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perCelular}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perDireccion}" filterBy="#{item.perDireccion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perDireccion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perDireccion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perFechaNacimiento}" filterBy="#{item.perFechaNacimiento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perFechaNacimiento}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perFechaNacimiento}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perNombre}" filterBy="#{item.perNombre}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perNombre}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perNombre}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.perTelefono}" filterBy="#{item.perTelefono}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraPersonaTitle_perTelefono}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.perTelefono}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traPersonaController.prepareCreate}" update=":TraPersonaCreateForm" oncomplete="PF('TraPersonaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraPersonaViewForm" oncomplete="PF('TraPersonaViewDialog').show()" disabled="#{empty traPersonaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraPersonaEditForm" oncomplete="PF('TraPersonaEditDialog').show()" disabled="#{empty traPersonaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traPersonaController.delete}" update=":growl,datalist" disabled="#{empty traPersonaController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

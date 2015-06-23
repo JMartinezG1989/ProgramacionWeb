@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraNumeroIngresosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraNumeroIngresosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraNumeroIngresosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraNumeroIngresosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traNumeroIngresosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traIdPk}" for="traIdPk" />
+                            <p:inputText id="traIdPk" value="#{traNumeroIngresosController.selected.traIdPk}" title="#{myBundle.CreateTraNumeroIngresosTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraNumeroIngresosRequiredMessage_traIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traDes}" for="traDes" />
+                            <p:inputText id="traDes" value="#{traNumeroIngresosController.selected.traDes}" title="#{myBundle.CreateTraNumeroIngresosTitle_traDes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traHas}" for="traHas" />
+                            <p:inputText id="traHas" value="#{traNumeroIngresosController.selected.traHas}" title="#{myBundle.CreateTraNumeroIngresosTitle_traHas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraNumeroIngresosLabel_traSuma}" for="traSuma" />
+                            <p:inputText id="traSuma" value="#{traNumeroIngresosController.selected.traSuma}" title="#{myBundle.CreateTraNumeroIngresosTitle_traSuma}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traNumeroIngresosController.saveNew}" value="#{myBundle.Save}" update="display,:TraNumeroIngresosListPage:TraNumeroIngresosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraNumeroIngresosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

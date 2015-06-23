@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraChequeCabeceraCreateDlg" widgetVar="TraChequeCabeceraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraChequeCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraChequeCabeceraCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traChequeCabeceraController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeCabeceraLabel_ccaId}" for="ccaId" />
+                        <p:inputText id="ccaId" value="#{traChequeCabeceraController.selected.ccaId}" title="#{myBundle.CreateTraChequeCabeceraTitle_ccaId}" required="true" requiredMessage="#{myBundle.CreateTraChequeCabeceraRequiredMessage_ccaId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeCabeceraLabel_ccaEfectivo}" for="ccaEfectivo" />
+                        <p:inputText id="ccaEfectivo" value="#{traChequeCabeceraController.selected.ccaEfectivo}" title="#{myBundle.CreateTraChequeCabeceraTitle_ccaEfectivo}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraChequeCabeceraLabel_ccaTotalRecaudado}" for="ccaTotalRecaudado" />
+                        <p:inputText id="ccaTotalRecaudado" value="#{traChequeCabeceraController.selected.ccaTotalRecaudado}" title="#{myBundle.CreateTraChequeCabeceraTitle_ccaTotalRecaudado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traChequeCabeceraController.saveNew}" value="#{myBundle.Save}" update="display,:TraChequeCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraChequeCabeceraCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraChequeCabeceraCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraSeccionEditDlg" widgetVar="TraSeccionEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraSeccionTitle}" closeOnEscape="true">
+
+            <h:form id="TraSeccionEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traSeccionController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraSeccionLabel_secId}" for="secId" />
+                        <h:outputText id="secId" value="#{traSeccionController.selected.secId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_secDescripcion}" for="secDescripcion" />
+                        <p:inputText id="secDescripcion" value="#{traSeccionController.selected.secDescripcion}" title="#{myBundle.EditTraSeccionTitle_secDescripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_secEtiqueta}" for="secEtiqueta" />
+                        <p:inputText id="secEtiqueta" value="#{traSeccionController.selected.secEtiqueta}" title="#{myBundle.EditTraSeccionTitle_secEtiqueta}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_secNombreClave}" for="secNombreClave" />
+                        <p:inputText id="secNombreClave" value="#{traSeccionController.selected.secNombreClave}" title="#{myBundle.EditTraSeccionTitle_secNombreClave}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_secOrden}" for="secOrden" />
+                        <p:inputText id="secOrden" value="#{traSeccionController.selected.secOrden}" title="#{myBundle.EditTraSeccionTitle_secOrden}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_secPagina}" for="secPagina" />
+                        <p:inputText id="secPagina" value="#{traSeccionController.selected.secPagina}" title="#{myBundle.EditTraSeccionTitle_secPagina}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_secRuta}" for="secRuta" />
+                        <p:inputText id="secRuta" value="#{traSeccionController.selected.secRuta}" title="#{myBundle.EditTraSeccionTitle_secRuta}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraSeccionLabel_tisId}" for="tisId" />
+                        <p:selectOneMenu id="tisId" value="#{traSeccionController.selected.tisId}"  converter="traTipoSeccionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traTipoSeccionController.items}"
+                                           var="tisIdItem"
+                                           itemValue="#{tisIdItem}"
+                                           itemLabel="#{tisIdItem.tisDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traSeccionController.save}" value="#{myBundle.Save}" update="display,:TraSeccionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraSeccionEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraSeccionEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

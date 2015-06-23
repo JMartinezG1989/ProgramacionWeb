@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraIngresoDetalleListForm">
+
+        <p:panel header="#{myBundle.ListTraIngresoDetalleTitle}">
+            <p:contextMenu id="TraIngresoDetalleDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraIngresoDetalleListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraIngresoDetalleListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraIngresoDetalleListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraIngresoDetalleListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traIngresoDetalleController.items}"
+                         var="item"
+                         rowKey="#{item.ideId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traIngresoDetalleController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraIngresoDetalleDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraIngresoDetalleDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraIngresoDetalleListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.ideId}" filterBy="#{item.ideId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_ideId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ideId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaAbo}" filterBy="#{item.icaAbo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaAbo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaAbo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaAnt}" filterBy="#{item.icaAnt}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaAnt}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaAnt}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaCan}" filterBy="#{item.icaCan}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaCan}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaCan}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaFecha}" filterBy="#{item.icaFecha}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaFecha}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.icaNumero}" filterBy="#{item.icaNumero}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaNumero}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.icaNumero}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.icaRecaudado}" filterBy="#{item.icaRecaudado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaRecaudado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaRecaudado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.icaValor}" filterBy="#{item.icaValor}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraIngresoDetalleTitle_icaValor}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.icaValor}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traIngresoDetalleController.prepareCreate}" update=":TraIngresoDetalleCreateForm" oncomplete="PF('TraIngresoDetalleCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraIngresoDetalleViewForm" oncomplete="PF('TraIngresoDetalleViewDialog').show()" disabled="#{empty traIngresoDetalleController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraIngresoDetalleEditForm" oncomplete="PF('TraIngresoDetalleEditDialog').show()" disabled="#{empty traIngresoDetalleController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traIngresoDetalleController.delete}" update=":growl,datalist" disabled="#{empty traIngresoDetalleController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

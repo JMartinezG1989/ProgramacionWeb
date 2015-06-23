@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraRutasCreateDlg" widgetVar="TraRutasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraRutasTitle}" closeOnEscape="true">
+
+            <h:form id="TraRutasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traRutasController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraRutasLabel_traIdPk}" for="traIdPk" />
+                        <p:inputText id="traIdPk" value="#{traRutasController.selected.traIdPk}" title="#{myBundle.CreateTraRutasTitle_traIdPk}" required="true" requiredMessage="#{myBundle.CreateTraRutasRequiredMessage_traIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraRutasLabel_traTiempo}" for="traTiempo" />
+                        <p:inputText id="traTiempo" value="#{traRutasController.selected.traTiempo}" title="#{myBundle.CreateTraRutasTitle_traTiempo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraRutasLabel_traDescripcion}" for="traDescripcion" />
+                        <p:inputText id="traDescripcion" value="#{traRutasController.selected.traDescripcion}" title="#{myBundle.CreateTraRutasTitle_traDescripcion}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traRutasController.saveNew}" value="#{myBundle.Save}" update="display,:TraRutasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraRutasCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraRutasCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

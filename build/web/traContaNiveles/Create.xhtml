@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraContaNivelesCreateDlg" widgetVar="TraContaNivelesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraContaNivelesTitle}" closeOnEscape="true">
+
+            <h:form id="TraContaNivelesCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traContaNivelesController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraContaNivelesLabel_coniId}" for="coniId" />
+                        <p:inputText id="coniId" value="#{traContaNivelesController.selected.coniId}" title="#{myBundle.CreateTraContaNivelesTitle_coniId}" required="true" requiredMessage="#{myBundle.CreateTraContaNivelesRequiredMessage_coniId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraContaNivelesLabel_coniDescripcion}" for="coniDescripcion" />
+                        <p:inputText id="coniDescripcion" value="#{traContaNivelesController.selected.coniDescripcion}" title="#{myBundle.CreateTraContaNivelesTitle_coniDescripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraContaNivelesLabel_coniValor}" for="coniValor" />
+                        <p:inputText id="coniValor" value="#{traContaNivelesController.selected.coniValor}" title="#{myBundle.CreateTraContaNivelesTitle_coniValor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traContaNivelesController.saveNew}" value="#{myBundle.Save}" update="display,:TraContaNivelesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraContaNivelesCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraContaNivelesCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaCabeceraViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraFacturaCabeceraTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraFacturaCabeceraListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="TraFacturaCabeceraTabView">
+
+                        <p:tab id="TraFacturaCabeceraTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:outputPanel rendered="#{traFacturaCabeceraController.selected != null}">
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaIdPk}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaIdPk}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaIdPk}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_audEliminado}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaCabeceraTitle_audEliminado}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_audFechaInsercion}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaCabeceraTitle_audFechaInsercion}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_audFechaModificacion}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaCabeceraTitle_audFechaModificacion}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_audUsuarioInserto}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaCabeceraTitle_audUsuarioInserto}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_audUsuarioModifico}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaCabeceraTitle_audUsuarioModifico}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaTotalConIva}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaTotalConIva}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaTotalConIva}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaConcepto}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaConcepto}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaConcepto}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaCondicion}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaCondicion}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaCondicion}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaDestinatario}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaDestinatario}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaDestinatario}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaDireccion}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaDireccion}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaDireccion}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaEstado}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaEstado}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaEstado}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaFecha}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaFecha}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaFecha}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaFechaFac}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaFechaFac}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaFechaFac}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaNguiaRemitente}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaNguiaRemitente}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaNguiaRemitente}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaNumero}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaNumero}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaNumero}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaRemitente}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaRemitente}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaRemitente}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaRuc}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaRuc}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaRuc}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaSubtotal}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaSubtotal}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaSubtotal}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaTelefono}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaTelefono}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaTelefono}"/>
+                                </pm:field>
+
+                            </p:outputPanel>
+                        </p:tab>
+                        <p:tab id="TraFacturaCabeceraTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                            <p:outputPanel rendered="#{traFacturaCabeceraController.selected != null}">
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fcaUsuario}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fcaUsuario}" title="#{myBundle.ViewTraFacturaCabeceraTitle_fcaUsuario}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_tpcoIdPk}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.tpcoIdPk.tpcoDescripcion}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <h:outputText value="#{myBundle.ViewTraFacturaCabeceraLabel_fivIdPk}"/>
+                                    <h:outputText value="#{traFacturaCabeceraController.selected.fivIdPk.fivIdPk}"/>
+                                </pm:field>
+                            </p:outputPanel>
+                        </p:tab>
+                    </p:tabView>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

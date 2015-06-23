@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraMotivoTrasladosViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraMotivoTrasladosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraMotivoTrasladosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraMotivoTrasladosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traMotivoTrasladosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_mtrIdPk}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.mtrIdPk}" title="#{myBundle.ViewTraMotivoTrasladosTitle_mtrIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_audEliminado}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.audEliminado}" title="#{myBundle.ViewTraMotivoTrasladosTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.audFechaInsercion}" title="#{myBundle.ViewTraMotivoTrasladosTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.audFechaModificacion}" title="#{myBundle.ViewTraMotivoTrasladosTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraMotivoTrasladosTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraMotivoTrasladosTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraMotivoTrasladosLabel_mtrDescripcion}"/>
+                            <h:outputText value="#{traMotivoTrasladosController.selected.mtrDescripcion}" title="#{myBundle.ViewTraMotivoTrasladosTitle_mtrDescripcion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

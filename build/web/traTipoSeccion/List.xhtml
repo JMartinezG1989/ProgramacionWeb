@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraTipoSeccionListForm">
+
+        <p:panel header="#{myBundle.ListTraTipoSeccionTitle}">
+            <p:contextMenu id="TraTipoSeccionDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraTipoSeccionListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraTipoSeccionListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraTipoSeccionListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraTipoSeccionListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraTipoSeccionMenuItem_traSeccionList}" icon="ui-icon-search"  action="#{traTipoSeccionController.navigateTraSeccionList}" disabled="#{empty traTipoSeccionController.selected.traSeccionList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traTipoSeccionController.items}"
+                         var="item"
+                         rowKey="#{item.tisId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traTipoSeccionController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraTipoSeccionDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraTipoSeccionDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraTipoSeccionListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.tisId}" filterBy="#{item.tisId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoSeccionTitle_tisId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tisId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tisDescripcion}" filterBy="#{item.tisDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoSeccionTitle_tisDescripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tisDescripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tisNivel}" filterBy="#{item.tisNivel}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraTipoSeccionTitle_tisNivel}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tisNivel}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traTipoSeccionController.prepareCreate}" update=":TraTipoSeccionCreateForm" oncomplete="PF('TraTipoSeccionCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraTipoSeccionViewForm" oncomplete="PF('TraTipoSeccionViewDialog').show()" disabled="#{empty traTipoSeccionController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraTipoSeccionEditForm" oncomplete="PF('TraTipoSeccionEditDialog').show()" disabled="#{empty traTipoSeccionController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traTipoSeccionController.delete}" update=":growl,datalist" disabled="#{empty traTipoSeccionController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

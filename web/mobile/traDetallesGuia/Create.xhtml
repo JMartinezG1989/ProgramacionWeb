@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraDetallesGuiaCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraDetallesGuiaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraDetallesGuiaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraDetallesGuiaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traDetallesGuiaController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_dguIdPk}" for="dguIdPk" />
+                            <p:inputText id="dguIdPk" value="#{traDetallesGuiaController.selected.dguIdPk}" title="#{myBundle.CreateTraDetallesGuiaTitle_dguIdPk}" required="true" requiredMessage="#{myBundle.CreateTraDetallesGuiaRequiredMessage_dguIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traDetallesGuiaController.selected.audEliminado}" title="#{myBundle.CreateTraDetallesGuiaTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDetallesGuiaController.selected.audFechaInsercion}" title="#{myBundle.CreateTraDetallesGuiaTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDetallesGuiaController.selected.audFechaModificacion}" title="#{myBundle.CreateTraDetallesGuiaTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traDetallesGuiaController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraDetallesGuiaTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traDetallesGuiaController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraDetallesGuiaTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_dguCantidad}" for="dguCantidad" />
+                            <p:inputText id="dguCantidad" value="#{traDetallesGuiaController.selected.dguCantidad}" title="#{myBundle.CreateTraDetallesGuiaTitle_dguCantidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_dguDescripcion}" for="dguDescripcion" />
+                            <p:inputText id="dguDescripcion" value="#{traDetallesGuiaController.selected.dguDescripcion}" title="#{myBundle.CreateTraDetallesGuiaTitle_dguDescripcion}" size="200" maxlength="200"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_dguUnidad}" for="dguUnidad" />
+                            <p:inputText id="dguUnidad" value="#{traDetallesGuiaController.selected.dguUnidad}" title="#{myBundle.CreateTraDetallesGuiaTitle_dguUnidad}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_dguValorTotal}" for="dguValorTotal" />
+                            <p:inputText id="dguValorTotal" value="#{traDetallesGuiaController.selected.dguValorTotal}" title="#{myBundle.CreateTraDetallesGuiaTitle_dguValorTotal}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_dguValorUnitario}" for="dguValorUnitario" />
+                            <p:inputText id="dguValorUnitario" value="#{traDetallesGuiaController.selected.dguValorUnitario}" title="#{myBundle.CreateTraDetallesGuiaTitle_dguValorUnitario}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraDetallesGuiaLabel_grcDguFk}" for="grcDguFk" />
+                            <p:selectOneMenu id="grcDguFk" value="#{traDetallesGuiaController.selected.grcDguFk}"  converter="traGuiaRemisionCabeceraConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{traGuiaRemisionCabeceraController.items}"
+                                               var="grcDguFkItem"
+                                               itemValue="#{grcDguFkItem}"
+                                               itemLabel="#{grcDguFkItem.grcIdPk.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traDetallesGuiaController.saveNew}" value="#{myBundle.Save}" update="display,:TraDetallesGuiaListPage:TraDetallesGuiaListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraDetallesGuiaListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

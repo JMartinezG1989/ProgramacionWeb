@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraLugaresViewDlg" widgetVar="TraLugaresViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraLugaresTitle}" closeOnEscape="true">
+
+            <h:form id="TraLugaresViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traLugaresController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_lugIdPk}"/>
+                        <h:outputText value="#{traLugaresController.selected.lugIdPk}" title="#{myBundle.ViewTraLugaresTitle_lugIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_audEliminado}"/>
+                        <h:outputText value="#{traLugaresController.selected.audEliminado}" title="#{myBundle.ViewTraLugaresTitle_audEliminado}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_audFechaInsercion}"/>
+                        <h:outputText value="#{traLugaresController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLugaresTitle_audFechaInsercion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_audFechaModificacion}"/>
+                        <h:outputText value="#{traLugaresController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLugaresTitle_audFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_audUsuarioInserto}"/>
+                        <h:outputText value="#{traLugaresController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLugaresTitle_audUsuarioInserto}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_audUsuarioModifico}"/>
+                        <h:outputText value="#{traLugaresController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLugaresTitle_audUsuarioModifico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_lugDescripcion}"/>
+                        <h:outputText value="#{traLugaresController.selected.lugDescripcion}" title="#{myBundle.ViewTraLugaresTitle_lugDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_hrcHrdFk}"/>
+                        <h:outputText value="#{traLugaresController.selected.hrcHrdFk.tluDescripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraLugaresLabel_lugPadreId}"/>
+                        <h:outputText value="#{traLugaresController.selected.lugPadreId.lugDescripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraLugaresViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

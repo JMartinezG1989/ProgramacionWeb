@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraIngresoCabeceraCreateDlg" widgetVar="TraIngresoCabeceraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraIngresoCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraIngresoCabeceraCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traIngresoCabeceraController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaId}" for="icaId" />
+                        <p:inputText id="icaId" value="#{traIngresoCabeceraController.selected.icaId}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaId}" required="true" requiredMessage="#{myBundle.CreateTraIngresoCabeceraRequiredMessage_icaId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaAgente}" for="icaAgente" />
+                        <p:inputText id="icaAgente" value="#{traIngresoCabeceraController.selected.icaAgente}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaAgente}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaCaja}" for="icaCaja" />
+                        <p:inputText id="icaCaja" value="#{traIngresoCabeceraController.selected.icaCaja}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaCaja}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaCodage}" for="icaCodage" />
+                        <p:inputText id="icaCodage" value="#{traIngresoCabeceraController.selected.icaCodage}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaCodage}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaCodigo}" for="icaCodigo" />
+                        <p:inputText id="icaCodigo" value="#{traIngresoCabeceraController.selected.icaCodigo}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaCodigo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaEstado}" for="icaEstado" />
+                        <p:inputText id="icaEstado" value="#{traIngresoCabeceraController.selected.icaEstado}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaEstado}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaFecha}" for="icaFecha" />
+                        <p:calendar id="icaFecha" pattern="MM/dd/yyyy" value="#{traIngresoCabeceraController.selected.icaFecha}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaFecha}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaFechaIngreso}" for="icaFechaIngreso" />
+                        <p:calendar id="icaFechaIngreso" pattern="MM/dd/yyyy" value="#{traIngresoCabeceraController.selected.icaFechaIngreso}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaFechaIngreso}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaNumeroDeposito}" for="icaNumeroDeposito" />
+                        <p:inputText id="icaNumeroDeposito" value="#{traIngresoCabeceraController.selected.icaNumeroDeposito}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaNumeroDeposito}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaNumero}" for="icaNumero" />
+                        <p:inputText id="icaNumero" value="#{traIngresoCabeceraController.selected.icaNumero}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaNumero}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaRetencionFuente}" for="icaRetencionFuente" />
+                        <p:inputText id="icaRetencionFuente" value="#{traIngresoCabeceraController.selected.icaRetencionFuente}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaRetencionFuente}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaRetencionIva}" for="icaRetencionIva" />
+                        <p:inputText id="icaRetencionIva" value="#{traIngresoCabeceraController.selected.icaRetencionIva}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaRetencionIva}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaTotal}" for="icaTotal" />
+                        <p:inputText id="icaTotal" value="#{traIngresoCabeceraController.selected.icaTotal}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaTotalRecaudado}" for="icaTotalRecaudado" />
+                        <p:inputText id="icaTotalRecaudado" value="#{traIngresoCabeceraController.selected.icaTotalRecaudado}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaTotalRecaudado}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraIngresoCabeceraLabel_icaUsuario}" for="icaUsuario" />
+                        <p:inputText id="icaUsuario" value="#{traIngresoCabeceraController.selected.icaUsuario}" title="#{myBundle.CreateTraIngresoCabeceraTitle_icaUsuario}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traIngresoCabeceraController.saveNew}" value="#{myBundle.Save}" update="display,:TraIngresoCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraIngresoCabeceraCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraIngresoCabeceraCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraIngresoCabeceraViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraIngresoCabeceraTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraIngresoCabeceraListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraIngresoCabeceraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traIngresoCabeceraController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaId}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaId}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaAgente}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaAgente}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaAgente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaCaja}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaCaja}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaCaja}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaCodage}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaCodage}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaCodage}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaCodigo}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaCodigo}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaCodigo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaEstado}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaEstado}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaEstado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaFecha}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaFecha}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaFechaIngreso}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaFechaIngreso}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaFechaIngreso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaNumeroDeposito}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaNumeroDeposito}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaNumeroDeposito}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaNumero}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaNumero}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaNumero}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaRetencionFuente}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaRetencionFuente}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaRetencionFuente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaRetencionIva}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaRetencionIva}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaRetencionIva}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaTotal}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaTotal}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaTotal}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaTotalRecaudado}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaTotalRecaudado}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaTotalRecaudado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraIngresoCabeceraLabel_icaUsuario}"/>
+                            <h:outputText value="#{traIngresoCabeceraController.selected.icaUsuario}" title="#{myBundle.ViewTraIngresoCabeceraTitle_icaUsuario}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

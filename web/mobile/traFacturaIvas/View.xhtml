@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraFacturaIvasViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraFacturaIvasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraFacturaIvasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraFacturaIvasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traFacturaIvasController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_fivIdPk}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.fivIdPk}" title="#{myBundle.ViewTraFacturaIvasTitle_fivIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_audEliminado}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.audEliminado}" title="#{myBundle.ViewTraFacturaIvasTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.audFechaInsercion}" title="#{myBundle.ViewTraFacturaIvasTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.audFechaModificacion}" title="#{myBundle.ViewTraFacturaIvasTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraFacturaIvasTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraFacturaIvasTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraFacturaIvasLabel_fivValor}"/>
+                            <h:outputText value="#{traFacturaIvasController.selected.fivValor}" title="#{myBundle.ViewTraFacturaIvasTitle_fivValor}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

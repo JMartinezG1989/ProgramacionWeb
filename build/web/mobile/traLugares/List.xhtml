@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraLugaresListPage">
+        <pm:header title="#{myBundle.ListTraLugaresTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":TraLugaresCreatePage:TraLugaresCreateForm" actionListener="#{traLugaresController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:TraLugaresCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraLugaresListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{traLugaresController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":TraLugaresEditPage:TraLugaresEditForm" action="pm:TraLugaresEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.lugIdPk}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audEliminado}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audUsuarioInserto}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.audUsuarioModifico}"/>
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.lugDescripcion}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.hrcHrdFk.tluDescripcion}"/>
+                            -->
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.lugPadreId.lugDescripcion}"/>
+                            -->
+
+
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{traLugaresController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

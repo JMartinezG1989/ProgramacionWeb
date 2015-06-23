@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraTipoLugaresCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraTipoLugaresTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraTipoLugaresListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraTipoLugaresCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traTipoLugaresController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_tluIdPk}" for="tluIdPk" />
+                            <p:inputText id="tluIdPk" value="#{traTipoLugaresController.selected.tluIdPk}" title="#{myBundle.CreateTraTipoLugaresTitle_tluIdPk}" required="true" requiredMessage="#{myBundle.CreateTraTipoLugaresRequiredMessage_tluIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traTipoLugaresController.selected.audEliminado}" title="#{myBundle.CreateTraTipoLugaresTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipoLugaresController.selected.audFechaInsercion}" title="#{myBundle.CreateTraTipoLugaresTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traTipoLugaresController.selected.audFechaModificacion}" title="#{myBundle.CreateTraTipoLugaresTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traTipoLugaresController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraTipoLugaresTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traTipoLugaresController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraTipoLugaresTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraTipoLugaresLabel_tluDescripcion}" for="tluDescripcion" />
+                            <p:inputText id="tluDescripcion" value="#{traTipoLugaresController.selected.tluDescripcion}" title="#{myBundle.CreateTraTipoLugaresTitle_tluDescripcion}" size="100" maxlength="100"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traTipoLugaresController.saveNew}" value="#{myBundle.Save}" update="display,:TraTipoLugaresListPage:TraTipoLugaresListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraTipoLugaresListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

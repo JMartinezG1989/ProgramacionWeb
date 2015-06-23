@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraPersonaCreateDlg" widgetVar="TraPersonaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraPersonaTitle}" closeOnEscape="true">
+
+            <h:form id="TraPersonaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traPersonaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perIdPk}" for="perIdPk" />
+                        <p:inputText id="perIdPk" value="#{traPersonaController.selected.perIdPk}" title="#{myBundle.CreateTraPersonaTitle_perIdPk}" required="true" requiredMessage="#{myBundle.CreateTraPersonaRequiredMessage_perIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traPersonaController.selected.audEliminado}" title="#{myBundle.CreateTraPersonaTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traPersonaController.selected.audFechaInsercion}" title="#{myBundle.CreateTraPersonaTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traPersonaController.selected.audFechaModificacion}" title="#{myBundle.CreateTraPersonaTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traPersonaController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraPersonaTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traPersonaController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraPersonaTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perApellido}" for="perApellido" />
+                        <p:inputText id="perApellido" value="#{traPersonaController.selected.perApellido}" title="#{myBundle.CreateTraPersonaTitle_perApellido}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perCedula}" for="perCedula" />
+                        <p:inputText id="perCedula" value="#{traPersonaController.selected.perCedula}" title="#{myBundle.CreateTraPersonaTitle_perCedula}" required="true" requiredMessage="#{myBundle.CreateTraPersonaRequiredMessage_perCedula}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perCelular}" for="perCelular" />
+                        <p:inputText id="perCelular" value="#{traPersonaController.selected.perCelular}" title="#{myBundle.CreateTraPersonaTitle_perCelular}" required="true" requiredMessage="#{myBundle.CreateTraPersonaRequiredMessage_perCelular}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perDireccion}" for="perDireccion" />
+                        <p:inputTextarea rows="4" cols="30" id="perDireccion" value="#{traPersonaController.selected.perDireccion}" title="#{myBundle.CreateTraPersonaTitle_perDireccion}" />
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perFechaNacimiento}" for="perFechaNacimiento" />
+                        <p:calendar id="perFechaNacimiento" pattern="MM/dd/yyyy" value="#{traPersonaController.selected.perFechaNacimiento}" title="#{myBundle.CreateTraPersonaTitle_perFechaNacimiento}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perNombre}" for="perNombre" />
+                        <p:inputText id="perNombre" value="#{traPersonaController.selected.perNombre}" title="#{myBundle.CreateTraPersonaTitle_perNombre}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraPersonaLabel_perTelefono}" for="perTelefono" />
+                        <p:inputText id="perTelefono" value="#{traPersonaController.selected.perTelefono}" title="#{myBundle.CreateTraPersonaTitle_perTelefono}" size="10" maxlength="10"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traPersonaController.saveNew}" value="#{myBundle.Save}" update="display,:TraPersonaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraPersonaCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraPersonaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

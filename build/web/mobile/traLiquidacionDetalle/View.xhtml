@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraLiquidacionDetalleViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewTraLiquidacionDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraLiquidacionDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraLiquidacionDetalleViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traLiquidacionDetalleController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_ldeIdPk}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.ldeIdPk}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_ldeIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audEliminado}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.audEliminado}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audEliminado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audFechaInsercion}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.audFechaInsercion}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audFechaInsercion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audFechaModificacion}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.audFechaModificacion}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audFechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audUsuarioInserto}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.audUsuarioInserto}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audUsuarioInserto}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_audUsuarioModifico}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.audUsuarioModifico}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_audUsuarioModifico}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_ldeSubtotal}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.ldeSubtotal}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_ldeSubtotal}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewTraLiquidacionDetalleLabel_ldeTotal}"/>
+                            <h:outputText value="#{traLiquidacionDetalleController.selected.ldeTotal}" title="#{myBundle.ViewTraLiquidacionDetalleTitle_ldeTotal}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

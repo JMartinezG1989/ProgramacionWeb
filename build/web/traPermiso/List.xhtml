@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraPermisoListForm">
+
+        <p:panel header="#{myBundle.ListTraPermisoTitle}">
+            <p:contextMenu id="TraPermisoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraPermisoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraPermisoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraPermisoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraPermisoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraPermisoMenuItem_secId}" icon="ui-icon-search"  actionListener="#{traPermisoController.prepareSecId}" update=":TraSeccionViewForm" oncomplete="PF('TraSeccionViewDialog').show()" disabled="#{empty traPermisoController.selected.secId}"/>  
+                <p:menuitem value="#{myBundle.TraPermisoMenuItem_rolId}" icon="ui-icon-search"  actionListener="#{traPermisoController.prepareRolId}" update=":TraRolViewForm" oncomplete="PF('TraRolViewDialog').show()" disabled="#{empty traPermisoController.selected.rolId}"/>  
+                <p:menuitem value="#{myBundle.TraPermisoMenuItem_opeId}" icon="ui-icon-search"  actionListener="#{traPermisoController.prepareOpeId}" update=":TraOperacionViewForm" oncomplete="PF('TraOperacionViewDialog').show()" disabled="#{empty traPermisoController.selected.opeId}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traPermisoController.items}"
+                         var="item"
+                         rowKey="#{item.perId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traPermisoController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraPermisoDataTableContextMenu" listener="#{traPermisoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraPermisoDataTableContextMenu" listener="#{traPermisoController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traPermisoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraPermisoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.perId}" filterBy="#{item.perId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPermisoTitle_perId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.perId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.perDescripcion}" filterBy="#{item.perDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPermisoTitle_perDescripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.perDescripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.secId.secDescripcion}" filterBy="#{item.secId.secDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPermisoTitle_secId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.secId.secDescripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.rolId.rolDescripcion}" filterBy="#{item.rolId.rolDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPermisoTitle_rolId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rolId.rolDescripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.opeId.opeDescripcion}" filterBy="#{item.opeId.opeDescripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraPermisoTitle_opeId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.opeId.opeDescripcion}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traPermisoController.prepareCreate}" update=":TraPermisoCreateForm" oncomplete="PF('TraPermisoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraPermisoViewForm" oncomplete="PF('TraPermisoViewDialog').show()" disabled="#{empty traPermisoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraPermisoEditForm" oncomplete="PF('TraPermisoEditDialog').show()" disabled="#{empty traPermisoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traPermisoController.delete}" update=":growl,datalist" disabled="#{empty traPermisoController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

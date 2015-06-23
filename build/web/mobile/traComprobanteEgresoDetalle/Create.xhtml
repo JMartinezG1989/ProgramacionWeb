@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraComprobanteEgresoDetalleCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraComprobanteEgresoDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraComprobanteEgresoDetalleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traComprobanteEgresoDetalleController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedId}" for="cedId" />
+                            <p:inputText id="cedId" value="#{traComprobanteEgresoDetalleController.selected.cedId}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedId}" required="true" requiredMessage="#{myBundle.CreateTraComprobanteEgresoDetalleRequiredMessage_cedId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedAnt}" for="cedAnt" />
+                            <p:inputText id="cedAnt" value="#{traComprobanteEgresoDetalleController.selected.cedAnt}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedAnt}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedCodigoEgreso}" for="cedCodigoEgreso" />
+                            <p:inputText id="cedCodigoEgreso" value="#{traComprobanteEgresoDetalleController.selected.cedCodigoEgreso}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedCodigoEgreso}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedConcepto}" for="cedConcepto" />
+                            <p:inputText id="cedConcepto" value="#{traComprobanteEgresoDetalleController.selected.cedConcepto}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedConcepto}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedDebe}" for="cedDebe" />
+                            <p:inputText id="cedDebe" value="#{traComprobanteEgresoDetalleController.selected.cedDebe}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedDebe}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedDescuento}" for="cedDescuento" />
+                            <p:inputText id="cedDescuento" value="#{traComprobanteEgresoDetalleController.selected.cedDescuento}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedDescuento}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedHaber}" for="cedHaber" />
+                            <p:inputText id="cedHaber" value="#{traComprobanteEgresoDetalleController.selected.cedHaber}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedHaber}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedPorcentaje}" for="cedPorcentaje" />
+                            <p:inputText id="cedPorcentaje" value="#{traComprobanteEgresoDetalleController.selected.cedPorcentaje}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedPorcentaje}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraComprobanteEgresoDetalleLabel_cedRef}" for="cedRef" />
+                            <p:inputText id="cedRef" value="#{traComprobanteEgresoDetalleController.selected.cedRef}" title="#{myBundle.CreateTraComprobanteEgresoDetalleTitle_cedRef}" size="50" maxlength="50"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traComprobanteEgresoDetalleController.saveNew}" value="#{myBundle.Save}" update="display,:TraComprobanteEgresoDetalleListPage:TraComprobanteEgresoDetalleListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraComprobanteEgresoDetalleListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

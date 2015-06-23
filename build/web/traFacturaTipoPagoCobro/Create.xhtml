@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraFacturaTipoPagoCobroCreateDlg" widgetVar="TraFacturaTipoPagoCobroCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraFacturaTipoPagoCobroTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaTipoPagoCobroCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traFacturaTipoPagoCobroController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_tpcoIdPk}" for="tpcoIdPk" />
+                        <p:inputText id="tpcoIdPk" value="#{traFacturaTipoPagoCobroController.selected.tpcoIdPk}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_tpcoIdPk}" required="true" requiredMessage="#{myBundle.CreateTraFacturaTipoPagoCobroRequiredMessage_tpcoIdPk}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traFacturaTipoPagoCobroController.selected.audEliminado}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaTipoPagoCobroController.selected.audFechaInsercion}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaTipoPagoCobroController.selected.audFechaModificacion}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traFacturaTipoPagoCobroController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traFacturaTipoPagoCobroController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaTipoPagoCobroLabel_tpcoDescripcion}" for="tpcoDescripcion" />
+                        <p:inputText id="tpcoDescripcion" value="#{traFacturaTipoPagoCobroController.selected.tpcoDescripcion}" title="#{myBundle.CreateTraFacturaTipoPagoCobroTitle_tpcoDescripcion}" required="true" requiredMessage="#{myBundle.CreateTraFacturaTipoPagoCobroRequiredMessage_tpcoDescripcion}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traFacturaTipoPagoCobroController.saveNew}" value="#{myBundle.Save}" update="display,:TraFacturaTipoPagoCobroListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraFacturaTipoPagoCobroCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraFacturaTipoPagoCobroCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

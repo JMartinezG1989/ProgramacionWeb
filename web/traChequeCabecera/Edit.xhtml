@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraChequeCabeceraEditDlg" widgetVar="TraChequeCabeceraEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraChequeCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraChequeCabeceraEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traChequeCabeceraController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraChequeCabeceraLabel_ccaId}" for="ccaId" />
+                        <h:outputText id="ccaId" value="#{traChequeCabeceraController.selected.ccaId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraChequeCabeceraLabel_ccaEfectivo}" for="ccaEfectivo" />
+                        <p:inputText id="ccaEfectivo" value="#{traChequeCabeceraController.selected.ccaEfectivo}" title="#{myBundle.EditTraChequeCabeceraTitle_ccaEfectivo}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraChequeCabeceraLabel_ccaTotalRecaudado}" for="ccaTotalRecaudado" />
+                        <p:inputText id="ccaTotalRecaudado" value="#{traChequeCabeceraController.selected.ccaTotalRecaudado}" title="#{myBundle.EditTraChequeCabeceraTitle_ccaTotalRecaudado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traChequeCabeceraController.save}" value="#{myBundle.Save}" update="display,:TraChequeCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraChequeCabeceraEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraChequeCabeceraEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraDetallesGuiaEditDlg" widgetVar="TraDetallesGuiaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraDetallesGuiaTitle}" closeOnEscape="true">
+
+            <h:form id="TraDetallesGuiaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traDetallesGuiaController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_dguIdPk}" for="dguIdPk" />
+                        <h:outputText id="dguIdPk" value="#{traDetallesGuiaController.selected.dguIdPk}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traDetallesGuiaController.selected.audEliminado}" title="#{myBundle.EditTraDetallesGuiaTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDetallesGuiaController.selected.audFechaInsercion}" title="#{myBundle.EditTraDetallesGuiaTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDetallesGuiaController.selected.audFechaModificacion}" title="#{myBundle.EditTraDetallesGuiaTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traDetallesGuiaController.selected.audUsuarioInserto}" title="#{myBundle.EditTraDetallesGuiaTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traDetallesGuiaController.selected.audUsuarioModifico}" title="#{myBundle.EditTraDetallesGuiaTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_dguCantidad}" for="dguCantidad" />
+                        <p:inputText id="dguCantidad" value="#{traDetallesGuiaController.selected.dguCantidad}" title="#{myBundle.EditTraDetallesGuiaTitle_dguCantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_dguDescripcion}" for="dguDescripcion" />
+                        <p:inputText id="dguDescripcion" value="#{traDetallesGuiaController.selected.dguDescripcion}" title="#{myBundle.EditTraDetallesGuiaTitle_dguDescripcion}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_dguUnidad}" for="dguUnidad" />
+                        <p:inputText id="dguUnidad" value="#{traDetallesGuiaController.selected.dguUnidad}" title="#{myBundle.EditTraDetallesGuiaTitle_dguUnidad}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_dguValorTotal}" for="dguValorTotal" />
+                        <p:inputText id="dguValorTotal" value="#{traDetallesGuiaController.selected.dguValorTotal}" title="#{myBundle.EditTraDetallesGuiaTitle_dguValorTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_dguValorUnitario}" for="dguValorUnitario" />
+                        <p:inputText id="dguValorUnitario" value="#{traDetallesGuiaController.selected.dguValorUnitario}" title="#{myBundle.EditTraDetallesGuiaTitle_dguValorUnitario}"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDetallesGuiaLabel_grcDguFk}" for="grcDguFk" />
+                        <p:selectOneMenu id="grcDguFk" value="#{traDetallesGuiaController.selected.grcDguFk}"  converter="traGuiaRemisionCabeceraConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traGuiaRemisionCabeceraController.items}"
+                                           var="grcDguFkItem"
+                                           itemValue="#{grcDguFkItem}"
+                                           itemLabel="#{grcDguFkItem.grcIdPk.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traDetallesGuiaController.save}" value="#{myBundle.Save}" update="display,:TraDetallesGuiaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraDetallesGuiaEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraDetallesGuiaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

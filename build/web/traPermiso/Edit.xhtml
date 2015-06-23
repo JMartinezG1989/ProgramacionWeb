@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraPermisoEditDlg" widgetVar="TraPermisoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraPermisoTitle}" closeOnEscape="true">
+
+            <h:form id="TraPermisoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traPermisoController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraPermisoLabel_perId}" for="perId" />
+                        <h:outputText id="perId" value="#{traPermisoController.selected.perId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraPermisoLabel_perDescripcion}" for="perDescripcion" />
+                        <p:inputText id="perDescripcion" value="#{traPermisoController.selected.perDescripcion}" title="#{myBundle.EditTraPermisoTitle_perDescripcion}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraPermisoLabel_secId}" for="secId" />
+                        <p:selectOneMenu id="secId" value="#{traPermisoController.selected.secId}"  converter="traSeccionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traSeccionController.items}"
+                                           var="secIdItem"
+                                           itemValue="#{secIdItem}"
+                                           itemLabel="#{secIdItem.secDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditTraPermisoLabel_rolId}" for="rolId" />
+                        <p:selectOneMenu id="rolId" value="#{traPermisoController.selected.rolId}"  converter="traRolConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traRolController.items}"
+                                           var="rolIdItem"
+                                           itemValue="#{rolIdItem}"
+                                           itemLabel="#{rolIdItem.rolDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditTraPermisoLabel_opeId}" for="opeId" />
+                        <p:selectOneMenu id="opeId" value="#{traPermisoController.selected.opeId}"  converter="traOperacionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traOperacionController.items}"
+                                           var="opeIdItem"
+                                           itemValue="#{opeIdItem}"
+                                           itemLabel="#{opeIdItem.opeDescripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traPermisoController.save}" value="#{myBundle.Save}" update="display,:TraPermisoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraPermisoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraPermisoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

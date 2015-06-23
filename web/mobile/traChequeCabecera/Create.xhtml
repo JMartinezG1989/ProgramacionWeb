@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraChequeCabeceraCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraChequeCabeceraTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraChequeCabeceraListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraChequeCabeceraCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traChequeCabeceraController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraChequeCabeceraLabel_ccaId}" for="ccaId" />
+                            <p:inputText id="ccaId" value="#{traChequeCabeceraController.selected.ccaId}" title="#{myBundle.CreateTraChequeCabeceraTitle_ccaId}" required="true" requiredMessage="#{myBundle.CreateTraChequeCabeceraRequiredMessage_ccaId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraChequeCabeceraLabel_ccaEfectivo}" for="ccaEfectivo" />
+                            <p:inputText id="ccaEfectivo" value="#{traChequeCabeceraController.selected.ccaEfectivo}" title="#{myBundle.CreateTraChequeCabeceraTitle_ccaEfectivo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraChequeCabeceraLabel_ccaTotalRecaudado}" for="ccaTotalRecaudado" />
+                            <p:inputText id="ccaTotalRecaudado" value="#{traChequeCabeceraController.selected.ccaTotalRecaudado}" title="#{myBundle.CreateTraChequeCabeceraTitle_ccaTotalRecaudado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traChequeCabeceraController.saveNew}" value="#{myBundle.Save}" update="display,:TraChequeCabeceraListPage:TraChequeCabeceraListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraChequeCabeceraListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

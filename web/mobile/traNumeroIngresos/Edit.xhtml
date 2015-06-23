@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraNumeroIngresosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraNumeroIngresosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraNumeroIngresosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraNumeroIngresosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traNumeroIngresosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraNumeroIngresosLabel_traIdPk}" for="traIdPk" />
+                            <h:outputText id="traIdPk" value="#{traNumeroIngresosController.selected.traIdPk}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraNumeroIngresosLabel_traDes}" for="traDes" />
+                            <p:inputText id="traDes" value="#{traNumeroIngresosController.selected.traDes}" title="#{myBundle.EditTraNumeroIngresosTitle_traDes}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraNumeroIngresosLabel_traHas}" for="traHas" />
+                            <p:inputText id="traHas" value="#{traNumeroIngresosController.selected.traHas}" title="#{myBundle.EditTraNumeroIngresosTitle_traHas}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraNumeroIngresosLabel_traSuma}" for="traSuma" />
+                            <p:inputText id="traSuma" value="#{traNumeroIngresosController.selected.traSuma}" title="#{myBundle.EditTraNumeroIngresosTitle_traSuma}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traNumeroIngresosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraNumeroIngresosListPage:TraNumeroIngresosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraNumeroIngresosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

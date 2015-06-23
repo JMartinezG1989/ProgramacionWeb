@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraFacturaCabeceraEditDlg" widgetVar="TraFacturaCabeceraEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraFacturaCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaCabeceraEditForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="TraFacturaCabeceraTabView">
+
+                        <p:tab id="TraFacturaCabeceraTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid  columns="2" columnClasses="column" rendered="#{traFacturaCabeceraController.selected != null}">
+
+                                <h:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaIdPk}" for="fcaIdPk" />
+                                <h:outputText id="fcaIdPk" value="#{traFacturaCabeceraController.selected.fcaIdPk}" />
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_audEliminado}" for="audEliminado" />
+                                <p:inputText id="audEliminado" value="#{traFacturaCabeceraController.selected.audEliminado}" title="#{myBundle.EditTraFacturaCabeceraTitle_audEliminado}" size="1" maxlength="1"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_audFechaInsercion}" for="audFechaInsercion" />
+                                <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaCabeceraController.selected.audFechaInsercion}" title="#{myBundle.EditTraFacturaCabeceraTitle_audFechaInsercion}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_audFechaModificacion}" for="audFechaModificacion" />
+                                <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaCabeceraController.selected.audFechaModificacion}" title="#{myBundle.EditTraFacturaCabeceraTitle_audFechaModificacion}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                                <p:inputText id="audUsuarioInserto" value="#{traFacturaCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.EditTraFacturaCabeceraTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                                <p:inputText id="audUsuarioModifico" value="#{traFacturaCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.EditTraFacturaCabeceraTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaTotalConIva}" for="fcaTotalConIva" />
+                                <p:inputText id="fcaTotalConIva" value="#{traFacturaCabeceraController.selected.fcaTotalConIva}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaTotalConIva}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaConcepto}" for="fcaConcepto" />
+                                <p:inputText id="fcaConcepto" value="#{traFacturaCabeceraController.selected.fcaConcepto}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaConcepto}" size="200" maxlength="200"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaCondicion}" for="fcaCondicion" />
+                                <p:inputText id="fcaCondicion" value="#{traFacturaCabeceraController.selected.fcaCondicion}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaCondicion}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaDestinatario}" for="fcaDestinatario" />
+                                <p:inputText id="fcaDestinatario" value="#{traFacturaCabeceraController.selected.fcaDestinatario}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaDestinatario}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaDireccion}" for="fcaDireccion" />
+                                <p:inputText id="fcaDireccion" value="#{traFacturaCabeceraController.selected.fcaDireccion}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaDireccion}" size="200" maxlength="200"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaEstado}" for="fcaEstado" />
+                                <p:inputText id="fcaEstado" value="#{traFacturaCabeceraController.selected.fcaEstado}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaEstado}" required="true" requiredMessage="#{myBundle.EditTraFacturaCabeceraRequiredMessage_fcaEstado}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaFecha}" for="fcaFecha" />
+                                <p:calendar id="fcaFecha" pattern="MM/dd/yyyy" value="#{traFacturaCabeceraController.selected.fcaFecha}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaFecha}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaFechaFac}" for="fcaFechaFac" />
+                                <p:calendar id="fcaFechaFac" pattern="MM/dd/yyyy" value="#{traFacturaCabeceraController.selected.fcaFechaFac}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaFechaFac}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaNguiaRemitente}" for="fcaNguiaRemitente" />
+                                <p:inputText id="fcaNguiaRemitente" value="#{traFacturaCabeceraController.selected.fcaNguiaRemitente}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaNguiaRemitente}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaNumero}" for="fcaNumero" />
+                                <p:inputText id="fcaNumero" value="#{traFacturaCabeceraController.selected.fcaNumero}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaNumero}" required="true" requiredMessage="#{myBundle.EditTraFacturaCabeceraRequiredMessage_fcaNumero}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaRemitente}" for="fcaRemitente" />
+                                <p:inputText id="fcaRemitente" value="#{traFacturaCabeceraController.selected.fcaRemitente}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaRemitente}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaRuc}" for="fcaRuc" />
+                                <p:inputText id="fcaRuc" value="#{traFacturaCabeceraController.selected.fcaRuc}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaRuc}" required="true" requiredMessage="#{myBundle.EditTraFacturaCabeceraRequiredMessage_fcaRuc}" size="15" maxlength="15"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaSubtotal}" for="fcaSubtotal" />
+                                <p:inputText id="fcaSubtotal" value="#{traFacturaCabeceraController.selected.fcaSubtotal}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaSubtotal}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaTelefono}" for="fcaTelefono" />
+                                <p:inputText id="fcaTelefono" value="#{traFacturaCabeceraController.selected.fcaTelefono}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaTelefono}" size="100" maxlength="100"/>
+
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab id="TraFacturaCabeceraTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                            <p:panelGrid  columns="2" columnClasses="column" rendered="#{traFacturaCabeceraController.selected != null}">
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fcaUsuario}" for="fcaUsuario" />
+                                <p:inputText id="fcaUsuario" value="#{traFacturaCabeceraController.selected.fcaUsuario}" title="#{myBundle.EditTraFacturaCabeceraTitle_fcaUsuario}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_tpcoIdPk}" for="tpcoIdPk" />
+                                <p:selectOneMenu id="tpcoIdPk" value="#{traFacturaCabeceraController.selected.tpcoIdPk}"  converter="traFacturaTipoPagoCobroConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traFacturaTipoPagoCobroController.items}"
+                                                   var="tpcoIdPkItem"
+                                                   itemValue="#{tpcoIdPkItem}"
+                                                   itemLabel="#{tpcoIdPkItem.tpcoDescripcion.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{myBundle.EditTraFacturaCabeceraLabel_fivIdPk}" for="fivIdPk" />
+                                <p:selectOneMenu id="fivIdPk" value="#{traFacturaCabeceraController.selected.fivIdPk}"  converter="traFacturaIvasConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traFacturaIvasController.items}"
+                                                   var="fivIdPkItem"
+                                                   itemValue="#{fivIdPkItem}"
+                                                   itemLabel="#{fivIdPkItem.fivIdPk.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton actionListener="#{traFacturaCabeceraController.save}" value="#{myBundle.Save}" update="display,:TraFacturaCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraFacturaCabeceraEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraFacturaCabeceraEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

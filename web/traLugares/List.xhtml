@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraLugaresListForm">
+
+        <p:panel header="#{myBundle.ListTraLugaresTitle}">
+            <p:contextMenu id="TraLugaresDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraLugaresListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraLugaresListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraLugaresListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraLugaresListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.TraLugaresMenuItem_hrcHrdFk}" icon="ui-icon-search"  actionListener="#{traLugaresController.prepareHrcHrdFk}" update=":TraTipoLugaresViewForm" oncomplete="PF('TraTipoLugaresViewDialog').show()" disabled="#{empty traLugaresController.selected.hrcHrdFk}"/>  
+                <p:menuitem value="#{myBundle.TraLugaresMenuItem_traLugaresList}" icon="ui-icon-search"  action="#{traLugaresController.navigateTraLugaresList}" disabled="#{empty traLugaresController.selected.traLugaresList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TraLugaresMenuItem_lugPadreId}" icon="ui-icon-search"  actionListener="#{traLugaresController.prepareLugPadreId}" update=":TraLugaresViewForm" oncomplete="PF('TraLugaresViewDialog').show()" disabled="#{empty traLugaresController.selected.lugPadreId}"/>  
+                <p:menuitem value="#{myBundle.TraLugaresMenuItem_traGuiaRemisionCabeceraList}" icon="ui-icon-search"  action="#{traLugaresController.navigateTraGuiaRemisionCabeceraList}" disabled="#{empty traLugaresController.selected.traGuiaRemisionCabeceraList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TraLugaresMenuItem_traGuiaRemisionCabeceraList1}" icon="ui-icon-search"  action="#{traLugaresController.navigateTraGuiaRemisionCabeceraList1}" disabled="#{empty traLugaresController.selected.traGuiaRemisionCabeceraList1}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traLugaresController.items}"
+                         var="item"
+                         rowKey="#{item.lugIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traLugaresController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraLugaresDataTableContextMenu" listener="#{traLugaresController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraLugaresDataTableContextMenu" listener="#{traLugaresController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{traLugaresController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraLugaresListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.lugIdPk}" filterBy="#{item.lugIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle_lugIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lugIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLugaresTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.lugDescripcion}" filterBy="#{item.lugDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLugaresTitle_lugDescripcion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lugDescripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.hrcHrdFk.tluDescripcion}" filterBy="#{item.hrcHrdFk.tluDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLugaresTitle_hrcHrdFk}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.hrcHrdFk.tluDescripcion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lugPadreId.lugDescripcion}" filterBy="#{item.lugPadreId.lugDescripcion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLugaresTitle_lugPadreId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lugPadreId.lugDescripcion}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traLugaresController.prepareCreate}" update=":TraLugaresCreateForm" oncomplete="PF('TraLugaresCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraLugaresViewForm" oncomplete="PF('TraLugaresViewDialog').show()" disabled="#{empty traLugaresController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraLugaresEditForm" oncomplete="PF('TraLugaresEditDialog').show()" disabled="#{empty traLugaresController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traLugaresController.delete}" update=":growl,datalist" disabled="#{empty traLugaresController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

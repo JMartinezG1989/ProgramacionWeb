@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraLiquidacionFechaDetalleCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraLiquidacionFechaDetalleListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraLiquidacionFechaDetalleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traLiquidacionFechaDetalleController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfcdIdPk}" for="lfcdIdPk" />
+                            <p:inputText id="lfcdIdPk" value="#{traLiquidacionFechaDetalleController.selected.lfcdIdPk}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfcdIdPk}" required="true" requiredMessage="#{myBundle.CreateTraLiquidacionFechaDetalleRequiredMessage_lfcdIdPk}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_audEliminado}" for="audEliminado" />
+                            <p:inputText id="audEliminado" value="#{traLiquidacionFechaDetalleController.selected.audEliminado}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_audEliminado}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_audFechaInsercion}" for="audFechaInsercion" />
+                            <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLiquidacionFechaDetalleController.selected.audFechaInsercion}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_audFechaInsercion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_audFechaModificacion}" for="audFechaModificacion" />
+                            <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traLiquidacionFechaDetalleController.selected.audFechaModificacion}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_audFechaModificacion}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                            <p:inputText id="audUsuarioInserto" value="#{traLiquidacionFechaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                            <p:inputText id="audUsuarioModifico" value="#{traLiquidacionFechaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdCobroRuta}" for="lfdCobroRuta" />
+                            <p:inputText id="lfdCobroRuta" value="#{traLiquidacionFechaDetalleController.selected.lfdCobroRuta}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdCobroRuta}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdDescuento1}" for="lfdDescuento1" />
+                            <p:inputText id="lfdDescuento1" value="#{traLiquidacionFechaDetalleController.selected.lfdDescuento1}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdDescuento1}" size="5" maxlength="5"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdDescuento2}" for="lfdDescuento2" />
+                            <p:inputText id="lfdDescuento2" value="#{traLiquidacionFechaDetalleController.selected.lfdDescuento2}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdDescuento2}" size="5" maxlength="5"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdFecha}" for="lfdFecha" />
+                            <p:calendar id="lfdFecha" pattern="MM/dd/yyyy" value="#{traLiquidacionFechaDetalleController.selected.lfdFecha}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdFecha}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdLiquidacion1}" for="lfdLiquidacion1" />
+                            <p:inputText id="lfdLiquidacion1" value="#{traLiquidacionFechaDetalleController.selected.lfdLiquidacion1}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdLiquidacion1}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdLiquidacion2}" for="lfdLiquidacion2" />
+                            <p:inputText id="lfdLiquidacion2" value="#{traLiquidacionFechaDetalleController.selected.lfdLiquidacion2}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdLiquidacion2}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdCobroCuenca}" for="lfdCobroCuenca" />
+                            <p:inputText id="lfdCobroCuenca" value="#{traLiquidacionFechaDetalleController.selected.lfdCobroCuenca}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdCobroCuenca}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdNumGuia}" for="lfdNumGuia" />
+                            <p:inputText id="lfdNumGuia" value="#{traLiquidacionFechaDetalleController.selected.lfdNumGuia}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdNumGuia}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdPago}" for="lfdPago" />
+                            <p:inputText id="lfdPago" value="#{traLiquidacionFechaDetalleController.selected.lfdPago}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdPago}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdPorcentaje15o12}" for="lfdPorcentaje15o12" />
+                            <p:inputText id="lfdPorcentaje15o12" value="#{traLiquidacionFechaDetalleController.selected.lfdPorcentaje15o12}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdPorcentaje15o12}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdRetencionPorcentaje}" for="lfdRetencionPorcentaje" />
+                            <p:inputText id="lfdRetencionPorcentaje" value="#{traLiquidacionFechaDetalleController.selected.lfdRetencionPorcentaje}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdRetencionPorcentaje}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdTotalFlete}" for="lfdTotalFlete" />
+                            <p:inputText id="lfdTotalFlete" value="#{traLiquidacionFechaDetalleController.selected.lfdTotalFlete}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdTotalFlete}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateTraLiquidacionFechaDetalleLabel_lfdTotalLiquidacion}" for="lfdTotalLiquidacion" />
+                            <p:inputText id="lfdTotalLiquidacion" value="#{traLiquidacionFechaDetalleController.selected.lfdTotalLiquidacion}" title="#{myBundle.CreateTraLiquidacionFechaDetalleTitle_lfdTotalLiquidacion}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traLiquidacionFechaDetalleController.saveNew}" value="#{myBundle.Save}" update="display,:TraLiquidacionFechaDetalleListPage:TraLiquidacionFechaDetalleListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:TraLiquidacionFechaDetalleListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

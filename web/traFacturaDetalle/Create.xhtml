@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraFacturaDetalleCreateDlg" widgetVar="TraFacturaDetalleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraFacturaDetalleTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaDetalleCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traFacturaDetalleController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_fdeId}" for="fdeId" />
+                        <p:inputText id="fdeId" value="#{traFacturaDetalleController.selected.fdeId}" title="#{myBundle.CreateTraFacturaDetalleTitle_fdeId}" required="true" requiredMessage="#{myBundle.CreateTraFacturaDetalleRequiredMessage_fdeId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traFacturaDetalleController.selected.audEliminado}" title="#{myBundle.CreateTraFacturaDetalleTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaDetalleController.selected.audFechaInsercion}" title="#{myBundle.CreateTraFacturaDetalleTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaDetalleController.selected.audFechaModificacion}" title="#{myBundle.CreateTraFacturaDetalleTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traFacturaDetalleController.selected.audUsuarioInserto}" title="#{myBundle.CreateTraFacturaDetalleTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traFacturaDetalleController.selected.audUsuarioModifico}" title="#{myBundle.CreateTraFacturaDetalleTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_fdeCantidad}" for="fdeCantidad" />
+                        <p:inputText id="fdeCantidad" value="#{traFacturaDetalleController.selected.fdeCantidad}" title="#{myBundle.CreateTraFacturaDetalleTitle_fdeCantidad}" required="true" requiredMessage="#{myBundle.CreateTraFacturaDetalleRequiredMessage_fdeCantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_fdeDescripcion}" for="fdeDescripcion" />
+                        <p:inputText id="fdeDescripcion" value="#{traFacturaDetalleController.selected.fdeDescripcion}" title="#{myBundle.CreateTraFacturaDetalleTitle_fdeDescripcion}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_fdeValTotal}" for="fdeValTotal" />
+                        <p:inputText id="fdeValTotal" value="#{traFacturaDetalleController.selected.fdeValTotal}" title="#{myBundle.CreateTraFacturaDetalleTitle_fdeValTotal}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_fdeValUnitario}" for="fdeValUnitario" />
+                        <p:inputText id="fdeValUnitario" value="#{traFacturaDetalleController.selected.fdeValUnitario}" title="#{myBundle.CreateTraFacturaDetalleTitle_fdeValUnitario}" required="true" requiredMessage="#{myBundle.CreateTraFacturaDetalleRequiredMessage_fdeValUnitario}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraFacturaDetalleLabel_fcaIdPk}" for="fcaIdPk" />
+                        <p:selectOneMenu id="fcaIdPk" value="#{traFacturaDetalleController.selected.fcaIdPk}"  converter="traFacturaCabeceraConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{traFacturaCabeceraController.items}"
+                                           var="fcaIdPkItem"
+                                           itemValue="#{fcaIdPkItem}"
+                                           itemLabel="#{fcaIdPkItem.fcaIdPk.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traFacturaDetalleController.saveNew}" value="#{myBundle.Save}" update="display,:TraFacturaDetalleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraFacturaDetalleCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraFacturaDetalleCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

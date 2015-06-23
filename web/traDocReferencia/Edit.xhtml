@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraDocReferenciaEditDlg" widgetVar="TraDocReferenciaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraDocReferenciaTitle}" closeOnEscape="true">
+
+            <h:form id="TraDocReferenciaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traDocReferenciaController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_dorId}" for="dorId" />
+                        <h:outputText id="dorId" value="#{traDocReferenciaController.selected.dorId}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_dorDescripcionDocreferencia}" for="dorDescripcionDocreferencia" />
+                        <p:inputText id="dorDescripcionDocreferencia" value="#{traDocReferenciaController.selected.dorDescripcionDocreferencia}" title="#{myBundle.EditTraDocReferenciaTitle_dorDescripcionDocreferencia}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_dorNumDocreferencia}" for="dorNumDocreferencia" />
+                        <p:inputText id="dorNumDocreferencia" value="#{traDocReferenciaController.selected.dorNumDocreferencia}" title="#{myBundle.EditTraDocReferenciaTitle_dorNumDocreferencia}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traDocReferenciaController.selected.audEliminado}" title="#{myBundle.EditTraDocReferenciaTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDocReferenciaController.selected.audFechaInsercion}" title="#{myBundle.EditTraDocReferenciaTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traDocReferenciaController.selected.audFechaModificacion}" title="#{myBundle.EditTraDocReferenciaTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traDocReferenciaController.selected.audUsuarioInserto}" title="#{myBundle.EditTraDocReferenciaTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraDocReferenciaLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traDocReferenciaController.selected.audUsuarioModifico}" title="#{myBundle.EditTraDocReferenciaTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traDocReferenciaController.save}" value="#{myBundle.Save}" update="display,:TraDocReferenciaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraDocReferenciaEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraDocReferenciaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

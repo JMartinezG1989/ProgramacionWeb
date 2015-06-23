@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraUsuarioCreateDlg" widgetVar="TraUsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTraUsuarioTitle}" closeOnEscape="true">
+
+            <h:form id="TraUsuarioCreateForm">
+
+                <h:panelGroup id="display" rendered="#{traUsuarioController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTraUsuarioLabel_usuId}" for="usuId" />
+                        <p:inputText id="usuId" value="#{traUsuarioController.selected.usuId}" title="#{myBundle.CreateTraUsuarioTitle_usuId}" required="true" requiredMessage="#{myBundle.CreateTraUsuarioRequiredMessage_usuId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraUsuarioLabel_usuClave}" for="usuClave" />
+                        <p:inputText id="usuClave" value="#{traUsuarioController.selected.usuClave}" title="#{myBundle.CreateTraUsuarioTitle_usuClave}" required="true" requiredMessage="#{myBundle.CreateTraUsuarioRequiredMessage_usuClave}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTraUsuarioLabel_usuUsuario}" for="usuUsuario" />
+                        <p:inputText id="usuUsuario" value="#{traUsuarioController.selected.usuUsuario}" title="#{myBundle.CreateTraUsuarioTitle_usuUsuario}" required="true" requiredMessage="#{myBundle.CreateTraUsuarioRequiredMessage_usuUsuario}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traUsuarioController.saveNew}" value="#{myBundle.Save}" update="display,:TraUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraUsuarioCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraUsuarioCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

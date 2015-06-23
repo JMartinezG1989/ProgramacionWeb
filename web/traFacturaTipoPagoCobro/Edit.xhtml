@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraFacturaTipoPagoCobroEditDlg" widgetVar="TraFacturaTipoPagoCobroEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraFacturaTipoPagoCobroTitle}" closeOnEscape="true">
+
+            <h:form id="TraFacturaTipoPagoCobroEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{traFacturaTipoPagoCobroController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_tpcoIdPk}" for="tpcoIdPk" />
+                        <h:outputText id="tpcoIdPk" value="#{traFacturaTipoPagoCobroController.selected.tpcoIdPk}" />
+
+                        <p:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_audEliminado}" for="audEliminado" />
+                        <p:inputText id="audEliminado" value="#{traFacturaTipoPagoCobroController.selected.audEliminado}" title="#{myBundle.EditTraFacturaTipoPagoCobroTitle_audEliminado}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_audFechaInsercion}" for="audFechaInsercion" />
+                        <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaTipoPagoCobroController.selected.audFechaInsercion}" title="#{myBundle.EditTraFacturaTipoPagoCobroTitle_audFechaInsercion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_audFechaModificacion}" for="audFechaModificacion" />
+                        <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traFacturaTipoPagoCobroController.selected.audFechaModificacion}" title="#{myBundle.EditTraFacturaTipoPagoCobroTitle_audFechaModificacion}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                        <p:inputText id="audUsuarioInserto" value="#{traFacturaTipoPagoCobroController.selected.audUsuarioInserto}" title="#{myBundle.EditTraFacturaTipoPagoCobroTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                        <p:inputText id="audUsuarioModifico" value="#{traFacturaTipoPagoCobroController.selected.audUsuarioModifico}" title="#{myBundle.EditTraFacturaTipoPagoCobroTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.EditTraFacturaTipoPagoCobroLabel_tpcoDescripcion}" for="tpcoDescripcion" />
+                        <p:inputText id="tpcoDescripcion" value="#{traFacturaTipoPagoCobroController.selected.tpcoDescripcion}" title="#{myBundle.EditTraFacturaTipoPagoCobroTitle_tpcoDescripcion}" required="true" requiredMessage="#{myBundle.EditTraFacturaTipoPagoCobroRequiredMessage_tpcoDescripcion}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{traFacturaTipoPagoCobroController.save}" value="#{myBundle.Save}" update="display,:TraFacturaTipoPagoCobroListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraFacturaTipoPagoCobroEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraFacturaTipoPagoCobroEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

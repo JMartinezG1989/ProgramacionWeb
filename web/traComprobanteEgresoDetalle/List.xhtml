@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraComprobanteEgresoDetalleListForm">
+
+        <p:panel header="#{myBundle.ListTraComprobanteEgresoDetalleTitle}">
+            <p:contextMenu id="TraComprobanteEgresoDetalleDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraComprobanteEgresoDetalleListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraComprobanteEgresoDetalleListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraComprobanteEgresoDetalleListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraComprobanteEgresoDetalleListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traComprobanteEgresoDetalleController.items}"
+                         var="item"
+                         rowKey="#{item.cedId}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traComprobanteEgresoDetalleController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraComprobanteEgresoDetalleDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraComprobanteEgresoDetalleDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraComprobanteEgresoDetalleListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.cedId}" filterBy="#{item.cedId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cedAnt}" filterBy="#{item.cedAnt}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedAnt}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedAnt}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cedCodigoEgreso}" filterBy="#{item.cedCodigoEgreso}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedCodigoEgreso}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedCodigoEgreso}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cedConcepto}" filterBy="#{item.cedConcepto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedConcepto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedConcepto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cedDebe}" filterBy="#{item.cedDebe}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedDebe}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedDebe}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.cedDescuento}" filterBy="#{item.cedDescuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedDescuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cedDescuento}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.cedHaber}" filterBy="#{item.cedHaber}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedHaber}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cedHaber}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.cedPorcentaje}" filterBy="#{item.cedPorcentaje}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedPorcentaje}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cedPorcentaje}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.cedRef}" filterBy="#{item.cedRef}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraComprobanteEgresoDetalleTitle_cedRef}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cedRef}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traComprobanteEgresoDetalleController.prepareCreate}" update=":TraComprobanteEgresoDetalleCreateForm" oncomplete="PF('TraComprobanteEgresoDetalleCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraComprobanteEgresoDetalleViewForm" oncomplete="PF('TraComprobanteEgresoDetalleViewDialog').show()" disabled="#{empty traComprobanteEgresoDetalleController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraComprobanteEgresoDetalleEditForm" oncomplete="PF('TraComprobanteEgresoDetalleEditDialog').show()" disabled="#{empty traComprobanteEgresoDetalleController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traComprobanteEgresoDetalleController.delete}" update=":growl,datalist" disabled="#{empty traComprobanteEgresoDetalleController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

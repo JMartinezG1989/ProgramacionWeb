@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TraNumeroFacturasViewDlg" widgetVar="TraNumeroFacturasViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTraNumeroFacturasTitle}" closeOnEscape="true">
+
+            <h:form id="TraNumeroFacturasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{traNumeroFacturasController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroFacturasLabel_traIdPk}"/>
+                        <h:outputText value="#{traNumeroFacturasController.selected.traIdPk}" title="#{myBundle.ViewTraNumeroFacturasTitle_traIdPk}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroFacturasLabel_traDes}"/>
+                        <h:outputText value="#{traNumeroFacturasController.selected.traDes}" title="#{myBundle.ViewTraNumeroFacturasTitle_traDes}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroFacturasLabel_traHas}"/>
+                        <h:outputText value="#{traNumeroFacturasController.selected.traHas}" title="#{myBundle.ViewTraNumeroFacturasTitle_traHas}"/>
+
+                        <h:outputText value="#{myBundle.ViewTraNumeroFacturasLabel_traSuma}"/>
+                        <h:outputText value="#{traNumeroFacturasController.selected.traSuma}" title="#{myBundle.ViewTraNumeroFacturasTitle_traSuma}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TraNumeroFacturasViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

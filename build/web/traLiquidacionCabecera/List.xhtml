@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TraLiquidacionCabeceraListForm">
+
+        <p:panel header="#{myBundle.ListTraLiquidacionCabeceraTitle}">
+            <p:contextMenu id="TraLiquidacionCabeceraDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TraLiquidacionCabeceraListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TraLiquidacionCabeceraListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TraLiquidacionCabeceraListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TraLiquidacionCabeceraListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{traLiquidacionCabeceraController.items}"
+                         var="item"
+                         rowKey="#{item.lcaIdPk}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{traLiquidacionCabeceraController.selected}">
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraLiquidacionCabeceraDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TraLiquidacionCabeceraDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TraLiquidacionCabeceraListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.lcaIdPk}" filterBy="#{item.lcaIdPk}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaIdPk}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lcaIdPk}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audEliminado}" filterBy="#{item.audEliminado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_audEliminado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audEliminado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaInsercion}" filterBy="#{item.audFechaInsercion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_audFechaInsercion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaInsercion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audFechaModificacion}" filterBy="#{item.audFechaModificacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_audFechaModificacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audFechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioInserto}" filterBy="#{item.audUsuarioInserto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_audUsuarioInserto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioInserto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.audUsuarioModifico}" filterBy="#{item.audUsuarioModifico}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_audUsuarioModifico}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.audUsuarioModifico}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.lcaDireccion}" filterBy="#{item.lcaDireccion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaDireccion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lcaDireccion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lcaEstaddo}" filterBy="#{item.lcaEstaddo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaEstaddo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lcaEstaddo}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lcaFecha}" filterBy="#{item.lcaFecha}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaFecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lcaFecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lcaFechaEmision}" filterBy="#{item.lcaFechaEmision}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaFechaEmision}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lcaFechaEmision}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lcaSenores}" filterBy="#{item.lcaSenores}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaSenores}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lcaSenores}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.lcaUsuario}" filterBy="#{item.lcaUsuario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTraLiquidacionCabeceraTitle_lcaUsuario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lcaUsuario}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{traLiquidacionCabeceraController.prepareCreate}" update=":TraLiquidacionCabeceraCreateForm" oncomplete="PF('TraLiquidacionCabeceraCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TraLiquidacionCabeceraViewForm" oncomplete="PF('TraLiquidacionCabeceraViewDialog').show()" disabled="#{empty traLiquidacionCabeceraController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TraLiquidacionCabeceraEditForm" oncomplete="PF('TraLiquidacionCabeceraEditDialog').show()" disabled="#{empty traLiquidacionCabeceraController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{traLiquidacionCabeceraController.delete}" update=":growl,datalist" disabled="#{empty traLiquidacionCabeceraController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

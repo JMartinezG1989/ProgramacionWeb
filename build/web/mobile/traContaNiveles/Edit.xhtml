@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TraContaNivelesEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTraContaNivelesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TraContaNivelesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TraContaNivelesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{traContaNivelesController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTraContaNivelesLabel_coniId}" for="coniId" />
+                            <h:outputText id="coniId" value="#{traContaNivelesController.selected.coniId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraContaNivelesLabel_coniDescripcion}" for="coniDescripcion" />
+                            <p:inputText id="coniDescripcion" value="#{traContaNivelesController.selected.coniDescripcion}" title="#{myBundle.EditTraContaNivelesTitle_coniDescripcion}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTraContaNivelesLabel_coniValor}" for="coniValor" />
+                            <p:inputText id="coniValor" value="#{traContaNivelesController.selected.coniValor}" title="#{myBundle.EditTraContaNivelesTitle_coniValor}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{traContaNivelesController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TraContaNivelesListPage:TraContaNivelesListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TraContaNivelesListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

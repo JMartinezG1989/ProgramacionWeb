@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TraGuiaRemisionCabeceraEditDlg" widgetVar="TraGuiaRemisionCabeceraEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditTraGuiaRemisionCabeceraTitle}" closeOnEscape="true">
+
+            <h:form id="TraGuiaRemisionCabeceraEditForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="TraGuiaRemisionCabeceraTabView">
+
+                        <p:tab id="TraGuiaRemisionCabeceraTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid  columns="2" columnClasses="column" rendered="#{traGuiaRemisionCabeceraController.selected != null}">
+
+                                <h:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcIdPk}" for="grcIdPk" />
+                                <h:outputText id="grcIdPk" value="#{traGuiaRemisionCabeceraController.selected.grcIdPk}" />
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_audEliminado}" for="audEliminado" />
+                                <p:inputText id="audEliminado" value="#{traGuiaRemisionCabeceraController.selected.audEliminado}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_audEliminado}" size="1" maxlength="1"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_audFechaInsercion}" for="audFechaInsercion" />
+                                <p:calendar id="audFechaInsercion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traGuiaRemisionCabeceraController.selected.audFechaInsercion}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_audFechaInsercion}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_audFechaModificacion}" for="audFechaModificacion" />
+                                <p:calendar id="audFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{traGuiaRemisionCabeceraController.selected.audFechaModificacion}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_audFechaModificacion}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_audUsuarioInserto}" for="audUsuarioInserto" />
+                                <p:inputText id="audUsuarioInserto" value="#{traGuiaRemisionCabeceraController.selected.audUsuarioInserto}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_audUsuarioInserto}" size="255" maxlength="255"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_audUsuarioModifico}" for="audUsuarioModifico" />
+                                <p:inputText id="audUsuarioModifico" value="#{traGuiaRemisionCabeceraController.selected.audUsuarioModifico}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_audUsuarioModifico}" size="255" maxlength="255"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcComponenteVenta}" for="grcComponenteVenta" />
+                                <p:inputText id="grcComponenteVenta" value="#{traGuiaRemisionCabeceraController.selected.grcComponenteVenta}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcComponenteVenta}" size="50" maxlength="50"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcEstado}" for="grcEstado" />
+                                <p:inputText id="grcEstado" value="#{traGuiaRemisionCabeceraController.selected.grcEstado}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcEstado}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcFecha}" for="grcFecha" />
+                                <p:calendar id="grcFecha" pattern="MM/dd/yyyy" value="#{traGuiaRemisionCabeceraController.selected.grcFecha}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcFecha}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcFechaEmision}" for="grcFechaEmision" />
+                                <p:inputText id="grcFechaEmision" value="#{traGuiaRemisionCabeceraController.selected.grcFechaEmision}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcFechaEmision}" size="20" maxlength="20"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcFechaFinTraslado}" for="grcFechaFinTraslado" />
+                                <p:inputText id="grcFechaFinTraslado" value="#{traGuiaRemisionCabeceraController.selected.grcFechaFinTraslado}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcFechaFinTraslado}" size="20" maxlength="20"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcFechaInicioTraslado}" for="grcFechaInicioTraslado" />
+                                <p:calendar id="grcFechaInicioTraslado" pattern="MM/dd/yyyy" value="#{traGuiaRemisionCabeceraController.selected.grcFechaInicioTraslado}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcFechaInicioTraslado}"  showOn="button"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcNumero}" for="grcNumero" />
+                                <p:inputText id="grcNumero" value="#{traGuiaRemisionCabeceraController.selected.grcNumero}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcNumero}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcSubtotal}" for="grcSubtotal" />
+                                <p:inputText id="grcSubtotal" value="#{traGuiaRemisionCabeceraController.selected.grcSubtotal}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcSubtotal}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcTotalConIva}" for="grcTotalConIva" />
+                                <p:inputText id="grcTotalConIva" value="#{traGuiaRemisionCabeceraController.selected.grcTotalConIva}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcTotalConIva}"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_grcUsuario}" for="grcUsuario" />
+                                <p:inputText id="grcUsuario" value="#{traGuiaRemisionCabeceraController.selected.grcUsuario}" title="#{myBundle.EditTraGuiaRemisionCabeceraTitle_grcUsuario}" size="100" maxlength="100"/>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_tpeGrcFk}" for="tpeGrcFk" />
+                                <p:selectOneMenu id="tpeGrcFk" value="#{traGuiaRemisionCabeceraController.selected.tpeGrcFk}"  converter="traPersonaConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traPersonaController.items}"
+                                                   var="tpeGrcFkItem"
+                                                   itemValue="#{tpeGrcFkItem}"
+                                                   itemLabel="#{tpeGrcFkItem.perIdPk.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_mtrGrcFk}" for="mtrGrcFk" />
+                                <p:selectOneMenu id="mtrGrcFk" value="#{traGuiaRemisionCabeceraController.selected.mtrGrcFk}"  converter="traMotivoTrasladosConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traMotivoTrasladosController.items}"
+                                                   var="mtrGrcFkItem"
+                                                   itemValue="#{mtrGrcFkItem}"
+                                                   itemLabel="#{mtrGrcFkItem.mtrDescripcion.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_lugGrcOrigenFk}" for="lugGrcOrigenFk" />
+                                <p:selectOneMenu id="lugGrcOrigenFk" value="#{traGuiaRemisionCabeceraController.selected.lugGrcOrigenFk}"  converter="traLugaresConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traLugaresController.items}"
+                                                   var="lugGrcOrigenFkItem"
+                                                   itemValue="#{lugGrcOrigenFkItem}"
+                                                   itemLabel="#{lugGrcOrigenFkItem.lugDescripcion.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_lugGrcDestinoFk}" for="lugGrcDestinoFk" />
+                                <p:selectOneMenu id="lugGrcDestinoFk" value="#{traGuiaRemisionCabeceraController.selected.lugGrcDestinoFk}"  converter="traLugaresConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traLugaresController.items}"
+                                                   var="lugGrcDestinoFkItem"
+                                                   itemValue="#{lugGrcDestinoFkItem}"
+                                                   itemLabel="#{lugGrcDestinoFkItem.lugDescripcion.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab id="TraGuiaRemisionCabeceraTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                            <p:panelGrid  columns="2" columnClasses="column" rendered="#{traGuiaRemisionCabeceraController.selected != null}">
+                                <p:outputLabel value="#{myBundle.EditTraGuiaRemisionCabeceraLabel_tfiGrcFk}" for="tfiGrcFk" />
+                                <p:selectOneMenu id="tfiGrcFk" value="#{traGuiaRemisionCabeceraController.selected.tfiGrcFk}"  converter="traFacturaIvasConverter">
+                                    <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{traFacturaIvasController.items}"
+                                                   var="tfiGrcFkItem"
+                                                   itemValue="#{tfiGrcFkItem}"
+                                                   itemLabel="#{tfiGrcFkItem.fivIdPk.toString()}"
+                                                   />
+
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton actionListener="#{traGuiaRemisionCabeceraController.save}" value="#{myBundle.Save}" update="display,:TraGuiaRemisionCabeceraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TraGuiaRemisionCabeceraEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('TraGuiaRemisionCabeceraEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
